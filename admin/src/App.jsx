@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { amEditor, deleteRow, loadAll, saveRow, saveSorts, supabase } from './data';
+import { amEditor, countNew, deleteRow, loadAll, saveRow, saveSorts, supabase } from './data';
 import { Field } from './fields';
 import { COLLECTIONS, slugify } from './schema';
 import { Messages } from './Messages';
@@ -155,6 +155,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [editor, setEditor] = useState(undefined);
   const [pwOpen, setPwOpen] = useState(() => /type=recovery/.test(location.hash) ? 'forced' : false);
+  const [newMsgs, setNewMsgs] = useState(0);
 
   useEffect(() => {
     // Nur für lokale Tests (npm run dev mit VITE_DEMO=1): ohne Anmeldung ansehen, Speichern geht dann nicht
@@ -169,6 +170,17 @@ export default function App() {
     if (import.meta.env.DEV && import.meta.env.VITE_DEMO) { setEditor(true); reload(); return; }
     amEditor().then((ok) => { setEditor(ok); if (ok) reload(); }).catch((e) => setErr(e.message));
   }, [session, reload]);
+  // Neue Kontakt-Nachrichten zählen: beim Start, jede Minute und wenn das Fenster wieder in den Vordergrund kommt
+  const refreshNew = useCallback(() => countNew().then(setNewMsgs).catch(() => {}), []);
+  useEffect(() => {
+    if (!editor) return;
+    refreshNew();
+    const t = setInterval(refreshNew, 60_000);
+    const onFocus = () => document.visibilityState === 'visible' && refreshNew();
+    document.addEventListener('visibilitychange', onFocus);
+    return () => { clearInterval(t); document.removeEventListener('visibilitychange', onFocus); };
+  }, [editor, refreshNew]);
+  useEffect(() => { document.title = (newMsgs ? `(${newMsgs}) ` : '') + 'CMS · Cool-Tec'; }, [newMsgs]);
   useEffect(() => { if (!pwOpen) history.replaceState(null, '', `#${col}${sel ? '/' + encodeURIComponent(sel) : ''}`); }, [col, sel, pwOpen]);
 
   const def = COLLECTIONS.find((c) => c.key === col);
@@ -230,6 +242,11 @@ export default function App() {
         <img src="/brand/logo.png" alt="" style={{ height: 32, width: 'auto' }} />
         <strong>CMS</strong>
         <span className="spacer" />
+        {newMsgs > 0 && (
+          <button className="new-badge" onClick={() => pick('messages')} title="Neue Kontakt-Nachrichten öffnen">
+            ✉ <b>{newMsgs}</b> {newMsgs === 1 ? 'neue Nachricht' : 'neue Nachrichten'}
+          </button>
+        )}
         <a className="button secondary small" href="/" target="_blank" rel="noreferrer">🌐 Webseite</a>
         <span className="who">{session.user.email}</span>
         <button className="ghost small" onClick={() => setPwOpen(true)} title="Passwort ändern">🔑</button>
@@ -248,10 +265,10 @@ export default function App() {
             </div>
           ))}
           <div className="group">Eingang</div>
-          <button className={'nav' + (col === 'messages' ? ' on' : '')} onClick={() => pick('messages')}><span>✉️</span> Kontakt-Nachrichten</button>
+          <button className={'nav' + (col === 'messages' ? ' on' : '')} onClick={() => pick('messages')}><span>✉️</span> Nachrichten {newMsgs > 0 && <span className="count-new" aria-label={`${newMsgs} neu`}>{newMsgs} neu</span>}</button>
         </nav>
         {col === 'messages' ? (
-          <section className="content"><Messages /></section>
+          <section className="content"><Messages onChange={refreshNew} /></section>
         ) : def.single ? (
           <section className="content"><p className="desc">{def.description}</p><Editor def={def} row={current} rows={rows} onSaved={onSaved} onDeleted={() => {}} isNew={!rows.find((r) => r.collection === col)} /></section>
         ) : (

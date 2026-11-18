@@ -30,6 +30,15 @@
 - Vor dem echten Start: **Impressum und Datenschutz** durch echte Texte ersetzen, fiktive Projekte/Partner/Zahlen austauschen.
 - Eigene Adresse (z. B. www.cool-tec.lu): Domain kaufen und bei Render eintragen – Pepper hilft dabei.
 
+## 💡 Ideen für später (noch nicht umgesetzt)
+- **E-Mail-Benachrichtigung bei neuen Kontakt-Nachrichten** – geprüft, funktioniert und ist **kostenlos**:
+  - Bei jeder Nachricht über das Kontaktformular geht zusätzlich sofort eine E-Mail an eine oder mehrere Adressen (z. B. Chef + Büro), mit Name, Telefon, Betreff und Nachricht. „Antworten“ schreibt direkt dem Kunden. Die Nachricht bleibt außerdem wie bisher im CMS.
+  - Empfänger-Adressen später selbst änderbar im CMS unter „Firma & Kontakt“.
+  - Versand über den Gratis-Dienst **Brevo** (300 E-Mails pro Tag, keine Kreditkarte, unbegrenzt). Render-Gratis-Server dürfen selbst keine E-Mails verschicken, deshalb der Dienst.
+  - Einmalig nötig (ca. 5 Min., Pepper führt): Gratis-Konto bei Brevo anlegen → Absender-E-Mail bestätigen → Zugangsschlüssel erzeugen und **direkt bei Render** eintragen (nie in den Chat).
+  - Hinweis: Ohne eigene Adresse wie `cool-tec.lu` landen die ersten Mails evtl. im Spam → einmal „Kein Spam“ markieren.
+  - **Zum Umsetzen einfach sagen:** „Bitte E-Mail-Benachrichtigung fürs Kontaktformular einbauen, an: …“
+
 ## Änderungen am Aussehen / an Funktionen
 Das macht Pepper Potts – immer so:
 1. Arbeit auf einem eigenen **Arbeitszweig** (nie direkt auf `main`)

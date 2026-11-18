@@ -4,7 +4,7 @@
 - Nutzer ist Programmier-Anfänger → **auf Deutsch**, Schritt für Schritt, alles selbst erledigen, was geht.
 - Nutzer ist **farbenblind**: Farben über hell/dunkel erklären, Textkontrast ≥ 4,5:1 messen, Zustände nie nur über Farbe zeigen (immer Symbol/Fettdruck/Form dazu).
 - **Kostenregel:** nur Gratis-Dienste (Render Free, Supabase Free, GitHub). Kostenpflichtiges nur nach ausdrücklicher Zustimmung. (Fotos wurden mit dem vorhandenen ElevenLabs-Abo erzeugt.)
-- Ziel: Webseite für **Cool-Tec** (Klimageräte aller Art), 3 Reiter: Unternehmen (/), Projekte (/projekte), Partner (/partner). Vorbild-Layout: BM Project (Kopfzeile mit Öffnungszeiten/Telefon/E-Mail rechts oben, Logo links, Reiter rechts, großes Startbild). Inhalte fiktiv.
+- Ziel: Webseite für **Cool-Tec** (Klimageräte aller Art), 4 Reiter: Unternehmen (/), Projekte (/projekte), Partner (/partner), Jobs (/jobs, Detail /jobs/<id>, Bewerbung per E-Mail oder Formular mit vorbelegtem Betreff). Vorbild-Layout: BM Project (Kopfzeile mit Öffnungszeiten/Telefon/E-Mail rechts oben, Logo links, Reiter rechts, großes Startbild). Inhalte fiktiv.
 - Repo: https://github.com/slazed1979/cool-tec (privat). Render-Dienst `cool-tec` (Workspace „My Workspace“, Region Frankfurt, Free).
 
 ## Arbeitsweise (Pflicht)
@@ -21,14 +21,21 @@
 - `admin/` CMS (Vite + React). Felder je Inhaltsart: `admin/src/schema.js`, Eingabefelder: `admin/src/fields.jsx`. Unter `/admin` ausgeliefert, wird beim Deploy gebaut.
 - Farben (aus dem Logo): Marine `#0d2a42` (Kopf/Fuß), Blau `#0a6aa8` (Links/Knöpfe, 5,8:1), Grün `#2e7d1f` (Akzent, 5,2:1), Eisblau `#eef6fb` (Flächen). Originales Logoblau `#0090d8` nur Deko.
 
+## Zweisprachig (DE/FR)
+- Umschalter **DE | FR** oben rechts in der Topbar. Wahl wird im Cookie `lang` gemerkt (`/lang/de`, `/lang/fr?r=<zurück>`); ohne Cookie entscheidet die Browsersprache, sonst DE.
+- Inhalte: jeder Text kann String (gilt für beide Sprachen) oder `{ de, fr }` sein. `server/data.mjs` → `localize()`, fehlt FR wird DE gezeigt.
+- Feste Texte (Knöpfe, Formular, Fußzeile): `server/i18n.mjs` (Schlüssel = deutscher Text). Neue Festtexte immer mit `T('…')` schreiben und dort übersetzen.
+- CMS: Textfelder (text/textarea/richtext/strings) sind automatisch DE/FR; `mono: true` in `admin/src/schema.js` = sprachneutral (Telefon, Jahr, Namen …).
+- Startübersetzungen: `tools/i18n/fr.mjs` + `apply.mjs` (`bilingual()`), genutzt von `tools/seed.mjs`.
+
 ## Datenbank
 - Supabase-Projekt **Familienplaner** (`qkcfrqlaaeooflyzcryq`) – Gratis-Kontingent war voll, Nutzer hat das so entschieden. **Alles mit Präfix `cooltec`**, Familienplaner-Tabellen nie anfassen.
-- `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage` (je 1 Zeile), `projects`, `partners`, `pages`.
+- `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage`, `jobsPage` (je 1 Zeile), `projects`, `partners`, `jobs`, `pages`.
 - `cooltec_messages` (Kontaktformular, anon darf nur einfügen), `cooltec_editors` (E-Mails der Redakteure), Funktion `cooltec_is_editor()`, Storage-Bucket `cooltec-media`. SQL: `supabase/schema.sql`.
 - Redakteur hinzufügen: `insert into public.cooltec_editors(email) values ('…')` + Supabase-Auth-Benutzer anlegen.
 - Supabase ist aus der Cloud-Umgebung nicht direkt erreichbar → Datenbank über das Supabase-MCP-Werkzeug bearbeiten.
 - `tools/seed.mjs` erzeugt `data/seed.json` (Startinhalte/Notlösung). Das CMS ist danach die Quelle der Wahrheit.
 
 ## Prüfen
-- `npm test` → `tests/run.mjs`: Server mit seed.json, prüft Reiter/Logo/Öffnungszeiten, Formular, Spam-Falle, 404, noindex, Code-Filter, Alt-Texte, eine h1 pro Seite, klickt alle Seiten/Bilder durch. Neue Funktion → Prüfung ergänzen.
+- `npm test` → `tests/run.mjs`: Server mit seed.json, prüft Reiter/Logo/Öffnungszeiten, Sprachumschalter + FR-Texte, Formular, Spam-Falle, 404, noindex, Code-Filter, Alt-Texte, eine h1 pro Seite, klickt alle Seiten/Bilder in DE und FR durch. Neue Funktion → Prüfung ergänzen.
 - Responsive: mit Playwright auf iPhone-Größe prüfen (kein waagrechtes Scrollen).

@@ -1,6 +1,6 @@
 // Automatische Tests der Webseite: npm test
 // Startet den Server mit data/seed.json (ohne Datenbank), prüft wichtige Adressen
-// und klickt sich durch alle Seiten (jeder interne Link und jedes Bild muss funktionieren).
+// und klickt sich durch alle Seiten in DE und FR (jeder interne Link und jedes Bild muss funktionieren).
 import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -33,12 +33,14 @@ try {
 
   // ---- 1. Inhalte & Grundfunktionen
   const status = await (await get('/api/status')).json();
-  ok(status.projects >= 3 && status.partners >= 3 && status.pages >= 2, 'api/status: zu wenig Inhalte ' + JSON.stringify(status));
+  ok((status.languages || []).join() === 'de,fr', 'Sprachen DE/FR fehlen: ' + JSON.stringify(status.languages));
+  ok(status.projects >= 3 && status.partners >= 3 && status.jobs >= 1 && status.pages >= 2, 'api/status: zu wenig Inhalte ' + JSON.stringify(status));
   const home = await (await get('/')).text();
   ok(home.includes('<html lang="de">'), 'Startseite: Sprache fehlt');
+  ok(/class="lang"[\s\S]*?lang-on[^>]*>DE<[\s\S]*?href="\/lang\/fr\?r=%2F"/.test(home), 'Sprachumschalter DE|FR fehlt oben rechts');
   ok(/class="brand"[\s\S]*?\/brand\/logo\.png/.test(home), 'Logo oben links fehlt');
   ok(home.includes('Montag – Freitag') && home.includes('info@cool-tec.lu'), 'Öffnungszeiten/E-Mail oben rechts fehlen');
-  ok((home.match(/<nav id="hauptmenu"[\s\S]*?<\/ul>/)?.[0].match(/<li>/g) || []).length === 3, 'Hauptmenü hat nicht genau 3 Reiter');
+  ok((home.match(/<nav id="hauptmenu"[\s\S]*?<\/ul>/)?.[0].match(/<li>/g) || []).length === 4, 'Hauptmenü hat nicht genau 4 Reiter (Unternehmen, Projekte, Partner, Jobs)');
   ok(home.includes('aria-current="page"'), 'aktiver Reiter nicht markiert');
   ok(home.includes('id="kontakt"') && home.includes('action="/kontakt"'), 'Kontaktformular fehlt');
   ok(home.includes('name="viewport"'), 'Responsive: viewport fehlt');
@@ -51,6 +53,27 @@ try {
   ok((await get('/css/%E0%A4%A')).status !== 500, 'kaputte Adresse führt zu Fehler 500');
   ok((await get('/img/../server/index.mjs')).status !== 200, 'Ordner-Ausbruch möglich');
   ok((await get('/admin-icon/snow.svg')).status === 200, 'CMS-Symbole fehlen');
+
+  // ---- Jobs
+  const jobs = await (await get('/jobs')).text();
+  ok(jobs.includes('aria-current="page">Jobs') && (jobs.match(/class="card job-card"/g) || []).length >= 1, 'Jobs-Seite: Reiter oder Stellen fehlen');
+  const job = await (await get('/jobs/servicetechniker')).text();
+  ok(job.includes('mailto:') && job.includes('value="Bewerbung: Servicetechniker'), 'Stelle: E-Mail-Bewerbung oder vorbelegter Betreff fehlt');
+  ok((await get('/jobs/gibt-es-nicht')).status === 404, 'unbekannte Stelle liefert nicht 404');
+  ok((await (await get('/jobs', { headers: { cookie: 'lang=fr' } })).text()).includes('Postes ouverts'), 'Jobs-Seite auf FR nicht übersetzt');
+
+  // ---- Sprachen
+  const sw = await get('/lang/fr?r=%2Fprojekte');
+  ok(sw.status === 302 && sw.headers.get('location') === '/projekte' && /lang=fr/.test(sw.headers.get('set-cookie') || ''), 'Sprachwechsel auf FR funktioniert nicht');
+  ok((await get('/lang/fr?r=%2F%2Fboese.example')).headers.get('location') === '/', 'Sprachwechsel: fremde Rücksprung-Adresse nicht abgefangen');
+  const fr = await (await get('/', { headers: { cookie: 'lang=fr' } })).text();
+  ok(fr.includes('<html lang="fr">') && fr.includes('Le bon climat') && fr.includes('Envoyer le message') && fr.includes('Partenaires'), 'Französische Startseite nicht auf Französisch');
+  ok(!/Nachricht senden|Projekt ansehen|Öffnungszeiten/.test(fr), 'Französische Seite enthält noch deutsche Festtexte');
+  ok((await (await get('/', { headers: { 'accept-language': 'fr-LU,fr;q=0.9' } })).text()).includes('<html lang="fr">'), 'Französischer Browser bekommt nicht FR');
+  ok((await (await get('/', { headers: { cookie: 'lang=xx' } })).text()).includes('<html lang="de">'), 'Unbekannte Sprache fällt nicht auf DE zurück');
+  ok((await get('/', { headers: { cookie: 'lang=%E0%A4%A' } })).status === 200, 'kaputtes Cookie führt zu Fehler');
+  const frFilt = await (await get('/projekte?bereich=Particuliers', { headers: { cookie: 'lang=fr' } })).text();
+  ok((frFilt.match(/<article class="card project-card"/g) || []).length >= 1 && frFilt.includes('<article hidden'), 'Projekt-Filter auf FR funktioniert nicht');
 
   // Projekt-Filter ohne JavaScript
   const filt = await (await get('/projekte?bereich=Privat')).text();
@@ -74,15 +97,16 @@ try {
   ok(!/onclick|<script|javascript:|<iframe/i.test(bad), 'rich() lässt gefährlichen Code durch: ' + bad);
   ok(esc('<b>"&') === '&lt;b&gt;&quot;&amp;', 'esc() maskiert nicht richtig');
 
-  // ---- 4. Alle Seiten durchklicken
+  // ---- 4. Alle Seiten in beiden Sprachen durchklicken
+  let pages = 0;
+  for (const lang of ['de', 'fr']) {
   const seen = new Set();
   const queue = [['/', 'Start']];
-  let pages = 0;
   while (queue.length) {
     const [p, from] = queue.shift();
     if (seen.has(p)) continue;
     seen.add(p);
-    const res = await get(p);
+    const res = await get(p, { headers: { cookie: 'lang=' + lang } });
     if (res.status >= 300 && res.status < 400) {
       const loc = res.headers.get('location') || '';
       if (loc.startsWith('/')) queue.push([loc.split('#')[0], p]);
@@ -90,7 +114,7 @@ try {
     }
     checks++;
     if (res.status !== 200) {
-      fails.push(`${p} → ${res.status} (Link auf ${from})`);
+      fails.push(`[${lang}] ${p} → ${res.status} (Link auf ${from})`);
       continue;
     }
     if (!(res.headers.get('content-type') || '').includes('html')) continue;
@@ -100,7 +124,7 @@ try {
     for (const m of html.matchAll(/<img\b[^>]*>/g)) ok(/\balt="/.test(m[0]), `${p}: Bild ohne alt-Text ${m[0].slice(0, 80)}`);
     for (const m of html.matchAll(/(?:href|src)="([^"]+)"|url\('([^']+)'\)/g)) {
       const u = (m[1] || m[2]).replace(/&amp;/g, '&').split('#')[0];
-      if (!u || !u.startsWith('/') || u.startsWith('//') || u.startsWith('/admin')) continue;
+      if (!u || !u.startsWith('/') || u.startsWith('//') || u.startsWith('/admin') || u.startsWith('/lang/')) continue;
       if (/^\/(css|js|img|brand|fonts)\//.test(u)) {
         const f = u.split('?')[0];
         if (!seen.has(f)) {
@@ -114,7 +138,8 @@ try {
       if (!seen.has(u)) queue.push([u, p]);
     }
   }
-  ok(pages >= 12, 'zu wenige Seiten gefunden: ' + pages);
+  }
+  ok(pages >= 34, 'zu wenige Seiten gefunden: ' + pages);
   console.log(`Seiten durchgeklickt: ${pages}`);
 
   // ---- 5. Daten-Dateien

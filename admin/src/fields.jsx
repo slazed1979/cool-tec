@@ -1,14 +1,80 @@
 // Zeichnet für jede Feld-Art aus schema.js das passende Eingabefeld.
+// Textfelder sind zweisprachig (DE/FR): gespeichert wird { de: '…', fr: '…' }.
+// Ein alter einsprachiger Text (nur Zeichenkette) gilt für beide Sprachen, bis man eine Sprache ändert.
 import { useEffect, useRef, useState } from 'react';
 import { upload } from './data';
 import { ICONS } from './schema';
 
+export const LANGS = [
+  { code: 'de', label: 'DE', name: 'Deutsch' },
+  { code: 'fr', label: 'FR', name: 'Französisch' },
+];
+const TR_TYPES = new Set(['text', 'textarea', 'richtext']);
+export const isTr = (v) => v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length > 0 && Object.keys(v).every((k) => LANGS.some((l) => l.code === k));
+const empty = (x) => x == null || String(x).replace(/<[^>]+>/g, '').trim() === '';
+/** Anzeigetext (deutsch bevorzugt) */
+export const label = (v) => (typeof v === 'string' ? v : isTr(v) ? v.de || v.fr || '' : '');
+
 export function Field({ field, value, onChange, ctx }) {
+  const multi = TR_TYPES.has(field.type) && !field.mono;
   return (
-    <div className={'field f-' + field.type}>
-      <label className="field-label">{field.label}</label>
+    <div className={'field f-' + field.type + (multi ? ' f-multi' : '')}>
+      <label className="field-label">{field.label}{multi && <span className="multi-hint" title="Dieses Feld gibt es auf Deutsch und Französisch"> DE/FR</span>}</label>
       {field.help && <div className="help">{field.help}</div>}
-      <Input field={field} value={value} onChange={onChange} ctx={ctx} />
+      {multi ? <Translated field={field} value={value} onChange={onChange} ctx={ctx} /> : <Input field={field} value={value} onChange={onChange} ctx={ctx} />}
+    </div>
+  );
+}
+
+// gemeinsam gewählte Sprache für alle großen Textfelder (Reiter)
+let tabLang = 'de';
+const tabListeners = new Set();
+function useTabLang() {
+  const [, force] = useState(0);
+  useEffect(() => {
+    const f = () => force((n) => n + 1);
+    tabListeners.add(f);
+    return () => tabListeners.delete(f);
+  }, []);
+  return [tabLang, (l) => { tabLang = l; tabListeners.forEach((f) => f()); }];
+}
+
+/** Schreibt eine Sprache, ohne die andere zu verlieren */
+export function setTr(value, lang, v) {
+  const next = {};
+  for (const l of LANGS) next[l.code] = isTr(value) ? value[l.code] : value;
+  next[lang] = v;
+  for (const k of Object.keys(next)) if (next[k] === undefined) delete next[k];
+  return next;
+}
+
+function Translated({ field, value, onChange, ctx }) {
+  const get = (l) => (isTr(value) ? value[l] : value);
+  const missing = (l) => (isTr(value) ? empty(value[l]) : empty(value));
+  const [active, setActive] = useTabLang();
+  if (field.type !== 'richtext') {
+    return (
+      <div className="i18n">
+        {LANGS.map((l) => (
+          <label key={l.code} className={missing(l.code) ? 'missing' : ''} title={missing(l.code) ? 'Noch nicht übersetzt' : l.name}>
+            <span className="flag">{l.label}{missing(l.code) ? ' ⚠' : ''}</span>
+            <Input field={field} value={get(l.code)} onChange={(v) => onChange(setTr(value, l.code, v))} ctx={ctx} />
+          </label>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div className="tr-tabs">
+      <div className="tr-bar" role="tablist">
+        {LANGS.map((l) => (
+          <button key={l.code} type="button" role="tab" aria-selected={active === l.code} className={(active === l.code ? 'on' : '') + (missing(l.code) ? ' missing' : '')} onClick={() => setActive(l.code)} title={missing(l.code) ? 'Noch nicht übersetzt' : l.name}>
+            {active === l.code ? '● ' : ''}{l.label}{missing(l.code) ? ' ⚠' : ''}
+          </button>
+        ))}
+        {!isTr(value) && !empty(value) && <span className="tr-note">gleicher Text in beiden Sprachen – noch nicht übersetzt</span>}
+      </div>
+      <Input key={active} field={field} value={get(active) ?? ''} onChange={(v) => onChange(setTr(value, active, v))} ctx={ctx} />
     </div>
   );
 }
@@ -29,10 +95,12 @@ function Input({ field, value, onChange, ctx }) {
       );
     case 'category': {
       const cats = ctx.rows.find((r) => r.collection === 'projectsPage')?.data?.categories || [];
+      const key = (c) => label(c);
+      const cur = cats.findIndex((c) => key(c) === key(value));
       return (
-        <select value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
-          <option value="">– bitte wählen –</option>
-          {[...new Set([...cats, ...(value && !cats.includes(value) ? [value] : [])])].map((c) => <option key={c} value={c}>{c}</option>)}
+        <select value={cur} onChange={(e) => onChange(cats[Number(e.target.value)] ?? '')}>
+          <option value={-1}>{value && cur < 0 ? `${key(value)} (nicht mehr in der Liste)` : '– bitte wählen –'}</option>
+          {cats.map((c, i) => <option key={i} value={i}>{key(c)}{isTr(c) && c.fr ? ` / ${c.fr}` : ''}</option>)}
         </select>
       );
     }
@@ -93,17 +161,24 @@ function Input({ field, value, onChange, ctx }) {
   }
 }
 
-// ---------- Liste einfacher Texte
+// ---------- Liste einfacher Texte (jede Zeile auf DE + FR)
 function Strings({ value, onChange }) {
   return (
     <div className="strings">
       {value.map((s, i) => (
-        <div className="row" key={i}>
-          <input value={s ?? ''} onChange={(e) => onChange(value.map((x, j) => (j === i ? e.target.value : x)))} />
+        <div className="row str-row" key={i}>
+          <div className="i18n">
+            {LANGS.map((l) => (
+              <label key={l.code}>
+                <span className="flag">{l.label}</span>
+                <input value={(isTr(s) ? s[l.code] : s) ?? ''} onChange={(e) => onChange(value.map((x, j) => (j === i ? setTr(x, l.code, e.target.value) : x)))} />
+              </label>
+            ))}
+          </div>
           <button type="button" className="ghost small" onClick={() => onChange(value.filter((_, j) => j !== i))} title="Entfernen">✕</button>
         </div>
       ))}
-      <button type="button" className="secondary small" onClick={() => onChange([...value, ''])}>+ Zeile</button>
+      <button type="button" className="secondary small" onClick={() => onChange([...value, { de: '', fr: '' }])}>+ Zeile</button>
     </div>
   );
 }
@@ -222,7 +297,6 @@ const move = (arr, i, d) => {
   [a[i], a[j]] = [a[j], a[i]];
   return a;
 };
-const label = (v) => (typeof v === 'string' ? v : '');
 
 function List({ field, value, onChange, ctx }) {
   const [open, setOpen] = useState(() => (value.length <= 1 ? 0 : -1));

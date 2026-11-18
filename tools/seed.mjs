@@ -1,6 +1,7 @@
-// Erzeugt data/seed.json = Startinhalte der Webseite (fiktiv) und Notlösung, falls die Datenbank nicht erreichbar ist.
+// Erzeugt data/seed.json = Startinhalte der Webseite (fiktiv, Deutsch + Französisch) und Notlösung, falls die Datenbank nicht erreichbar ist.
 // Aufruf: node tools/seed.mjs   (überschreibt data/seed.json – die echten Inhalte liegen danach in Supabase/CMS)
 import { writeFileSync } from 'node:fs';
+import { bilingual } from './i18n/apply.mjs';
 
 const site = {
   name: 'Cool-Tec',
@@ -24,6 +25,7 @@ const site = {
     { label: 'Unternehmen', href: '/' },
     { label: 'Projekte', href: '/projekte' },
     { label: 'Partner', href: '/partner' },
+    { label: { de: 'Jobs', fr: 'Emplois' }, href: '/jobs' },
   ],
   ctaLabel: 'Anfrage stellen',
   ctaHref: '/#kontakt',
@@ -98,7 +100,74 @@ const partnersPage = {
   outro: '<p>Sie möchten mit uns zusammenarbeiten? Wir freuen uns über Anfragen von Architekten, Planern und Bauunternehmen.</p>',
 };
 
+const jobsPage = {
+  eyebrow: { de: 'Karriere', fr: 'Carrière' },
+  title: { de: 'Jobs bei Cool-Tec', fr: 'Emplois chez Cool-Tec' },
+  text: {
+    de: 'Wir wachsen und suchen Menschen, die mit anpacken: Techniker, Planer und Auszubildende, die Lust auf moderne Klima- und Kältetechnik haben.',
+    fr: 'Nous grandissons et recherchons des personnes motivées : techniciens, dessinateurs et apprentis passionnés par la climatisation et le froid modernes.',
+  },
+  image: '/img/team.webp',
+  benefitsTitle: { de: 'Was wir Ihnen bieten', fr: 'Ce que nous vous offrons' },
+  benefits: [
+    { icon: 'shield', title: { de: 'Sicherer Arbeitsplatz', fr: 'Emploi stable' }, text: { de: 'Unbefristeter Vertrag (CDI) in einem gesunden, wachsenden Familienbetrieb.', fr: 'Contrat à durée indéterminée (CDI) dans une entreprise familiale saine et en croissance.' } },
+    { icon: 'wrench', title: { de: 'Top-Ausstattung', fr: 'Équipement moderne' }, text: { de: 'Eigener Servicewagen, hochwertiges Werkzeug, Tablet und Firmenhandy.', fr: 'Véhicule de service, outillage de qualité, tablette et téléphone professionnel.' } },
+    { icon: 'calendar', title: { de: 'Weiterbildung', fr: 'Formation continue' }, text: { de: 'Regelmäßige Schulungen bei Herstellern und Unterstützung bei Meister- oder Technikerkursen.', fr: 'Formations régulières chez les fabricants et soutien pour le brevet de maîtrise ou de technicien.' } },
+    { icon: 'user', title: { de: 'Starkes Team', fr: 'Une équipe soudée' }, text: { de: 'Flache Hierarchien, kurze Wege und ein Team, das zusammenhält.', fr: 'Hiérarchie plate, décisions rapides et une équipe solidaire.' } },
+  ],
+  applyTitle: { de: 'So bewerben Sie sich', fr: 'Comment postuler' },
+  applyText: {
+    de: 'Schicken Sie uns Ihren Lebenslauf per E-Mail oder schreiben Sie uns kurz über das Formular – wir melden uns innerhalb weniger Tage. Keine passende Stelle dabei? Wir freuen uns auch über Initiativbewerbungen.',
+    fr: 'Envoyez-nous votre CV par e-mail ou écrivez-nous brièvement via le formulaire – nous vous répondons sous quelques jours. Aucun poste ne vous correspond ? Les candidatures spontanées sont également les bienvenues.',
+  },
+  emptyText: { de: 'Zurzeit sind keine Stellen ausgeschrieben – Initiativbewerbungen sind aber jederzeit willkommen.', fr: 'Aucun poste n’est ouvert actuellement – les candidatures spontanées sont toutefois toujours les bienvenues.' },
+};
+
 const P = (id, o) => ({ id, ...o });
+const ul = (items) => '<ul>' + items.map((x) => `<li>${x}</li>`).join('') + '</ul>';
+const jobHtml = (de, fr) => ({
+  de: `<h2>Ihre Aufgaben</h2>${ul(de[0])}<h2>Ihr Profil</h2>${ul(de[1])}`,
+  fr: `<h2>Vos missions</h2>${ul(fr[0])}<h2>Votre profil</h2>${ul(fr[1])}`,
+});
+const jobs = [
+  P('kaelteanlagenbauer', {
+    title: { de: 'Kälteanlagenbauer / Mechatroniker für Kältetechnik (m/w/d)', fr: 'Frigoriste / mécatronicien en froid (h/f/x)' },
+    type: { de: 'Vollzeit · CDI', fr: 'Temps plein · CDI' }, location: 'Windhof', start: { de: 'ab sofort', fr: 'dès que possible' },
+    summary: { de: 'Montage und Inbetriebnahme von Kälte- und Klimaanlagen bei Privat- und Gewerbekunden in ganz Luxemburg.', fr: 'Montage et mise en service d’installations frigorifiques et de climatisation chez des clients privés et professionnels dans tout le Luxembourg.' },
+    html: jobHtml(
+      [['Montage von Split-, VRF- und Kälteanlagen', 'Inbetriebnahme, Einregulierung und Dokumentation', 'Löt- und Pressarbeiten an Kupferleitungen', 'Kundenberatung direkt vor Ort'], ['Abgeschlossene Ausbildung im Bereich Kälte-/Klimatechnik oder vergleichbar', 'F-Gase-Zertifikat (Kategorie I) oder Bereitschaft, es zu erwerben', 'Führerschein Klasse B', 'Deutsch oder Französisch, Luxemburgisch ist ein Plus']],
+      [['Montage de systèmes split, VRF et frigorifiques', 'Mise en service, réglage et documentation', 'Brasage et sertissage de tuyauteries cuivre', 'Conseil aux clients sur place'], ['Formation achevée en froid/climatisation ou équivalent', 'Certificat gaz fluorés (catégorie I) ou disposition à l’obtenir', 'Permis de conduire B', 'Allemand ou français, le luxembourgeois est un atout']],
+    ),
+  }),
+  P('servicetechniker', {
+    title: { de: 'Servicetechniker Klima- & Kältetechnik (m/w/d)', fr: 'Technicien de service climatisation & froid (h/f/x)' },
+    type: { de: 'Vollzeit · CDI', fr: 'Temps plein · CDI' }, location: { de: 'Windhof / im Außendienst', fr: 'Windhof / sur le terrain' }, start: { de: 'ab sofort', fr: 'dès que possible' },
+    summary: { de: 'Wartung, Fehlersuche und Reparatur – Sie sind das Gesicht von Cool-Tec beim Kunden.', fr: 'Entretien, dépannage et réparation – vous êtes le visage de Cool-Tec chez nos clients.' },
+    html: jobHtml(
+      [['Wartung und Dichtheitsprüfungen nach F-Gase-Verordnung', 'Störungsdiagnose und Reparatur aller Marken', 'Teilnahme am Bereitschaftsdienst (gut vergütet)', 'Digitale Einsatzberichte per Tablet'], ['Erfahrung im Service von Kälte- oder Klimaanlagen', 'Selbstständige, zuverlässige Arbeitsweise', 'Führerschein Klasse B', 'Freundliches Auftreten beim Kunden']],
+      [['Entretien et contrôles d’étanchéité selon le règlement gaz fluorés', 'Diagnostic de pannes et réparation toutes marques', 'Participation au service d’astreinte (bien rémunéré)', 'Rapports d’intervention numériques sur tablette'], ['Expérience en service d’installations frigorifiques ou de climatisation', 'Travail autonome et fiable', 'Permis de conduire B', 'Bon contact avec la clientèle']],
+    ),
+  }),
+  P('projektplaner-hlk', {
+    title: { de: 'Projektplaner / Technischer Zeichner HLK (m/w/d)', fr: 'Chargé de projets / dessinateur HVAC (h/f/x)' },
+    type: { de: 'Vollzeit oder Teilzeit', fr: 'Temps plein ou partiel' }, location: 'Windhof', start: { de: 'nach Vereinbarung', fr: 'à convenir' },
+    summary: { de: 'Sie planen Anlagen am Bildschirm, erstellen Angebote und begleiten Projekte vom Entwurf bis zur Übergabe.', fr: 'Vous concevez les installations, établissez les offres et suivez les projets de l’esquisse à la réception.' },
+    html: jobHtml(
+      [['Auslegung und Planung von Klima- und Kälteanlagen', 'Erstellen von Plänen (CAD) und Angeboten', 'Abstimmung mit Architekten, Planern und Monteuren', 'Projektbegleitung bis zur Abnahme'], ['Technische Ausbildung oder Studium im Bereich Gebäudetechnik', 'Sicherer Umgang mit CAD-Software', 'Strukturierte, sorgfältige Arbeitsweise', 'Deutsch und Französisch']],
+      [['Dimensionnement et conception d’installations de climatisation et de froid', 'Réalisation de plans (DAO) et d’offres', 'Coordination avec architectes, bureaux d’études et monteurs', 'Suivi de projet jusqu’à la réception'], ['Formation technique ou études en techniques du bâtiment', 'Bonne maîtrise des logiciels de DAO', 'Méthode de travail structurée et soignée', 'Allemand et français']],
+    ),
+  }),
+  P('ausbildung-kaelteanlagenbauer', {
+    title: { de: 'Ausbildung zum Kälteanlagenbauer – DAP (m/w/d)', fr: 'Apprentissage frigoriste – DAP (h/f/x)' },
+    type: { de: 'Lehre (3 Jahre)', fr: 'Apprentissage (3 ans)' }, location: 'Windhof', start: { de: 'September 2027', fr: 'septembre 2027' },
+    summary: { de: 'Starten Sie Ihre Karriere in einem Zukunftsberuf – mit erfahrenen Kollegen an Ihrer Seite.', fr: 'Lancez votre carrière dans un métier d’avenir – accompagné de collègues expérimentés.' },
+    html: jobHtml(
+      [['Lernen, wie Klima-, Kälte- und Wärmepumpenanlagen funktionieren', 'Mitarbeit auf Baustellen und im Service', 'Begleitung durch einen festen Ausbilder', 'Schulische Ausbildung nach dem luxemburgischen DAP-System'], ['Interesse an Technik und handwerklichem Arbeiten', 'Teamgeist und Zuverlässigkeit', 'Abschluss der 5e oder vergleichbar']],
+      [['Apprendre le fonctionnement des installations de climatisation, de froid et des pompes à chaleur', 'Participation aux chantiers et au service', 'Accompagnement par un tuteur attitré', 'Formation scolaire selon le système luxembourgeois DAP'], ['Intérêt pour la technique et le travail manuel', 'Esprit d’équipe et fiabilité', 'Classe de 5e réussie ou équivalent']],
+    ),
+  }),
+];
+
 const projects = [
   P('office-park-kirchberg', { title: 'Klimatisierung Office Park', location: 'Luxemburg-Kirchberg', year: '2025', category: 'Gewerbe', customer: 'Bürogebäude, 4.200 m²', service: 'VRF-System mit 86 Deckenkassetten', image: '/img/buero.webp', imageAlt: 'Großraumbüro mit Deckenkassetten', summary: 'Komplette Klimatisierung eines Bürogebäudes über fünf Etagen – im laufenden Betrieb.', html: '<p>Für den Neubau des Office Parks haben wir ein VRF-System mit Wärmerückgewinnung geplant und installiert. Jede Bürozone lässt sich einzeln regeln; überschüssige Wärme aus sonnigen Räumen wird in kühlere Bereiche verschoben.</p><ul><li>86 Deckenkassetten, 6 Außengeräte</li><li>Anbindung an die Gebäudeleittechnik</li><li>Wartungsvertrag über 5 Jahre</li></ul>', featured: true }),
   P('rechenzentrum-bettembourg', { title: 'Präzisionsklima Rechenzentrum', location: 'Bettembourg', year: '2024', category: 'Industrie', customer: 'Rechenzentrum, 1.100 m² Serverfläche', service: 'Präzisionsklimageräte mit freier Kühlung', image: '/img/server.webp', imageAlt: 'Rechenzentrum mit Serverschränken und Klimageräten', summary: 'Redundante Kühlung für ein Rechenzentrum mit 24/7-Betrieb.', html: '<p>Ausfallsicherheit war hier oberstes Gebot: Wir haben acht Präzisionsklimageräte in N+1-Redundanz installiert. Im Winter kühlt die Anlage überwiegend mit Außenluft (freie Kühlung) und spart so bis zu 40 % Energie.</p>', featured: true }),
@@ -130,9 +199,12 @@ const seed = [
   { collection: 'home', id: 'home', sort: 1, published: true, data: home },
   { collection: 'projectsPage', id: 'projectsPage', sort: 1, published: true, data: projectsPage },
   { collection: 'partnersPage', id: 'partnersPage', sort: 1, published: true, data: partnersPage },
+  { collection: 'jobsPage', id: 'jobsPage', sort: 1, published: true, data: jobsPage },
   ...rows('projects', projects),
   ...rows('partners', partners),
+  ...rows('jobs', jobs),
   ...rows('pages', pages),
 ];
+for (const r of seed) r.data = bilingual(r.data); // Deutsch + Französisch (tools/i18n/fr.mjs)
 writeFileSync(new URL('../data/seed.json', import.meta.url), JSON.stringify(seed, null, 1) + '\n');
 console.log('data/seed.json geschrieben:', seed.length, 'Einträge');

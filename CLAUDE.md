@@ -23,6 +23,7 @@ Keine Arbeit nur lokal liegen lassen – der Arbeitszweig wird immer gepusht.
 
 ## Aufbau
 - `server/` Node.js ohne Framework (Node ≥ 22): `index.mjs` Routen + Kontaktformular, `views.mjs` HTML-Vorlagen, `data.mjs` Daten (Supabase → Fallback `data/seed.json`, 30 s Cache, `/api/refresh` leert ihn), `icons.mjs` Symbole.
+- App-Symbol (Startbildschirm): `public/brand/` `apple-touch-icon.png`, `icon-192/512.png`, `icon-maskable-512.png`, `site.webmanifest`; CMS: `cms-*.png` + `cms.webmanifest`. `display: browser` – bewusst keine echte App. Erzeugt aus dem HD-Logo (Kreis mit Bär + Schriftzug).
 - `public/` CSS/JS, Bilder (`img/`, WebP), Partner-Logos (`img/partner/*.svg`, fiktiv), Logo (`brand/`), Schrift Manrope selbst gehostet (`fonts/`, keine Google Fonts).
 - `admin/` CMS (Vite + React). Felder je Inhaltsart: `admin/src/schema.js`, Eingabefelder: `admin/src/fields.jsx`. Unter `/admin` ausgeliefert, wird beim Deploy gebaut.
 - Farben (aus dem Logo): Marine `#0d2a42` (Kopf/Fuß), Blau `#0a6aa8` (Links/Knöpfe, 5,8:1), Grün `#2e7d1f` (Akzent, 5,2:1), Eisblau `#eef6fb` (Flächen). Originales Logoblau `#0090d8` nur Deko.

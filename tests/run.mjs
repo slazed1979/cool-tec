@@ -54,6 +54,17 @@ try {
   ok((await get('/img/../server/index.mjs')).status !== 200, 'Ordner-Ausbruch möglich');
   ok((await get('/admin-icon/snow.svg')).status === 200, 'CMS-Symbole fehlen');
 
+  // ---- App-Symbol (Startbildschirm)
+  ok(/rel="apple-touch-icon"/.test(home) && /rel="manifest" href="\/brand\/site\.webmanifest/.test(home) && home.includes('apple-mobile-web-app-title" content="Cool-Tec"'), 'App-Symbol/Manifest im Kopf der Seite fehlt');
+  for (const mf of ['/brand/site.webmanifest', '/brand/cms.webmanifest']) {
+    const r = await get(mf);
+    ok(r.status === 200 && (r.headers.get('content-type') || '').includes('manifest+json'), `${mf} fehlt oder falscher Typ`);
+    const j = await r.json();
+    ok(j.display === 'browser' && j.icons?.length >= 2, `${mf}: soll im Browser öffnen und Symbole haben`);
+    for (const i of j.icons || []) ok((await get(i.src)).status === 200, `App-Symbol fehlt: ${i.src}`);
+  }
+  ok((await get('/brand/apple-touch-icon.png')).status === 200 && (await get('/brand/cms-apple-touch-icon.png')).status === 200, 'iPhone-Symbole fehlen');
+
   // ---- Jobs
   const jobs = await (await get('/jobs')).text();
   ok(jobs.includes('aria-current="page">Jobs') && (jobs.match(/class="card job-card"/g) || []).length >= 1, 'Jobs-Seite: Reiter oder Stellen fehlen');

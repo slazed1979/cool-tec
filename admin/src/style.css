@@ -142,3 +142,11 @@ button:disabled { opacity: .5; cursor: default; }
 .str-row { align-items: flex-start; }
 .str-row + .str-row { border-top: 1px dashed var(--line); padding-top: 6px; }
 .multi-hint { font-size: 11px; font-weight: 700; background: var(--gp); color: var(--g); border-radius: 5px; padding: 1px 6px; margin-left: 6px; }
+
+/* Zähler für neue Kontakt-Nachrichten – mit Text („3 neu“), nicht nur Farbe */
+.count-new { margin-left: auto; flex: none; background: #2e7d1f; color: #fff; font-style: normal; font-size: 12px; font-weight: 800; padding: 1px 8px; border-radius: 999px; }
+.new-badge { background: #2e7d1f; color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13.5px; font-weight: 700; animation: pulse 2s ease-in-out 3; }
+.new-badge b { font-size: 15px; }
+.new-badge:hover { background: #22621a; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px rgb(46 125 31 / 25%); } }
+@media (max-width: 600px) { .new-badge { padding: 6px 10px; font-size: 12.5px; } }

@@ -19,6 +19,13 @@ export async function amEditor() {
   return data === true;
 }
 
+/** Anzahl der Kontakt-Nachrichten mit Status „neu“ */
+export async function countNew() {
+  const { count, error } = await supabase.from(MESSAGES).select('id', { count: 'exact', head: true }).eq('status', 'neu');
+  if (error) throw new Error(error.message);
+  return count || 0;
+}
+
 /** Webseite sofort neu laden lassen (Zwischenspeicher leeren) */
 export const refreshSite = () => fetch('/api/refresh', { method: 'POST' }).catch(() => {});
 

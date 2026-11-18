@@ -5,7 +5,7 @@ import { createGzip } from 'node:zlib';
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getData, invalidate, saveMessage, source } from './data.mjs';
+import { getData, invalidate, saveMessage, source, LANGS } from './data.mjs';
 import * as V from './views.mjs';
 import { icon, ICON_NAMES } from './icons.mjs';
 
@@ -52,8 +52,9 @@ function tryStatic(res, base, path, cache) {
   return false;
 }
 
-function html(res, body, status = 200, noindex = true) {
-  const h = { ...SECURITY, 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' };
+function html(res, body, status = 200, noindex = true, lang) {
+  const h = { ...SECURITY, 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache', Vary: 'Cookie, Accept-Language' };
+  if (lang) h['Content-Language'] = lang;
   if (noindex) h['X-Robots-Tag'] = 'noindex, nofollow';
   res.writeHead(status, h);
   res.end(body);
@@ -81,6 +82,17 @@ function readBody(req, max = 20000) {
 
 // Spam-Bremse fürs Kontaktformular: max. 5 Nachrichten pro Stunde und IP
 const sentBy = new Map();
+function cookies(req) {
+  return Object.fromEntries((req.headers.cookie || '').split(';').map((c) => c.trim().split('=').map(safeDecode)).filter((x) => x[0]));
+}
+const CODES = LANGS.map((l) => l.code);
+/** Sprache: 1. gewählte (Cookie), 2. Browser-Sprache, 3. Deutsch */
+function pickLang(req) {
+  const c = cookies(req).lang;
+  if (CODES.includes(c)) return c;
+  const wanted = (req.headers['accept-language'] || '').toLowerCase().split(',').map((x) => x.trim().slice(0, 2));
+  return wanted.find((w) => CODES.includes(w)) || CODES[0];
+}
 const localPath = (p) => (typeof p === 'string' && p.startsWith('/') && !p.startsWith('//') && !p.includes('\\') ? p.split('#')[0].split('?')[0] : '/');
 
 const server = http.createServer(async (req, res) => {
@@ -115,7 +127,7 @@ const server = http.createServer(async (req, res) => {
     if (path === '/api/status') {
       const d = await getData();
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' });
-      return res.end(JSON.stringify({ source, projects: d.projects.length, partners: d.partners.length, pages: d.pages.length }));
+      return res.end(JSON.stringify({ source, languages: CODES, projects: d.projects.length, partners: d.partners.length, pages: d.pages.length }));
     }
 
     // ---- Statische Dateien
@@ -125,15 +137,25 @@ const server = http.createServer(async (req, res) => {
       return html(res, 'Nicht gefunden', 404);
     }
 
-    const data = await getData();
+    // ---- Sprache wechseln: /lang/de oder /lang/fr (merkt sich die Wahl 1 Jahr)
+    const lm = path.match(/^\/lang\/([a-z]{2})$/);
+    if (lm && CODES.includes(lm[1])) {
+      res.setHeader('Set-Cookie', `lang=${lm[1]}; Path=/; Max-Age=31536000; SameSite=Lax`);
+      const r = url.searchParams.get('r') || '/';
+      return redirect(res, r.startsWith('/') && !r.startsWith('//') && !r.includes('\\') ? r : '/');
+    }
+
+    const lang = pickLang(req);
+    const data = await getData(lang);
     const site = data.site;
     const noindex = site.noindex !== false;
     if (path === '/robots.txt') {
       res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
       return res.end(noindex ? 'User-agent: *\nDisallow: /\n' : 'User-agent: *\nDisallow: /admin\n');
     }
-    const ctx = { data, site, version: VERSION, path, sent: url.searchParams.get('gesendet'), cat: url.searchParams.get('bereich') || '' };
-    const page = (body, status = 200) => html(res, body, status, noindex);
+    const query = url.searchParams.get('bereich') ? '?bereich=' + encodeURIComponent(url.searchParams.get('bereich')) : '';
+    const ctx = { data, site, lang, version: VERSION, path, query, sent: url.searchParams.get('gesendet'), cat: url.searchParams.get('bereich') || '' };
+    const page = (body, status = 200) => html(res, body, status, noindex, lang);
 
     // ---- Kontaktformular absenden
     if (path === '/kontakt' && req.method === 'POST') {

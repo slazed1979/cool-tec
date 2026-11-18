@@ -55,6 +55,11 @@ p { margin: 0 0 1em; }
 .tb-item { display: inline-flex; align-items: center; gap: 7px; color: inherit; text-decoration: none; }
 a.tb-item:hover { color: #fff; text-decoration: underline; }
 .tb-item .ic { color: #8fd0f5; }
+/* Sprachumschalter DE | FR: aktive Sprache weiß hinterlegt + fett (nicht nur Farbe) */
+.lang { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid rgb(255 255 255 / 35%); border-radius: 999px; }
+.lang a, .lang-on { display: inline-block; min-width: 38px; text-align: center; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 13px; letter-spacing: .04em; color: #fff; text-decoration: none; line-height: 1.4; }
+.lang a:hover { background: rgb(255 255 255 / 16%); text-decoration: underline; color: #fff; }
+.lang-on { background: #fff; color: var(--navy); font-weight: 800; }
 
 /* ---------- Kopfbereich mit Logo und 3 Reitern */
 .header { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / 96%); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }

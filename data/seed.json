@@ -7,59 +7,116 @@
   "data": {
    "name": "Cool-Tec",
    "legalName": "Cool-Tec S.à r.l.",
-   "tagline": "Klima- & Kältetechnik in Luxemburg",
+   "tagline": {
+    "de": "Klima- & Kältetechnik in Luxemburg",
+    "fr": "Climatisation & froid au Luxembourg"
+   },
    "logo": "/brand/logo.png",
-   "logoAlt": "Cool-Tec – Klima- und Kältetechnik",
+   "logoAlt": {
+    "de": "Cool-Tec – Klima- und Kältetechnik",
+    "fr": "Cool-Tec – Climatisation et technique du froid"
+   },
    "phone": "+352 26 31 47 80",
    "emergencyPhone": "+352 621 47 80 00",
    "email": "info@cool-tec.lu",
    "street": "7, rue de l’Innovation",
    "city": "L-8399 Windhof",
-   "country": "Luxemburg",
-   "hoursTop": "Montag – Freitag: 07:30 bis 17:30 Uhr",
+   "country": {
+    "de": "Luxemburg",
+    "fr": "Luxembourg"
+   },
+   "hoursTop": {
+    "de": "Montag – Freitag: 07:30 bis 17:30 Uhr",
+    "fr": "Lundi – vendredi : 07h30 à 17h30"
+   },
    "hours": [
     {
-     "days": "Montag – Freitag",
-     "time": "07:30 – 17:30 Uhr"
+     "days": {
+      "de": "Montag – Freitag",
+      "fr": "Lundi – vendredi"
+     },
+     "time": {
+      "de": "07:30 – 17:30 Uhr",
+      "fr": "07h30 – 17h30"
+     }
     },
     {
-     "days": "Samstag",
-     "time": "nach Vereinbarung"
+     "days": {
+      "de": "Samstag",
+      "fr": "Samedi"
+     },
+     "time": {
+      "de": "nach Vereinbarung",
+      "fr": "sur rendez-vous"
+     }
     },
     {
-     "days": "Notdienst",
-     "time": "24 h / 7 Tage"
+     "days": {
+      "de": "Notdienst",
+      "fr": "Service d’urgence"
+     },
+     "time": {
+      "de": "24 h / 7 Tage",
+      "fr": "24 h / 7 jours"
+     }
     }
    ],
    "nav": [
     {
-     "label": "Unternehmen",
+     "label": {
+      "de": "Unternehmen",
+      "fr": "Entreprise"
+     },
      "href": "/"
     },
     {
-     "label": "Projekte",
+     "label": {
+      "de": "Projekte",
+      "fr": "Projets"
+     },
      "href": "/projekte"
     },
     {
-     "label": "Partner",
+     "label": {
+      "de": "Partner",
+      "fr": "Partenaires"
+     },
      "href": "/partner"
     }
    ],
-   "ctaLabel": "Anfrage stellen",
+   "ctaLabel": {
+    "de": "Anfrage stellen",
+    "fr": "Demander un devis"
+   },
    "ctaHref": "/#kontakt",
-   "footerText": "Ihr Fachbetrieb für Klimaanlagen, Kältetechnik, Wärmepumpen und Lüftung – Planung, Montage und Service aus einer Hand.",
+   "footerText": {
+    "de": "Ihr Fachbetrieb für Klimaanlagen, Kältetechnik, Wärmepumpen und Lüftung – Planung, Montage und Service aus einer Hand.",
+    "fr": "Votre spécialiste en climatisation, froid, pompes à chaleur et ventilation – étude, installation et service d’un seul interlocuteur."
+   },
    "footerLinks": [
     {
-     "label": "Impressum",
+     "label": {
+      "de": "Impressum",
+      "fr": "Mentions légales"
+     },
      "href": "/impressum"
     },
     {
-     "label": "Datenschutz",
+     "label": {
+      "de": "Datenschutz",
+      "fr": "Protection des données"
+     },
      "href": "/datenschutz"
     }
    ],
-   "seoTitle": "Cool-Tec – Klimaanlagen, Kältetechnik & Wärmepumpen in Luxemburg",
-   "seoDescription": "Cool-Tec plant, installiert und wartet Klimaanlagen, Kälteanlagen, Wärmepumpen und Lüftungen für Privat, Gewerbe und Industrie in Luxemburg.",
+   "seoTitle": {
+    "de": "Cool-Tec – Klimaanlagen, Kältetechnik & Wärmepumpen in Luxemburg",
+    "fr": "Cool-Tec – Climatisation, froid & pompes à chaleur au Luxembourg"
+   },
+   "seoDescription": {
+    "de": "Cool-Tec plant, installiert und wartet Klimaanlagen, Kälteanlagen, Wärmepumpen und Lüftungen für Privat, Gewerbe und Industrie in Luxemburg.",
+    "fr": "Cool-Tec conçoit, installe et entretient climatisations, installations frigorifiques, pompes à chaleur et ventilations pour particuliers, commerces et industrie au Luxembourg."
+   },
    "noindex": true
   }
  },
@@ -71,101 +128,224 @@
   "data": {
    "hero": {
     "image": "/img/firma.webp",
-    "eyebrow": "Klima · Kälte · Wärmepumpen",
-    "title": "Das richtige Klima für jeden Raum.",
-    "text": "Seit 2009 sorgt Cool-Tec in ganz Luxemburg für angenehme Temperaturen – im Wohnzimmer, im Büro, im Rechenzentrum und in der Großküche.",
+    "eyebrow": {
+     "de": "Klima · Kälte · Wärmepumpen",
+     "fr": "Climatisation · Froid · Pompes à chaleur"
+    },
+    "title": {
+     "de": "Das richtige Klima für jeden Raum.",
+     "fr": "Le bon climat pour chaque pièce."
+    },
+    "text": {
+     "de": "Seit 2009 sorgt Cool-Tec in ganz Luxemburg für angenehme Temperaturen – im Wohnzimmer, im Büro, im Rechenzentrum und in der Großküche.",
+     "fr": "Depuis 2009, Cool-Tec assure des températures agréables dans tout le Luxembourg – au salon, au bureau, dans les centres de données et les cuisines professionnelles."
+    },
     "button1": {
-     "label": "Unsere Projekte",
+     "label": {
+      "de": "Unsere Projekte",
+      "fr": "Nos projets"
+     },
      "href": "/projekte"
     },
     "button2": {
-     "label": "Kostenlose Beratung",
+     "label": {
+      "de": "Kostenlose Beratung",
+      "fr": "Conseil gratuit"
+     },
      "href": "#kontakt"
     }
    },
    "about": {
-    "eyebrow": "Über uns",
-    "title": "Ein Team. Ein Ansprechpartner. Alles aus einer Hand.",
-    "html": "<p>Cool-Tec ist ein inhabergeführter Fachbetrieb für Klima- und Kältetechnik mit Sitz in Windhof. Unser Team aus zertifizierten Kälteanlagenbauern, Technikern und Planern betreut private Haushalte ebenso wie Gewerbe- und Industriekunden.</p><p>Von der ersten Beratung über die Planung und fachgerechte Montage bis zur regelmäßigen Wartung bleiben wir Ihr fester Ansprechpartner. Wir arbeiten herstellerunabhängig und setzen auf energieeffiziente Lösungen mit natürlichen Kältemitteln.</p>",
+    "eyebrow": {
+     "de": "Über uns",
+     "fr": "À propos"
+    },
+    "title": {
+     "de": "Ein Team. Ein Ansprechpartner. Alles aus einer Hand.",
+     "fr": "Une équipe. Un interlocuteur. Tout d’une seule main."
+    },
+    "html": {
+     "de": "<p>Cool-Tec ist ein inhabergeführter Fachbetrieb für Klima- und Kältetechnik mit Sitz in Windhof. Unser Team aus zertifizierten Kälteanlagenbauern, Technikern und Planern betreut private Haushalte ebenso wie Gewerbe- und Industriekunden.</p><p>Von der ersten Beratung über die Planung und fachgerechte Montage bis zur regelmäßigen Wartung bleiben wir Ihr fester Ansprechpartner. Wir arbeiten herstellerunabhängig und setzen auf energieeffiziente Lösungen mit natürlichen Kältemitteln.</p>",
+     "fr": "<p>Cool-Tec est une entreprise familiale spécialisée en climatisation et technique du froid, basée à Windhof. Notre équipe de frigoristes certifiés, de techniciens et de bureaux d’études accompagne les particuliers comme les clients commerciaux et industriels.</p><p>Du premier conseil à l’étude, de l’installation dans les règles de l’art jusqu’à l’entretien régulier, nous restons votre interlocuteur fixe. Nous travaillons indépendamment des fabricants et misons sur des solutions économes en énergie utilisant des fluides frigorigènes naturels.</p>"
+    },
     "image": "/img/split.webp",
-    "imageAlt": "Ein Cool-Tec-Techniker montiert ein Klimagerät in einem Schlafzimmer",
+    "imageAlt": {
+     "de": "Ein Cool-Tec-Techniker montiert ein Klimagerät in einem Schlafzimmer",
+     "fr": "Un technicien Cool-Tec installe un climatiseur dans une chambre"
+    },
     "points": [
-     "Zertifizierter Fachbetrieb (F-Gase)",
-     "Herstellerunabhängige Beratung",
-     "Eigener 24/7-Notdienst",
-     "Feste Ansprechpartner"
+     {
+      "de": "Zertifizierter Fachbetrieb (F-Gase)",
+      "fr": "Entreprise certifiée (gaz fluorés)"
+     },
+     {
+      "de": "Herstellerunabhängige Beratung",
+      "fr": "Conseil indépendant des fabricants"
+     },
+     {
+      "de": "Eigener 24/7-Notdienst",
+      "fr": "Service d’urgence 24/7 interne"
+     },
+     {
+      "de": "Feste Ansprechpartner",
+      "fr": "Interlocuteurs fixes"
+     }
     ]
    },
    "stats": [
     {
      "value": "2009",
-     "label": "gegründet"
+     "label": {
+      "de": "gegründet",
+      "fr": "création"
+     }
     },
     {
      "value": "1.400+",
-     "label": "installierte Anlagen"
+     "label": {
+      "de": "installierte Anlagen",
+      "fr": "installations réalisées"
+     }
     },
     {
      "value": "14",
-     "label": "Fachkräfte im Team"
+     "label": {
+      "de": "Fachkräfte im Team",
+      "fr": "spécialistes dans l’équipe"
+     }
     },
     {
      "value": "24/7",
-     "label": "Notdienst"
+     "label": {
+      "de": "Notdienst",
+      "fr": "Service d’urgence"
+     }
     }
    ],
    "services": {
-    "eyebrow": "Leistungen",
-    "title": "Was wir für Sie tun",
+    "eyebrow": {
+     "de": "Leistungen",
+     "fr": "Services"
+    },
+    "title": {
+     "de": "Was wir für Sie tun",
+     "fr": "Ce que nous faisons pour vous"
+    },
     "items": [
      {
       "icon": "snow",
-      "title": "Klimaanlagen",
-      "text": "Split-, Multi-Split- und VRF-Systeme für Wohnung, Praxis und Büro – leise, effizient und passend dimensioniert."
+      "title": {
+       "de": "Klimaanlagen",
+       "fr": "Climatisation"
+      },
+      "text": {
+       "de": "Split-, Multi-Split- und VRF-Systeme für Wohnung, Praxis und Büro – leise, effizient und passend dimensioniert.",
+       "fr": "Systèmes split, multi-split et VRF pour logements, cabinets et bureaux – silencieux, efficaces et bien dimensionnés."
+      }
      },
      {
       "icon": "box",
-      "title": "Kältetechnik",
-      "text": "Kühlzellen, Tiefkühlräume und gewerbliche Kälteanlagen für Gastronomie, Handel und Industrie."
+      "title": {
+       "de": "Kältetechnik",
+       "fr": "Technique du froid"
+      },
+      "text": {
+       "de": "Kühlzellen, Tiefkühlräume und gewerbliche Kälteanlagen für Gastronomie, Handel und Industrie.",
+       "fr": "Chambres froides, chambres de congélation et installations frigorifiques pour la restauration, le commerce et l’industrie."
+      }
      },
      {
       "icon": "heat",
-      "title": "Wärmepumpen",
-      "text": "Luft-Wasser-Wärmepumpen zum Heizen und Kühlen – inklusive Hilfe bei den staatlichen Förderungen."
+      "title": {
+       "de": "Wärmepumpen",
+       "fr": "Pompes à chaleur"
+      },
+      "text": {
+       "de": "Luft-Wasser-Wärmepumpen zum Heizen und Kühlen – inklusive Hilfe bei den staatlichen Förderungen.",
+       "fr": "Pompes à chaleur air-eau pour chauffer et rafraîchir – avec aide pour les subventions de l’État."
+      }
      },
      {
       "icon": "fan",
-      "title": "Lüftung",
-      "text": "Kontrollierte Wohnraumlüftung und Lüftungsanlagen mit Wärmerückgewinnung für gesunde Raumluft."
+      "title": {
+       "de": "Lüftung",
+       "fr": "Ventilation"
+      },
+      "text": {
+       "de": "Kontrollierte Wohnraumlüftung und Lüftungsanlagen mit Wärmerückgewinnung für gesunde Raumluft.",
+       "fr": "Ventilation mécanique contrôlée et installations avec récupération de chaleur pour un air intérieur sain."
+      }
      },
      {
       "icon": "wrench",
-      "title": "Wartung & Service",
-      "text": "Regelmäßige Wartung, Dichtheitsprüfungen nach F-Gase-Verordnung und Reparaturen aller Marken."
+      "title": {
+       "de": "Wartung & Service",
+       "fr": "Entretien & service"
+      },
+      "text": {
+       "de": "Regelmäßige Wartung, Dichtheitsprüfungen nach F-Gase-Verordnung und Reparaturen aller Marken.",
+       "fr": "Entretien régulier, contrôles d’étanchéité selon le règlement sur les gaz fluorés et réparations toutes marques."
+      }
      },
      {
       "icon": "clock",
-      "title": "24/7-Notdienst",
-      "text": "Wenn die Kühlung ausfällt, zählt jede Stunde. Unser Notdienst ist rund um die Uhr für Sie erreichbar."
+      "title": {
+       "de": "24/7-Notdienst",
+       "fr": "Urgences 24/7"
+      },
+      "text": {
+       "de": "Wenn die Kühlung ausfällt, zählt jede Stunde. Unser Notdienst ist rund um die Uhr für Sie erreichbar.",
+       "fr": "Quand le froid tombe en panne, chaque heure compte. Notre service d’urgence est joignable 24 heures sur 24."
+      }
      }
     ]
    },
    "projects": {
-    "eyebrow": "Referenzen",
-    "title": "Aktuelle Projekte",
-    "text": "Eine Auswahl unserer letzten Arbeiten.",
+    "eyebrow": {
+     "de": "Referenzen",
+     "fr": "Références"
+    },
+    "title": {
+     "de": "Aktuelle Projekte",
+     "fr": "Projets récents"
+    },
+    "text": {
+     "de": "Eine Auswahl unserer letzten Arbeiten.",
+     "fr": "Une sélection de nos dernières réalisations."
+    },
     "count": 3,
-    "button": "Alle Projekte ansehen"
+    "button": {
+     "de": "Alle Projekte ansehen",
+     "fr": "Voir tous les projets"
+    }
    },
    "partners": {
-    "eyebrow": "Partner",
-    "title": "Starke Partner an unserer Seite",
-    "button": "Alle Partner"
+    "eyebrow": {
+     "de": "Partner",
+     "fr": "Partenaires"
+    },
+    "title": {
+     "de": "Starke Partner an unserer Seite",
+     "fr": "Des partenaires solides à nos côtés"
+    },
+    "button": {
+     "de": "Alle Partner",
+     "fr": "Tous les partenaires"
+    }
    },
    "contact": {
-    "eyebrow": "Kontakt",
-    "title": "Sprechen Sie mit uns",
-    "text": "Sie planen eine neue Anlage oder brauchen einen Service-Termin? Schreiben Sie uns – wir melden uns in der Regel innerhalb eines Werktags.",
+    "eyebrow": {
+     "de": "Kontakt",
+     "fr": "Contact"
+    },
+    "title": {
+     "de": "Sprechen Sie mit uns",
+     "fr": "Parlons-en"
+    },
+    "text": {
+     "de": "Sie planen eine neue Anlage oder brauchen einen Service-Termin? Schreiben Sie uns – wir melden uns in der Regel innerhalb eines Werktags.",
+     "fr": "Vous prévoyez une nouvelle installation ou avez besoin d’une intervention ? Écrivez-nous – nous vous répondons en général sous un jour ouvrable."
+    },
     "showForm": true
    }
   }
@@ -176,15 +356,36 @@
   "sort": 1,
   "published": true,
   "data": {
-   "eyebrow": "Referenzen",
-   "title": "Unsere Projekte",
-   "text": "Vom Einfamilienhaus bis zum Rechenzentrum: Hier zeigen wir eine Auswahl der Anlagen, die wir geplant, installiert oder modernisiert haben.",
+   "eyebrow": {
+    "de": "Referenzen",
+    "fr": "Références"
+   },
+   "title": {
+    "de": "Unsere Projekte",
+    "fr": "Nos projets"
+   },
+   "text": {
+    "de": "Vom Einfamilienhaus bis zum Rechenzentrum: Hier zeigen wir eine Auswahl der Anlagen, die wir geplant, installiert oder modernisiert haben.",
+    "fr": "De la maison individuelle au centre de données : voici une sélection des installations que nous avons étudiées, installées ou modernisées."
+   },
    "image": "/img/dach.webp",
    "categories": [
-    "Privat",
-    "Gewerbe",
-    "Industrie",
-    "Gastronomie"
+    {
+     "de": "Privat",
+     "fr": "Particuliers"
+    },
+    {
+     "de": "Gewerbe",
+     "fr": "Commerces & bureaux"
+    },
+    {
+     "de": "Industrie",
+     "fr": "Industrie"
+    },
+    {
+     "de": "Gastronomie",
+     "fr": "Restauration"
+    }
    ]
   }
  },
@@ -194,11 +395,23 @@
   "sort": 1,
   "published": true,
   "data": {
-   "eyebrow": "Netzwerk",
-   "title": "Unsere Partner",
-   "text": "Gute Anlagen entstehen im Zusammenspiel. Wir arbeiten seit Jahren mit ausgewählten Herstellern, Großhändlern und Planungsbüros zusammen.",
+   "eyebrow": {
+    "de": "Netzwerk",
+    "fr": "Réseau"
+   },
+   "title": {
+    "de": "Unsere Partner",
+    "fr": "Nos partenaires"
+   },
+   "text": {
+    "de": "Gute Anlagen entstehen im Zusammenspiel. Wir arbeiten seit Jahren mit ausgewählten Herstellern, Großhändlern und Planungsbüros zusammen.",
+    "fr": "Les bonnes installations naissent d’une bonne collaboration. Depuis des années, nous travaillons avec des fabricants, grossistes et bureaux d’études sélectionnés."
+   },
    "image": "/img/hero.webp",
-   "outro": "<p>Sie möchten mit uns zusammenarbeiten? Wir freuen uns über Anfragen von Architekten, Planern und Bauunternehmen.</p>"
+   "outro": {
+    "de": "<p>Sie möchten mit uns zusammenarbeiten? Wir freuen uns über Anfragen von Architekten, Planern und Bauunternehmen.</p>",
+    "fr": "<p>Vous souhaitez travailler avec nous ? Architectes, bureaux d’études et entreprises de construction sont les bienvenus.</p>"
+   }
   }
  },
  {
@@ -207,16 +420,40 @@
   "sort": 1,
   "published": true,
   "data": {
-   "title": "Klimatisierung Office Park",
-   "location": "Luxemburg-Kirchberg",
+   "title": {
+    "de": "Klimatisierung Office Park",
+    "fr": "Climatisation Office Park"
+   },
+   "location": {
+    "de": "Luxemburg-Kirchberg",
+    "fr": "Luxembourg-Kirchberg"
+   },
    "year": "2025",
-   "category": "Gewerbe",
-   "customer": "Bürogebäude, 4.200 m²",
-   "service": "VRF-System mit 86 Deckenkassetten",
+   "category": {
+    "de": "Gewerbe",
+    "fr": "Commerces & bureaux"
+   },
+   "customer": {
+    "de": "Bürogebäude, 4.200 m²",
+    "fr": "Immeuble de bureaux, 4 200 m²"
+   },
+   "service": {
+    "de": "VRF-System mit 86 Deckenkassetten",
+    "fr": "Système VRF avec 86 cassettes plafonnières"
+   },
    "image": "/img/buero.webp",
-   "imageAlt": "Großraumbüro mit Deckenkassetten",
-   "summary": "Komplette Klimatisierung eines Bürogebäudes über fünf Etagen – im laufenden Betrieb.",
-   "html": "<p>Für den Neubau des Office Parks haben wir ein VRF-System mit Wärmerückgewinnung geplant und installiert. Jede Bürozone lässt sich einzeln regeln; überschüssige Wärme aus sonnigen Räumen wird in kühlere Bereiche verschoben.</p><ul><li>86 Deckenkassetten, 6 Außengeräte</li><li>Anbindung an die Gebäudeleittechnik</li><li>Wartungsvertrag über 5 Jahre</li></ul>",
+   "imageAlt": {
+    "de": "Großraumbüro mit Deckenkassetten",
+    "fr": "Bureau paysager avec cassettes plafonnières"
+   },
+   "summary": {
+    "de": "Komplette Klimatisierung eines Bürogebäudes über fünf Etagen – im laufenden Betrieb.",
+    "fr": "Climatisation complète d’un immeuble de bureaux sur cinq étages – en site occupé."
+   },
+   "html": {
+    "de": "<p>Für den Neubau des Office Parks haben wir ein VRF-System mit Wärmerückgewinnung geplant und installiert. Jede Bürozone lässt sich einzeln regeln; überschüssige Wärme aus sonnigen Räumen wird in kühlere Bereiche verschoben.</p><ul><li>86 Deckenkassetten, 6 Außengeräte</li><li>Anbindung an die Gebäudeleittechnik</li><li>Wartungsvertrag über 5 Jahre</li></ul>",
+    "fr": "<p>Pour le nouveau bâtiment de l’Office Park, nous avons étudié et installé un système VRF à récupération de chaleur. Chaque zone se règle individuellement ; la chaleur excédentaire des pièces ensoleillées est transférée vers les zones plus fraîches.</p><ul><li>86 cassettes plafonnières, 6 unités extérieures</li><li>Raccordement à la gestion technique du bâtiment</li><li>Contrat d’entretien de 5 ans</li></ul>"
+   },
    "featured": true
   }
  },
@@ -226,16 +463,37 @@
   "sort": 2,
   "published": true,
   "data": {
-   "title": "Präzisionsklima Rechenzentrum",
+   "title": {
+    "de": "Präzisionsklima Rechenzentrum",
+    "fr": "Climatisation de précision pour centre de données"
+   },
    "location": "Bettembourg",
    "year": "2024",
-   "category": "Industrie",
-   "customer": "Rechenzentrum, 1.100 m² Serverfläche",
-   "service": "Präzisionsklimageräte mit freier Kühlung",
+   "category": {
+    "de": "Industrie",
+    "fr": "Industrie"
+   },
+   "customer": {
+    "de": "Rechenzentrum, 1.100 m² Serverfläche",
+    "fr": "Centre de données, 1 100 m² de salles serveurs"
+   },
+   "service": {
+    "de": "Präzisionsklimageräte mit freier Kühlung",
+    "fr": "Armoires de climatisation de précision avec free cooling"
+   },
    "image": "/img/server.webp",
-   "imageAlt": "Rechenzentrum mit Serverschränken und Klimageräten",
-   "summary": "Redundante Kühlung für ein Rechenzentrum mit 24/7-Betrieb.",
-   "html": "<p>Ausfallsicherheit war hier oberstes Gebot: Wir haben acht Präzisionsklimageräte in N+1-Redundanz installiert. Im Winter kühlt die Anlage überwiegend mit Außenluft (freie Kühlung) und spart so bis zu 40 % Energie.</p>",
+   "imageAlt": {
+    "de": "Rechenzentrum mit Serverschränken und Klimageräten",
+    "fr": "Centre de données avec baies serveurs et climatiseurs"
+   },
+   "summary": {
+    "de": "Redundante Kühlung für ein Rechenzentrum mit 24/7-Betrieb.",
+    "fr": "Refroidissement redondant pour un centre de données en service 24h/24."
+   },
+   "html": {
+    "de": "<p>Ausfallsicherheit war hier oberstes Gebot: Wir haben acht Präzisionsklimageräte in N+1-Redundanz installiert. Im Winter kühlt die Anlage überwiegend mit Außenluft (freie Kühlung) und spart so bis zu 40 % Energie.</p>",
+    "fr": "<p>La disponibilité était la priorité absolue : nous avons installé huit armoires de climatisation de précision en redondance N+1. En hiver, l’installation refroidit principalement avec l’air extérieur (free cooling) et économise ainsi jusqu’à 40 % d’énergie.</p>"
+   },
    "featured": true
   }
  },
@@ -245,16 +503,37 @@
   "sort": 3,
   "published": true,
   "data": {
-   "title": "Wärmepumpe Einfamilienhaus",
+   "title": {
+    "de": "Wärmepumpe Einfamilienhaus",
+    "fr": "Pompe à chaleur maison individuelle"
+   },
    "location": "Mersch",
    "year": "2025",
-   "category": "Privat",
-   "customer": "Neubau Einfamilienhaus",
-   "service": "Luft-Wasser-Wärmepumpe mit Kühlfunktion",
+   "category": {
+    "de": "Privat",
+    "fr": "Particuliers"
+   },
+   "customer": {
+    "de": "Neubau Einfamilienhaus",
+    "fr": "Maison individuelle neuve"
+   },
+   "service": {
+    "de": "Luft-Wasser-Wärmepumpe mit Kühlfunktion",
+    "fr": "Pompe à chaleur air-eau réversible"
+   },
    "image": "/img/waermepumpe.webp",
-   "imageAlt": "Wärmepumpe neben einem modernen Einfamilienhaus",
-   "summary": "Heizen im Winter, sanft kühlen im Sommer – mit nur einem Gerät.",
-   "html": "<p>Eine leise Luft-Wasser-Wärmepumpe versorgt das Haus mit Heizung und Warmwasser. Über die Fußbodenheizung wird im Sommer zusätzlich gekühlt. Bei den Förderanträgen (Klimabonus) haben wir die Familie begleitet.</p>",
+   "imageAlt": {
+    "de": "Wärmepumpe neben einem modernen Einfamilienhaus",
+    "fr": "Pompe à chaleur à côté d’une maison moderne"
+   },
+   "summary": {
+    "de": "Heizen im Winter, sanft kühlen im Sommer – mit nur einem Gerät.",
+    "fr": "Chauffer en hiver, rafraîchir en douceur en été – avec un seul appareil."
+   },
+   "html": {
+    "de": "<p>Eine leise Luft-Wasser-Wärmepumpe versorgt das Haus mit Heizung und Warmwasser. Über die Fußbodenheizung wird im Sommer zusätzlich gekühlt. Bei den Förderanträgen (Klimabonus) haben wir die Familie begleitet.</p>",
+    "fr": "<p>Une pompe à chaleur air-eau silencieuse assure le chauffage et l’eau chaude de la maison. En été, le plancher chauffant sert en plus à rafraîchir. Nous avons accompagné la famille pour les demandes de subventions (Klimabonus).</p>"
+   },
    "featured": true
   }
  },
@@ -264,16 +543,37 @@
   "sort": 4,
   "published": true,
   "data": {
-   "title": "Kühlzelle Brasserie",
+   "title": {
+    "de": "Kühlzelle Brasserie",
+    "fr": "Chambre froide brasserie"
+   },
    "location": "Esch-sur-Alzette",
    "year": "2024",
-   "category": "Gastronomie",
-   "customer": "Restaurant mit 120 Plätzen",
-   "service": "Begehbare Kühlzelle + Tiefkühlzelle",
+   "category": {
+    "de": "Gastronomie",
+    "fr": "Restauration"
+   },
+   "customer": {
+    "de": "Restaurant mit 120 Plätzen",
+    "fr": "Restaurant de 120 couverts"
+   },
+   "service": {
+    "de": "Begehbare Kühlzelle + Tiefkühlzelle",
+    "fr": "Chambre froide positive + chambre négative"
+   },
    "image": "/img/kuehlraum.webp",
-   "imageAlt": "Begehbare Kühlzelle aus Edelstahl in einer Restaurantküche",
-   "summary": "Neue Kühl- und Tiefkühlzellen für eine Großküche – eingebaut in nur drei Tagen.",
-   "html": "<p>Damit das Restaurant nur kurz schließen musste, haben wir die Zellen vorgefertigt und an einem verlängerten Wochenende montiert. Die Kälteanlage arbeitet mit dem natürlichen Kältemittel CO₂.</p>"
+   "imageAlt": {
+    "de": "Begehbare Kühlzelle aus Edelstahl in einer Restaurantküche",
+    "fr": "Chambre froide en inox dans une cuisine de restaurant"
+   },
+   "summary": {
+    "de": "Neue Kühl- und Tiefkühlzellen für eine Großküche – eingebaut in nur drei Tagen.",
+    "fr": "Nouvelles chambres froides pour une cuisine professionnelle – installées en seulement trois jours."
+   },
+   "html": {
+    "de": "<p>Damit das Restaurant nur kurz schließen musste, haben wir die Zellen vorgefertigt und an einem verlängerten Wochenende montiert. Die Kälteanlage arbeitet mit dem natürlichen Kältemittel CO₂.</p>",
+    "fr": "<p>Pour que le restaurant ne ferme que brièvement, nous avons préfabriqué les chambres et les avons montées pendant un week-end prolongé. L’installation fonctionne au CO₂, un fluide frigorigène naturel.</p>"
+   }
   }
  },
  {
@@ -282,16 +582,37 @@
   "sort": 5,
   "published": true,
   "data": {
-   "title": "Kaltwassersätze Logistikzentrum",
+   "title": {
+    "de": "Kaltwassersätze Logistikzentrum",
+    "fr": "Groupes d’eau glacée centre logistique"
+   },
    "location": "Contern",
    "year": "2023",
-   "category": "Industrie",
-   "customer": "Logistikzentrum, 12.000 m²",
-   "service": "Dachzentrale mit 3 Kaltwassersätzen",
+   "category": {
+    "de": "Industrie",
+    "fr": "Industrie"
+   },
+   "customer": {
+    "de": "Logistikzentrum, 12.000 m²",
+    "fr": "Centre logistique, 12 000 m²"
+   },
+   "service": {
+    "de": "Dachzentrale mit 3 Kaltwassersätzen",
+    "fr": "Centrale en toiture avec 3 groupes d’eau glacée"
+   },
    "image": "/img/dach.webp",
-   "imageAlt": "Kaltwassersätze auf dem Dach eines Bürogebäudes",
-   "summary": "Modernisierung der Kältezentrale auf dem Dach – mit 35 % weniger Stromverbrauch.",
-   "html": "<p>Die alten Kaltwassersätze wurden durch drei moderne, drehzahlgeregelte Geräte ersetzt. Die Umstellung erfolgte schrittweise, sodass die Kühlung der Lagerhallen nie unterbrochen wurde.</p>"
+   "imageAlt": {
+    "de": "Kaltwassersätze auf dem Dach eines Bürogebäudes",
+    "fr": "Groupes d’eau glacée sur le toit d’un immeuble de bureaux"
+   },
+   "summary": {
+    "de": "Modernisierung der Kältezentrale auf dem Dach – mit 35 % weniger Stromverbrauch.",
+    "fr": "Modernisation de la centrale frigorifique en toiture – avec 35 % de consommation électrique en moins."
+   },
+   "html": {
+    "de": "<p>Die alten Kaltwassersätze wurden durch drei moderne, drehzahlgeregelte Geräte ersetzt. Die Umstellung erfolgte schrittweise, sodass die Kühlung der Lagerhallen nie unterbrochen wurde.</p>",
+    "fr": "<p>Les anciens groupes d’eau glacée ont été remplacés par trois appareils modernes à vitesse variable. Le remplacement s’est fait par étapes, sans jamais interrompre le refroidissement des entrepôts.</p>"
+   }
   }
  },
  {
@@ -300,16 +621,40 @@
   "sort": 6,
   "published": true,
   "data": {
-   "title": "Split-Klimaanlage Altbauwohnung",
-   "location": "Luxemburg-Limpertsberg",
+   "title": {
+    "de": "Split-Klimaanlage Altbauwohnung",
+    "fr": "Climatisation split appartement ancien"
+   },
+   "location": {
+    "de": "Luxemburg-Limpertsberg",
+    "fr": "Luxembourg-Limpertsberg"
+   },
    "year": "2025",
-   "category": "Privat",
-   "customer": "Altbauwohnung, 3. Stock",
-   "service": "Multi-Split mit 3 Innengeräten",
+   "category": {
+    "de": "Privat",
+    "fr": "Particuliers"
+   },
+   "customer": {
+    "de": "Altbauwohnung, 3. Stock",
+    "fr": "Appartement ancien, 3e étage"
+   },
+   "service": {
+    "de": "Multi-Split mit 3 Innengeräten",
+    "fr": "Multi-split avec 3 unités intérieures"
+   },
    "image": "/img/split.webp",
-   "imageAlt": "Techniker montiert ein Klima-Innengerät im Schlafzimmer",
-   "summary": "Kühle Schlafzimmer im Altbau – sauber verlegt und kaum sichtbar.",
-   "html": "<p>Ein Außengerät im Innenhof versorgt drei Räume. Die Leitungen haben wir unauffällig in Kabelkanälen in Wandfarbe geführt; die Montage dauerte einen Tag.</p>"
+   "imageAlt": {
+    "de": "Techniker montiert ein Klima-Innengerät im Schlafzimmer",
+    "fr": "Technicien installant une unité intérieure dans une chambre"
+   },
+   "summary": {
+    "de": "Kühle Schlafzimmer im Altbau – sauber verlegt und kaum sichtbar.",
+    "fr": "Des chambres fraîches dans l’ancien – pose soignée et presque invisible."
+   },
+   "html": {
+    "de": "<p>Ein Außengerät im Innenhof versorgt drei Räume. Die Leitungen haben wir unauffällig in Kabelkanälen in Wandfarbe geführt; die Montage dauerte einen Tag.</p>",
+    "fr": "<p>Une unité extérieure dans la cour intérieure alimente trois pièces. Les liaisons passent discrètement dans des goulottes de la couleur du mur ; l’installation a duré une journée.</p>"
+   }
   }
  },
  {
@@ -318,16 +663,37 @@
   "sort": 7,
   "published": true,
   "data": {
-   "title": "Klimatisierung Arztpraxis",
+   "title": {
+    "de": "Klimatisierung Arztpraxis",
+    "fr": "Climatisation cabinet médical"
+   },
    "location": "Strassen",
    "year": "2024",
-   "category": "Gewerbe",
-   "customer": "Gemeinschaftspraxis, 6 Räume",
-   "service": "Wandgeräte mit Hygienefilter",
+   "category": {
+    "de": "Gewerbe",
+    "fr": "Commerces & bureaux"
+   },
+   "customer": {
+    "de": "Gemeinschaftspraxis, 6 Räume",
+    "fr": "Cabinet de groupe, 6 pièces"
+   },
+   "service": {
+    "de": "Wandgeräte mit Hygienefilter",
+    "fr": "Unités murales avec filtres hygiéniques"
+   },
    "image": "/img/hero.webp",
-   "imageAlt": "Heller Raum mit Wand-Klimagerät",
-   "summary": "Angenehme Temperaturen für Patienten und Team – mit besonders leisen Geräten.",
-   "html": "<p>Für die Praxis haben wir flüsterleise Wandgeräte mit Feinstaub- und Hygienefiltern gewählt. Jeder Behandlungsraum ist einzeln regelbar.</p>"
+   "imageAlt": {
+    "de": "Heller Raum mit Wand-Klimagerät",
+    "fr": "Pièce lumineuse avec climatiseur mural"
+   },
+   "summary": {
+    "de": "Angenehme Temperaturen für Patienten und Team – mit besonders leisen Geräten.",
+    "fr": "Des températures agréables pour patients et équipe – avec des appareils particulièrement silencieux."
+   },
+   "html": {
+    "de": "<p>Für die Praxis haben wir flüsterleise Wandgeräte mit Feinstaub- und Hygienefiltern gewählt. Jeder Behandlungsraum ist einzeln regelbar.</p>",
+    "fr": "<p>Pour le cabinet, nous avons choisi des unités murales ultra-silencieuses avec filtres à particules fines et hygiéniques. Chaque salle de soins se règle individuellement.</p>"
+   }
   }
  },
  {
@@ -337,10 +703,16 @@
   "published": true,
   "data": {
    "name": "NordKlima Systems",
-   "category": "Hersteller",
+   "category": {
+    "de": "Hersteller",
+    "fr": "Fabricants"
+   },
    "logo": "/img/partner/nordklima.svg",
    "url": "",
-   "text": "Hersteller von Split- und VRF-Klimasystemen. Cool-Tec ist zertifizierter Premium-Installationspartner.",
+   "text": {
+    "de": "Hersteller von Split- und VRF-Klimasystemen. Cool-Tec ist zertifizierter Premium-Installationspartner.",
+    "fr": "Fabricant de systèmes de climatisation split et VRF. Cool-Tec est installateur partenaire premium certifié."
+   },
    "since": "2011"
   }
  },
@@ -351,10 +723,16 @@
   "published": true,
   "data": {
    "name": "ThermoLux Wärmepumpen",
-   "category": "Hersteller",
+   "category": {
+    "de": "Hersteller",
+    "fr": "Fabricants"
+   },
    "logo": "/img/partner/thermolux.svg",
    "url": "",
-   "text": "Effiziente Luft-Wasser-Wärmepumpen für Neubau und Sanierung.",
+   "text": {
+    "de": "Effiziente Luft-Wasser-Wärmepumpen für Neubau und Sanierung.",
+    "fr": "Pompes à chaleur air-eau efficaces pour le neuf et la rénovation."
+   },
    "since": "2016"
   }
  },
@@ -365,10 +743,16 @@
   "published": true,
   "data": {
    "name": "AeroFrost Technologies",
-   "category": "Hersteller",
+   "category": {
+    "de": "Hersteller",
+    "fr": "Fabricants"
+   },
    "logo": "/img/partner/aerofrost.svg",
    "url": "",
-   "text": "Präzisionsklima für Rechenzentren und technische Räume.",
+   "text": {
+    "de": "Präzisionsklima für Rechenzentren und technische Räume.",
+    "fr": "Climatisation de précision pour centres de données et locaux techniques."
+   },
    "since": "2018"
   }
  },
@@ -379,10 +763,16 @@
   "published": true,
   "data": {
    "name": "Polar Components",
-   "category": "Großhandel",
+   "category": {
+    "de": "Großhandel",
+    "fr": "Grossistes"
+   },
    "logo": "/img/partner/polar-components.svg",
    "url": "",
-   "text": "Großhändler für Kälte- und Klimakomponenten mit Lager in der Großregion.",
+   "text": {
+    "de": "Großhändler für Kälte- und Klimakomponenten mit Lager in der Großregion.",
+    "fr": "Grossiste en composants frigorifiques et de climatisation avec stock dans la Grande Région."
+   },
    "since": "2009"
   }
  },
@@ -393,10 +783,16 @@
   "published": true,
   "data": {
    "name": "Mosel Kältebau",
-   "category": "Großhandel",
+   "category": {
+    "de": "Großhandel",
+    "fr": "Grossistes"
+   },
    "logo": "/img/partner/moselkaelte.svg",
    "url": "",
-   "text": "Kühlzellen und Isolierpaneele nach Maß.",
+   "text": {
+    "de": "Kühlzellen und Isolierpaneele nach Maß.",
+    "fr": "Chambres froides et panneaux isolants sur mesure."
+   },
    "since": "2014"
   }
  },
@@ -407,10 +803,16 @@
   "published": true,
   "data": {
    "name": "GreenAir Lüftungstechnik",
-   "category": "Planung",
+   "category": {
+    "de": "Planung",
+    "fr": "Bureaux d’études"
+   },
    "logo": "/img/partner/greenair.svg",
    "url": "",
-   "text": "Planungsbüro für Lüftung und Gebäudetechnik – gemeinsame Projekte im Gewerbebau.",
+   "text": {
+    "de": "Planungsbüro für Lüftung und Gebäudetechnik – gemeinsame Projekte im Gewerbebau.",
+    "fr": "Bureau d’études en ventilation et techniques du bâtiment – projets communs dans le tertiaire."
+   },
    "since": "2019"
   }
  },
@@ -420,9 +822,15 @@
   "sort": 1,
   "published": true,
   "data": {
-   "title": "Impressum",
+   "title": {
+    "de": "Impressum",
+    "fr": "Mentions légales"
+   },
    "path": "/impressum",
-   "html": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Impressumstext ersetzen.</p><h2>Angaben zum Unternehmen</h2><p>Cool-Tec S.à r.l.<br>7, rue de l’Innovation<br>L-8399 Windhof<br>Luxemburg</p><p>Telefon: +352 26 31 47 80<br>E-Mail: info@cool-tec.lu</p><p>Handelsregister (RCS): B 000000<br>Niederlassungsgenehmigung: 00000000/0<br>Mehrwertsteuer-Nr.: LU00000000</p><p>Geschäftsführung: Max Mustermann</p>"
+   "html": {
+    "de": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Impressumstext ersetzen.</p><h2>Angaben zum Unternehmen</h2><p>Cool-Tec S.à r.l.<br>7, rue de l’Innovation<br>L-8399 Windhof<br>Luxemburg</p><p>Telefon: +352 26 31 47 80<br>E-Mail: info@cool-tec.lu</p><p>Handelsregister (RCS): B 000000<br>Niederlassungsgenehmigung: 00000000/0<br>Mehrwertsteuer-Nr.: LU00000000</p><p>Geschäftsführung: Max Mustermann</p>",
+    "fr": "<p><strong>Remarque :</strong> ceci est un texte provisoire. Merci de le remplacer dans le CMS sous « Pages » par les vraies mentions légales.</p><h2>Informations sur l’entreprise</h2><p>Cool-Tec S.à r.l.<br>7, rue de l’Innovation<br>L-8399 Windhof<br>Luxembourg</p><p>Téléphone : +352 26 31 47 80<br>E-mail : info@cool-tec.lu</p><p>Registre de commerce (RCS) : B 000000<br>Autorisation d’établissement : 00000000/0<br>N° TVA : LU00000000</p><p>Gérance : Max Mustermann</p>"
+   }
   }
  },
  {
@@ -431,9 +839,15 @@
   "sort": 2,
   "published": true,
   "data": {
-   "title": "Datenschutz",
+   "title": {
+    "de": "Datenschutz",
+    "fr": "Protection des données"
+   },
    "path": "/datenschutz",
-   "html": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Datenschutztext ersetzen.</p><h2>Kontaktformular</h2><p>Wenn Sie uns über das Kontaktformular schreiben, speichern wir Ihre Angaben (Name, E-Mail, Telefon, Nachricht) ausschließlich, um Ihre Anfrage zu bearbeiten. Die Daten werden nicht an Dritte weitergegeben.</p><h2>Cookies & Schriften</h2><p>Diese Webseite setzt keine Tracking-Cookies und lädt keine Schriften oder Skripte von fremden Servern.</p>"
+   "html": {
+    "de": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Datenschutztext ersetzen.</p><h2>Kontaktformular</h2><p>Wenn Sie uns über das Kontaktformular schreiben, speichern wir Ihre Angaben (Name, E-Mail, Telefon, Nachricht) ausschließlich, um Ihre Anfrage zu bearbeiten. Die Daten werden nicht an Dritte weitergegeben.</p><h2>Cookies & Schriften</h2><p>Diese Webseite setzt keine Tracking-Cookies und lädt keine Schriften oder Skripte von fremden Servern.</p>",
+    "fr": "<p><strong>Remarque :</strong> ceci est un texte provisoire. Merci de le remplacer dans le CMS sous « Pages » par la vraie politique de confidentialité.</p><h2>Formulaire de contact</h2><p>Lorsque vous nous écrivez via le formulaire de contact, nous enregistrons vos données (nom, e-mail, téléphone, message) uniquement pour traiter votre demande. Elles ne sont pas transmises à des tiers.</p><h2>Cookies & polices</h2><p>Ce site n’utilise pas de cookies de suivi et ne charge ni polices ni scripts depuis des serveurs tiers.</p>"
+   }
   }
  }
 ]

@@ -1,7 +1,11 @@
-// Welche Felder es pro Inhaltsart gibt. Neues Feld? → hier ergänzen (keine Datenbank-Änderung nötig)
+// Welche Felder es pro Inhaltsart gibt. Texte sind automatisch zweisprachig (DE/FR); mono: true = gilt für beide Sprachen.
+// Neues Feld? → hier ergänzen (keine Datenbank-Änderung nötig)
 // und in server/views.mjs anzeigen. Was hier fehlt, ist trotzdem über „{ } JSON“ bearbeitbar.
 
 export const ICONS = ['snow', 'box', 'heat', 'fan', 'wrench', 'clock', 'phone', 'mail', 'pin', 'check', 'building', 'calendar', 'user', 'leaf', 'shield', 'link'];
+
+/** Anzeigetext eines (evtl. zweisprachigen) Felds – deutsch bevorzugt */
+export const L = (v) => (typeof v === 'string' ? v : v && typeof v === 'object' ? v.de || v.fr || '' : '');
 
 export const slugify = (s) =>
   String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
@@ -35,7 +39,7 @@ export const COLLECTIONS = [
         link('button2', 'Knopf 2 (weiß umrandet)'),
       ] },
       { key: 'stats', label: '② Zahlen-Leiste', help: 'Am besten 4 Einträge. Leer = Leiste ausgeblendet.', type: 'list', itemTitle: 'value', fields: [
-        { key: 'value', label: 'Zahl / Wert', type: 'text' },
+        { key: 'value', label: 'Zahl / Wert', type: 'text', mono: true },
         { key: 'label', label: 'Beschriftung', type: 'text' },
       ] },
       { key: 'about', label: '③ Über die Firma', type: 'object', fields: [
@@ -98,12 +102,12 @@ export const COLLECTIONS = [
   {
     key: 'pages', group: 'Seiten', label: 'Weitere Seiten', emoji: '📄', sortable: true, view: (d) => d.path,
     description: 'Impressum, Datenschutz oder beliebige weitere Seiten. Verlinken über Einstellungen → Fußzeilen-Links.',
-    title: (d) => d.title, subtitle: (d) => d.path,
-    newId: (d) => slugify(d.title),
-    defaults: () => ({ title: '', path: '/', html: '' }),
+    title: (d) => L(d.title), subtitle: (d) => d.path,
+    newId: (d) => slugify(L(d.title)),
+    defaults: () => ({ title: { de: '', fr: '' }, path: '/', html: { de: '', fr: '' } }),
     fields: [
       { key: 'title', label: 'Titel', type: 'text' },
-      { key: 'path', label: 'Adresse', type: 'text', help: 'Beginnt mit /, z. B. /impressum' },
+      { key: 'path', label: 'Adresse', type: 'text', mono: true, help: 'Beginnt mit /, z. B. /impressum' },
       { key: 'html', label: 'Inhalt', type: 'richtext' },
     ],
   },
@@ -111,14 +115,14 @@ export const COLLECTIONS = [
   {
     key: 'projects', group: 'Inhalte', label: 'Projekte', emoji: '🏗', sortable: true, view: (d, id) => '/projekte/' + id,
     description: 'Referenzprojekte. Reihenfolge mit ↑ ↓ ändern. „Auf Startseite“ = erscheint bevorzugt in der Vorschau.',
-    title: (d) => d.title, subtitle: (d) => [d.category, d.location, d.year].filter(Boolean).join(' · '),
-    newId: (d) => slugify(d.title),
+    title: (d) => L(d.title), subtitle: (d) => [L(d.category), L(d.location), d.year].filter(Boolean).join(' · '),
+    newId: (d) => slugify(L(d.title)),
     defaults: () => ({ title: '', category: '', location: '', year: String(new Date().getFullYear()), image: '', summary: '', html: '' }),
     fields: [
       { key: 'title', label: 'Titel', type: 'text' },
       { key: 'category', label: 'Bereich', type: 'category' },
       { key: 'location', label: 'Ort', type: 'text' },
-      { key: 'year', label: 'Jahr', type: 'text' },
+      { key: 'year', label: 'Jahr', type: 'text', mono: true },
       { key: 'customer', label: 'Objekt / Kunde', type: 'text', help: 'z. B. „Bürogebäude, 4.200 m²“' },
       { key: 'service', label: 'Leistung', type: 'text', help: 'z. B. „VRF-System mit 86 Deckenkassetten“' },
       { key: 'image', label: 'Hauptbild', type: 'image' },
@@ -135,15 +139,15 @@ export const COLLECTIONS = [
   {
     key: 'partners', group: 'Inhalte', label: 'Partner', emoji: '🤝', sortable: true, view: (d, id) => '/partner#' + id,
     description: 'Hersteller, Großhändler, Planer … Gruppiert nach „Art“. Reihenfolge mit ↑ ↓.',
-    title: (d) => d.name, subtitle: (d) => d.category,
-    newId: (d) => slugify(d.name),
+    title: (d) => L(d.name), subtitle: (d) => L(d.category),
+    newId: (d) => slugify(L(d.name)),
     defaults: () => ({ name: '', category: 'Hersteller', logo: '', text: '', url: '', since: '' }),
     fields: [
-      { key: 'name', label: 'Name', type: 'text' },
+      { key: 'name', label: 'Name', type: 'text', mono: true },
       { key: 'category', label: 'Art (Gruppe)', type: 'text', help: 'z. B. Hersteller, Großhandel, Planung' },
       { key: 'logo', label: 'Logo (am besten SVG oder PNG mit transparentem Hintergrund)', type: 'image' },
       { key: 'text', label: 'Beschreibung', type: 'textarea' },
-      { key: 'since', label: 'Partner seit (Jahr)', type: 'text' },
+      { key: 'since', label: 'Partner seit (Jahr)', type: 'text', mono: true },
       { key: 'url', label: 'Webseite', type: 'link' },
     ],
   },
@@ -153,16 +157,16 @@ export const COLLECTIONS = [
     description: 'Gilt für alle Seiten: Logo, Kontaktdaten, Öffnungszeiten oben rechts, Menü, Fußzeile, Google-Texte.',
     title: () => 'Firma & Kontakt',
     fields: [
-      { key: 'name', label: 'Firmenname (kurz)', type: 'text' },
-      { key: 'legalName', label: 'Firmenname (vollständig, z. B. mit S.à r.l.)', type: 'text' },
+      { key: 'name', label: 'Firmenname (kurz)', type: 'text', mono: true },
+      { key: 'legalName', label: 'Firmenname (vollständig, z. B. mit S.à r.l.)', type: 'text', mono: true },
       { key: 'logo', label: 'Logo (oben links)', type: 'image' },
       { key: 'logoAlt', label: 'Logo-Beschreibung', type: 'text' },
       { key: 'hoursTop', label: 'Öffnungszeiten oben rechts (eine Zeile)', type: 'text' },
-      { key: 'phone', label: 'Telefon', type: 'text' },
-      { key: 'emergencyPhone', label: 'Notdienst-Telefon (leer = ausblenden)', type: 'text' },
-      { key: 'email', label: 'E-Mail', type: 'text' },
-      { key: 'street', label: 'Straße', type: 'text' },
-      { key: 'city', label: 'PLZ & Ort', type: 'text' },
+      { key: 'phone', label: 'Telefon', type: 'text', mono: true },
+      { key: 'emergencyPhone', label: 'Notdienst-Telefon (leer = ausblenden)', type: 'text', mono: true },
+      { key: 'email', label: 'E-Mail', type: 'text', mono: true },
+      { key: 'street', label: 'Straße', type: 'text', mono: true },
+      { key: 'city', label: 'PLZ & Ort', type: 'text', mono: true },
       { key: 'country', label: 'Land', type: 'text' },
       { key: 'hours', label: 'Öffnungszeiten (Fußzeile)', type: 'list', itemTitle: 'days', fields: [
         { key: 'days', label: 'Tage', type: 'text' },

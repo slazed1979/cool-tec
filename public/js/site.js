@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (burger && nav) {
     const set = (open) => {
       burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      burger.setAttribute('aria-label', open ? burger.dataset.close : burger.dataset.open);
       nav.classList.toggle('open', open);
     };
     burger.addEventListener('click', () => set(burger.getAttribute('aria-expanded') !== 'true'));

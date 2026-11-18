@@ -8,7 +8,14 @@ const SB_KEY = process.env.SUPABASE_KEY || config.key;
 const TABLE = config.table;
 const TTL = 30_000;
 
-let cache = null;
+export const LANGS = [
+  { code: 'de', label: 'DE', name: 'Deutsch' },
+  { code: 'fr', label: 'FR', name: 'Français' },
+];
+const CODES = LANGS.map((l) => l.code);
+
+let cache = null; // Rohdaten (alle Sprachen)
+let perLang = new Map(); // fertig übersetzte Daten je Sprache
 let cacheAt = 0;
 let loading = null;
 export let source = 'seed';
@@ -28,9 +35,25 @@ async function fromSupabase() {
   return rows;
 }
 
+// Jeder Text kann eine Zeichenkette sein (gilt für alle Sprachen) oder { de: '…', fr: '…' }.
+const isTr = (o) => o && typeof o === 'object' && !Array.isArray(o) && Object.keys(o).length > 0 && Object.keys(o).every((k) => CODES.includes(k));
+const filled = (x) => x != null && (Array.isArray(x) ? x.length > 0 : String(x).trim() !== '');
+/** Text in der gewünschten Sprache – fehlt die Übersetzung, wird die andere Sprache gezeigt */
+export function localize(v, lang) {
+  if (Array.isArray(v)) return v.map((x) => localize(x, lang));
+  if (!v || typeof v !== 'object') return v;
+  if (isTr(v)) {
+    for (const l of [lang, ...CODES]) if (filled(v[l])) return localize(v[l], lang);
+    return '';
+  }
+  const out = {};
+  for (const [k, x] of Object.entries(v)) out[k] = localize(x, lang);
+  return out;
+}
+
 /** Zeilen → { site, home, projectsPage, partnersPage, projects[], partners[], pages[] } */
-function prepare(rows) {
-  const seed = fromSeed(); // fehlende Einzel-Inhalte (z. B. neu eingeführte) aus seed.json ergänzen
+function prepare(rows, lang) {
+  const seed = localize(fromSeed(), lang); // fehlende Einzel-Inhalte (z. B. neu eingeführte) aus seed.json ergänzen
   const single = (col) => (rows.find((r) => r.collection === col) || seed.find((r) => r.collection === col) || { data: {} }).data;
   const list = (col) => rows.filter((r) => r.collection === col).sort((a, b) => a.sort - b.sort).map((r) => ({ ...r.data, id: r.id }));
   const d = {
@@ -46,26 +69,29 @@ function prepare(rows) {
   return d;
 }
 
-export async function getData() {
+export async function getData(lang = 'de') {
   if (!cache || Date.now() - cacheAt >= TTL) {
     loading ??= (async () => {
       try {
         if (process.env.CONTENT_SOURCE === 'seed') throw new Error('CONTENT_SOURCE=seed');
-        cache = prepare(await fromSupabase());
+        cache = await fromSupabase();
         source = 'supabase';
       } catch (e) {
         if (!cache || source === 'seed') {
           if (process.env.CONTENT_SOURCE !== 'seed') console.warn('[data] Supabase nicht erreichbar → seed.json:', e.message);
-          cache = prepare(fromSeed());
+          cache = fromSeed();
           source = 'seed';
         } else console.warn('[data] Supabase-Fehler, nutze letzte Inhalte:', e.message);
       }
+      perLang = new Map();
       cacheAt = Date.now();
       loading = null;
     })();
     await loading;
   }
-  return cache;
+  if (!CODES.includes(lang)) lang = CODES[0];
+  if (!perLang.has(lang)) perLang.set(lang, prepare(localize(cache, lang), lang));
+  return perLang.get(lang);
 }
 
 export function invalidate() {

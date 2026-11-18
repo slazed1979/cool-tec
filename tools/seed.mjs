@@ -1,6 +1,7 @@
-// Erzeugt data/seed.json = Startinhalte der Webseite (fiktiv) und Notlösung, falls die Datenbank nicht erreichbar ist.
+// Erzeugt data/seed.json = Startinhalte der Webseite (fiktiv, Deutsch + Französisch) und Notlösung, falls die Datenbank nicht erreichbar ist.
 // Aufruf: node tools/seed.mjs   (überschreibt data/seed.json – die echten Inhalte liegen danach in Supabase/CMS)
 import { writeFileSync } from 'node:fs';
+import { bilingual } from './i18n/apply.mjs';
 
 const site = {
   name: 'Cool-Tec',
@@ -134,5 +135,6 @@ const seed = [
   ...rows('partners', partners),
   ...rows('pages', pages),
 ];
+for (const r of seed) r.data = bilingual(r.data); // Deutsch + Französisch (tools/i18n/fr.mjs)
 writeFileSync(new URL('../data/seed.json', import.meta.url), JSON.stringify(seed, null, 1) + '\n');
 console.log('data/seed.json geschrieben:', seed.length, 'Einträge');

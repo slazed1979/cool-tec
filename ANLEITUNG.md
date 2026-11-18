@@ -11,9 +11,10 @@
    - **Weitere Seiten** – Impressum, Datenschutz, eigene Seiten
    - **Firma & Kontakt** – Logo, Öffnungszeiten oben rechts, Telefon, E-Mail, Adresse, Menü, Fußzeile, Google-Texte
    - **Kontakt-Nachrichten** – was Kunden über das Formular geschickt haben
-4. **💾 Speichern** – nach wenigen Sekunden ist es auf der Webseite sichtbar.
-5. Bilder: **⬆ Bild hochladen** – Fotos werden automatisch verkleinert.
-6. Alles, was es nicht als Formularfeld gibt: Knopf **{ } JSON** (Experten-Ansicht).
+4. **Zwei Sprachen:** Jedes Textfeld hat eine Zeile **DE** und eine Zeile **FR** (große Texte: Reiter DE / FR). Ein ⚠ heißt „noch nicht übersetzt“ – dann zeigt die französische Seite den deutschen Text.
+5. **💾 Speichern** – nach wenigen Sekunden ist es auf der Webseite sichtbar.
+6. Bilder: **⬆ Bild hochladen** – Fotos werden automatisch verkleinert.
+7. Alles, was es nicht als Formularfeld gibt: Knopf **{ } JSON** (Experten-Ansicht).
 
 **Passwort vergessen?** Auf der Anmeldeseite E-Mail eintragen → „Passwort vergessen“.
 **Weitere Personen freischalten:** Claude fragen („Bitte X als Redakteur für Cool-Tec freischalten“).

@@ -1,7 +1,7 @@
 # Cool-Tec – Webseite + CMS
 
 Responsive Webseite für **Cool-Tec** (Klima- & Kältetechnik, Luxemburg) mit einfachem CMS, in dem **alles** änderbar ist.
-Drei Reiter: **Unternehmen** (Startseite) · **Projekte** · **Partner**. Alle Inhalte sind vorerst **fiktiv** (Platzhalter).
+Drei Reiter: **Unternehmen** (Startseite) · **Projekte** · **Partner**. Zweisprachig **Deutsch / Französisch** (Umschalter oben rechts). Alle Inhalte sind vorerst **fiktiv** (Platzhalter).
 
 - **Webseite:** https://cool-tec.onrender.com
 - **CMS:** https://cool-tec.onrender.com/admin

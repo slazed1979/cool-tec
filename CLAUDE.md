@@ -21,6 +21,13 @@
 - `admin/` CMS (Vite + React). Felder je Inhaltsart: `admin/src/schema.js`, Eingabefelder: `admin/src/fields.jsx`. Unter `/admin` ausgeliefert, wird beim Deploy gebaut.
 - Farben (aus dem Logo): Marine `#0d2a42` (Kopf/Fuß), Blau `#0a6aa8` (Links/Knöpfe, 5,8:1), Grün `#2e7d1f` (Akzent, 5,2:1), Eisblau `#eef6fb` (Flächen). Originales Logoblau `#0090d8` nur Deko.
 
+## Zweisprachig (DE/FR)
+- Umschalter **DE | FR** oben rechts in der Topbar. Wahl wird im Cookie `lang` gemerkt (`/lang/de`, `/lang/fr?r=<zurück>`); ohne Cookie entscheidet die Browsersprache, sonst DE.
+- Inhalte: jeder Text kann String (gilt für beide Sprachen) oder `{ de, fr }` sein. `server/data.mjs` → `localize()`, fehlt FR wird DE gezeigt.
+- Feste Texte (Knöpfe, Formular, Fußzeile): `server/i18n.mjs` (Schlüssel = deutscher Text). Neue Festtexte immer mit `T('…')` schreiben und dort übersetzen.
+- CMS: Textfelder (text/textarea/richtext/strings) sind automatisch DE/FR; `mono: true` in `admin/src/schema.js` = sprachneutral (Telefon, Jahr, Namen …).
+- Startübersetzungen: `tools/i18n/fr.mjs` + `apply.mjs` (`bilingual()`), genutzt von `tools/seed.mjs`.
+
 ## Datenbank
 - Supabase-Projekt **Familienplaner** (`qkcfrqlaaeooflyzcryq`) – Gratis-Kontingent war voll, Nutzer hat das so entschieden. **Alles mit Präfix `cooltec`**, Familienplaner-Tabellen nie anfassen.
 - `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage` (je 1 Zeile), `projects`, `partners`, `pages`.
@@ -30,5 +37,5 @@
 - `tools/seed.mjs` erzeugt `data/seed.json` (Startinhalte/Notlösung). Das CMS ist danach die Quelle der Wahrheit.
 
 ## Prüfen
-- `npm test` → `tests/run.mjs`: Server mit seed.json, prüft Reiter/Logo/Öffnungszeiten, Formular, Spam-Falle, 404, noindex, Code-Filter, Alt-Texte, eine h1 pro Seite, klickt alle Seiten/Bilder durch. Neue Funktion → Prüfung ergänzen.
+- `npm test` → `tests/run.mjs`: Server mit seed.json, prüft Reiter/Logo/Öffnungszeiten, Sprachumschalter + FR-Texte, Formular, Spam-Falle, 404, noindex, Code-Filter, Alt-Texte, eine h1 pro Seite, klickt alle Seiten/Bilder in DE und FR durch. Neue Funktion → Prüfung ergänzen.
 - Responsive: mit Playwright auf iPhone-Größe prüfen (kein waagrechtes Scrollen).

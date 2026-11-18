@@ -54,6 +54,7 @@ ${image || ctx.data.home.hero?.image ? `<meta property="og:image" content="${esc
 </head>
 <body>
 <a class="skip" href="#inhalt">${T('Zum Inhalt springen')}</a>
+<div class="site-top">
 <div class="topbar">
   <div class="wrap topbar-in">
     ${s.hoursTop ? `<span class="tb-item tb-hours">${icon('clock', '', 16)}<span>${esc(s.hoursTop)}</span></span>` : ''}
@@ -76,6 +77,7 @@ ${image || ctx.data.home.hero?.image ? `<meta property="og:image" content="${esc
     </nav>
   </div>
 </header>
+</div>
 <main id="inhalt">
 ${body}
 </main>

@@ -1,0 +1,8 @@
+{
+  "url": "https://qkcfrqlaaeooflyzcryq.supabase.co",
+  "key": "sb_publishable__86lIb9nE4AHL02aZjzwGg_1lR8ozoc",
+  "table": "cooltec_content",
+  "messages": "cooltec_messages",
+  "bucket": "cooltec-media",
+  "_hinweis": "Öffentlicher Schlüssel (publishable) – darf im Code stehen. Schreiben dürfen nur angemeldete Redakteure (Tabelle cooltec_editors)."
+}

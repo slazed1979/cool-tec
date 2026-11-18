@@ -150,3 +150,28 @@ button:disabled { opacity: .5; cursor: default; }
 .new-badge:hover { background: #22621a; }
 @keyframes pulse { 50% { box-shadow: 0 0 0 6px rgb(46 125 31 / 25%); } }
 @media (max-width: 600px) { .new-badge { padding: 6px 10px; font-size: 12.5px; } }
+
+/* Benutzerverwaltung */
+.users { max-width: 980px; }
+.users .card { background: #fff; border-radius: 14px; padding: 18px 20px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.users h3 { margin: 0 0 10px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; margin-bottom: 8px; }
+.grid2 label { display: grid; gap: 4px; font-weight: 700; color: var(--ink); }
+.grid2 .row input { flex: 1; }
+.access { border: 2px solid #2e7d1f; }
+.access pre { background: #f2f6f9; padding: 12px 14px; border-radius: 9px; white-space: pre-wrap; font-size: 14px; }
+.ok-msg { font-weight: 700; color: #1d4f14; }
+.user-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.user-table th, .user-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.user-table th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--mu); background: #f7fafc; }
+.user-table select { width: auto; }
+.user-table .actions > div { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.you { color: var(--mu); font-weight: 400; }
+@media (max-width: 760px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .user-table thead { display: none; }
+  .user-table tr { display: block; border-bottom: 2px solid var(--line); padding: 6px 0; }
+  .user-table td { display: flex; gap: 10px; border: 0; padding: 4px 12px; }
+  .user-table td[data-l]::before { content: attr(data-l); min-width: 110px; font-size: 12.5px; color: var(--mu); font-weight: 700; }
+  .user-table .actions > div { justify-content: flex-start; }
+}

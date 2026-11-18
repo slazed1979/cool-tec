@@ -19,7 +19,9 @@
 7. Alles, was es nicht als Formularfeld gibt: Knopf **{ } JSON** (Experten-Ansicht).
 
 **Passwort vergessen?** Auf der Anmeldeseite E-Mail eintragen → „Passwort vergessen“.
-**Weitere Personen freischalten:** Claude fragen („Bitte X als Redakteur für Cool-Tec freischalten“).
+**Weitere Personen freischalten (nur Admins):** CMS → links unten **👥 Benutzer** → „Neuen Zugang anlegen“: Name, Benutzername (z. B. `marc`) oder E-Mail, Passwort (🎲 erzeugt eins), Rolle. → **✓ Zugang anlegen** → **📋 Zugangsdaten kopieren** und z. B. per SMS weiterschicken. Das Passwort wird nur in diesem Moment angezeigt.
+- **Redakteur** = darf Inhalte bearbeiten · **Admin** = darf zusätzlich Benutzer verwalten.
+- Passwort vergessen? Admin klickt beim Benutzer auf **🔑 Neues Passwort**. Zugang sperren: **Entfernen**.
 
 ## Gut zu wissen
 - Gratis-Hosting (Render Free): Nach 15 Minuten ohne Besucher „schläft“ die Seite; der erste Aufruf dauert dann ca. 30–60 Sekunden.

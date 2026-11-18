@@ -97,6 +97,12 @@ try {
   ok(!/onclick|<script|javascript:|<iframe/i.test(bad), 'rich() lässt gefährlichen Code durch: ' + bad);
   ok(esc('<b>"&') === '&lt;b&gt;&quot;&amp;', 'esc() maskiert nicht richtig');
 
+  // ---- Benutzernamen im CMS (admin/src/login.js)
+  const { toLogin, displayName } = await import('../admin/src/login.js');
+  ok(toLogin(' Marc ') === 'marc@team.cool-tec.lu' && toLogin('anna@firma.lu') === 'anna@firma.lu', 'CMS-Login: Benutzername wird falsch umgewandelt');
+  ok(toLogin('a b') === '' && toLogin('x@y') === '' && toLogin('') === '', 'CMS-Login: ungültige Eingabe wird nicht abgelehnt');
+  ok(displayName('marc@team.cool-tec.lu') === 'marc', 'CMS: Benutzername wird falsch angezeigt');
+
   // ---- 4. Alle Seiten in beiden Sprachen durchklicken
   let pages = 0;
   for (const lang of ['de', 'fr']) {

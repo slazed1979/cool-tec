@@ -3,6 +3,8 @@ import { amEditor, countNew, deleteRow, loadAll, saveRow, saveSorts, supabase } 
 import { Field } from './fields';
 import { COLLECTIONS, slugify } from './schema';
 import { Messages } from './Messages';
+import { Users } from './Users';
+import { toLogin, displayName } from './login';
 
 // ---------------- Anmeldung
 function Login() {
@@ -14,9 +16,11 @@ function Login() {
     e.preventDefault();
     setBusy(true);
     setError('');
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const login = toLogin(email);
+    if (!login) { setBusy(false); setError('Bitte Benutzernamen oder E-Mail-Adresse eingeben.'); return; }
+    const { error } = await supabase.auth.signInWithPassword({ email: login, password });
     setBusy(false);
-    if (error) setError('Anmeldung fehlgeschlagen: ' + error.message);
+    if (error) setError(/invalid login/i.test(error.message) ? 'Anmeldung fehlgeschlagen: Benutzername oder Passwort stimmt nicht.' : 'Anmeldung fehlgeschlagen: ' + error.message);
   };
   return (
     <div className="login">
@@ -24,12 +28,12 @@ function Login() {
         <img src="/brand/logo-cooltec.png" alt="Cool-Tec" style={{ height: 56, width: 'auto', justifySelf: 'center' }} />
         <h1>CMS · Webseite</h1>
         <p className="help">Hier ändern Sie alle Inhalte der Webseite. Passwort vergessen? Unten auf „Passwort vergessen“ klicken.</p>
-        <label>E-Mail<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" required /></label>
+        <label>Benutzername oder E-Mail<input type="text" autoCapitalize="none" autoCorrect="off" spellCheck={false} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" required /></label>
         <label>Passwort<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required /></label>
         {error && <div className="error">{error}</div>}
         <button type="submit" disabled={busy}>{busy ? '…' : 'Anmelden'}</button>
         <button type="button" className="ghost small" onClick={async () => {
-          if (!email) { setError('Bitte zuerst die E-Mail-Adresse eintragen.'); return; }
+          if (!email.includes('@')) { setError(email ? 'Bei einem Benutzernamen ohne E-Mail setzt ein Admin das Passwort im CMS unter „Benutzer“ neu. Bitte dort nachfragen.' : 'Bitte zuerst die E-Mail-Adresse eintragen.'); return; }
           const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: location.origin + '/admin/' });
           setError(error ? 'Fehler: ' + error.message : '📧 Falls die Adresse bekannt ist, kommt gleich eine E-Mail mit einem Link.');
         }}>Passwort vergessen</button>
@@ -156,6 +160,7 @@ export default function App() {
   const [editor, setEditor] = useState(undefined);
   const [pwOpen, setPwOpen] = useState(() => /type=recovery/.test(location.hash) ? 'forced' : false);
   const [newMsgs, setNewMsgs] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     // Nur für lokale Tests (npm run dev mit VITE_DEMO=1): ohne Anmeldung ansehen, Speichern geht dann nicht
@@ -168,7 +173,7 @@ export default function App() {
   useEffect(() => {
     if (!session) return;
     if (import.meta.env.DEV && import.meta.env.VITE_DEMO) { setEditor(true); reload(); return; }
-    amEditor().then((ok) => { setEditor(ok); if (ok) reload(); }).catch((e) => setErr(e.message));
+    amEditor().then((ok) => { setEditor(ok); if (ok) { reload(); supabase.rpc('cooltec_is_admin').then(({ data }) => setIsAdmin(data === true)); } }).catch((e) => setErr(e.message));
   }, [session, reload]);
   // Neue Kontakt-Nachrichten zählen: beim Start, jede Minute und wenn das Fenster wieder in den Vordergrund kommt
   const refreshNew = useCallback(() => countNew().then(setNewMsgs).catch(() => {}), []);
@@ -201,7 +206,7 @@ export default function App() {
   if (pwOpen) return <PasswordDialog forced={pwOpen === 'forced'} onClose={() => setPwOpen(false)} />;
   if (editor === false) return (
     <div className="loading">
-      <p>Sie sind als <b>{session.user.email}</b> angemeldet, aber (noch) nicht als Redakteur freigeschaltet.</p>
+      <p>Sie sind als <b>{displayName(session.user.email)}</b> angemeldet, aber (noch) nicht als Redakteur freigeschaltet.</p>
       <button onClick={() => supabase.auth.signOut()}>Abmelden</button>
     </div>
   );
@@ -213,7 +218,7 @@ export default function App() {
   const allLinks = ['/', '/projekte', '/partner', '/jobs', '/#kontakt', ...rows.filter((r) => r.collection === 'pages').map((r) => r.data.path), ...rows.filter((r) => r.collection === 'projects').map((r) => '/projekte/' + r.id)];
 
   const pick = (k) => { setCol(k); setSel(''); setNewRow(null); setQ(''); setMenuOpen(false); };
-  if (!def && col !== 'messages') { setTimeout(() => pick('home')); return null; }
+  if (!def && col !== 'messages' && col !== 'users') { setTimeout(() => pick('home')); return null; }
   const startNew = () => {
     const sort = Math.max(0, ...rows.filter((r) => r.collection === col).map((r) => r.sort)) + 1;
     setSel('');
@@ -248,7 +253,7 @@ export default function App() {
           </button>
         )}
         <a className="button secondary small" href="/" target="_blank" rel="noreferrer">🌐 Webseite</a>
-        <span className="who">{session.user.email}</span>
+        <span className="who">{displayName(session.user.email)}</span>
         <button className="ghost small" onClick={() => setPwOpen(true)} title="Passwort ändern">🔑</button>
         <button className="ghost small" onClick={() => supabase.auth.signOut()}>Abmelden</button>
       </header>
@@ -266,8 +271,12 @@ export default function App() {
           ))}
           <div className="group">Eingang</div>
           <button className={'nav' + (col === 'messages' ? ' on' : '')} onClick={() => pick('messages')}><span>✉️</span> Nachrichten {newMsgs > 0 && <span className="count-new" aria-label={`${newMsgs} neu`}>{newMsgs} neu</span>}</button>
+          <div className="group">Verwaltung</div>
+          <button className={'nav' + (col === 'users' ? ' on' : '')} onClick={() => pick('users')}><span>👥</span> Benutzer</button>
         </nav>
-        {col === 'messages' ? (
+        {col === 'users' ? (
+          <section className="content"><Users me={session.user.email} isAdmin={isAdmin} /></section>
+        ) : col === 'messages' ? (
           <section className="content"><Messages onChange={refreshNew} /></section>
         ) : def.single ? (
           <section className="content"><p className="desc">{def.description}</p><Editor def={def} row={current} rows={rows} onSaved={onSaved} onDeleted={() => {}} isNew={!rows.find((r) => r.collection === col)} /></section>

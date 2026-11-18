@@ -34,7 +34,7 @@
 - Supabase-Projekt **Familienplaner** (`qkcfrqlaaeooflyzcryq`) – Gratis-Kontingent war voll, Nutzer hat das so entschieden. **Alles mit Präfix `cooltec`**, Familienplaner-Tabellen nie anfassen.
 - `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage`, `jobsPage` (je 1 Zeile), `projects`, `partners`, `jobs`, `pages`.
 - `cooltec_messages` (Kontaktformular, anon darf nur einfügen), `cooltec_editors` (E-Mails der Redakteure), Funktion `cooltec_is_editor()`, Storage-Bucket `cooltec-media`. SQL: `supabase/schema.sql`.
-- Redakteur hinzufügen: `insert into public.cooltec_editors(email) values ('…')` + Supabase-Auth-Benutzer anlegen.
+- **Benutzerverwaltung im CMS** (👥 Benutzer, `admin/src/Users.jsx`): Rollen `admin` (verwaltet Benutzer) / `editor`. DB-Funktionen `cooltec_is_admin`, `cooltec_list_editors`, `cooltec_create_editor`, `cooltec_set_password`, `cooltec_set_role`, `cooltec_remove_editor` (SECURITY DEFINER, prüfen selbst auf Admin). Nutzer (slazed@…) ist Admin. Benutzernamen ohne @ → `name@team.cool-tec.lu` (`admin/src/login.js`).
 - Supabase ist aus der Cloud-Umgebung nicht direkt erreichbar → Datenbank über das Supabase-MCP-Werkzeug bearbeiten.
 - `tools/seed.mjs` erzeugt `data/seed.json` (Startinhalte/Notlösung). Das CMS ist danach die Quelle der Wahrheit.
 

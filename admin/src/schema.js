@@ -100,6 +100,25 @@ export const COLLECTIONS = [
     ],
   },
   {
+    key: 'jobsPage', group: 'Seiten', label: 'Seite „Jobs“', emoji: '💼', single: true, singleId: 'jobsPage', view: () => '/jobs',
+    description: 'Vierter Reiter: Kopfbereich, Vorteile für Bewerber, Bewerbungstext. Die Stellen selbst unter „Jobs“.',
+    title: () => 'Seite „Jobs“',
+    fields: [
+      ...sectionHead,
+      { key: 'text', label: 'Einleitung', type: 'textarea' },
+      { key: 'image', label: 'Hintergrundbild', type: 'image' },
+      { key: 'benefitsTitle', label: 'Überschrift Vorteile', type: 'text' },
+      { key: 'benefits', label: 'Vorteile (am besten 4)', type: 'list', itemTitle: 'title', fields: [
+        { key: 'icon', label: 'Symbol', type: 'icon' },
+        { key: 'title', label: 'Titel', type: 'text' },
+        { key: 'text', label: 'Text', type: 'textarea' },
+      ] },
+      { key: 'applyTitle', label: 'Überschrift Bewerbung (über dem Formular)', type: 'text' },
+      { key: 'applyText', label: 'Text Bewerbung', type: 'textarea' },
+      { key: 'emptyText', label: 'Text, wenn keine Stelle offen ist', type: 'textarea' },
+    ],
+  },
+  {
     key: 'pages', group: 'Seiten', label: 'Weitere Seiten', emoji: '📄', sortable: true, view: (d) => d.path,
     description: 'Impressum, Datenschutz oder beliebige weitere Seiten. Verlinken über Einstellungen → Fußzeilen-Links.',
     title: (d) => L(d.title), subtitle: (d) => d.path,
@@ -149,6 +168,21 @@ export const COLLECTIONS = [
       { key: 'text', label: 'Beschreibung', type: 'textarea' },
       { key: 'since', label: 'Partner seit (Jahr)', type: 'text', mono: true },
       { key: 'url', label: 'Webseite', type: 'link' },
+    ],
+  },
+  {
+    key: 'jobs', group: 'Inhalte', label: 'Jobs', emoji: '💼', sortable: true, view: (d, id) => '/jobs/' + id,
+    description: 'Offene Stellen. Besetzt? → „Veröffentlicht“ ausschalten (bleibt gespeichert) oder löschen.',
+    title: (d) => L(d.title), subtitle: (d) => [L(d.type), L(d.location)].filter(Boolean).join(' · '),
+    newId: (d) => slugify(L(d.title)),
+    defaults: () => ({ title: { de: '', fr: '' }, type: { de: 'Vollzeit · CDI', fr: 'Temps plein · CDI' }, location: 'Windhof', start: { de: 'ab sofort', fr: 'dès que possible' }, summary: { de: '', fr: '' }, html: { de: '<h2>Ihre Aufgaben</h2><ul><li></li></ul><h2>Ihr Profil</h2><ul><li></li></ul>', fr: '<h2>Vos missions</h2><ul><li></li></ul><h2>Votre profil</h2><ul><li></li></ul>' } }),
+    fields: [
+      { key: 'title', label: 'Stellenbezeichnung', type: 'text', help: 'z. B. „Servicetechniker (m/w/d)“' },
+      { key: 'type', label: 'Anstellung', type: 'text', help: 'z. B. Vollzeit · CDI, Teilzeit, Lehre' },
+      { key: 'location', label: 'Arbeitsort', type: 'text' },
+      { key: 'start', label: 'Start', type: 'text', help: 'z. B. ab sofort, September 2027' },
+      { key: 'summary', label: 'Kurzbeschreibung (für die Liste)', type: 'textarea' },
+      { key: 'html', label: 'Stellenbeschreibung (Aufgaben, Profil …)', type: 'richtext' },
     ],
   },
   // ------------------------------------------------ Einstellungen

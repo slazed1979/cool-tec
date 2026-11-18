@@ -51,7 +51,7 @@ export function localize(v, lang) {
   return out;
 }
 
-/** Zeilen → { site, home, projectsPage, partnersPage, projects[], partners[], pages[] } */
+/** Zeilen → { site, home, projectsPage, partnersPage, jobsPage, projects[], partners[], jobs[], pages[] } */
 function prepare(rows, lang) {
   const seed = localize(fromSeed(), lang); // fehlende Einzel-Inhalte (z. B. neu eingeführte) aus seed.json ergänzen
   const single = (col) => (rows.find((r) => r.collection === col) || seed.find((r) => r.collection === col) || { data: {} }).data;
@@ -61,7 +61,9 @@ function prepare(rows, lang) {
     home: single('home'),
     projectsPage: single('projectsPage'),
     partnersPage: single('partnersPage'),
+    jobsPage: single('jobsPage'),
     projects: list('projects'),
+    jobs: list('jobs'),
     partners: list('partners'),
     pages: list('pages'),
   };

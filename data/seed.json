@@ -82,6 +82,13 @@
       "fr": "Partenaires"
      },
      "href": "/partner"
+    },
+    {
+     "label": {
+      "de": "Jobs",
+      "fr": "Emplois"
+     },
+     "href": "/jobs"
     }
    ],
    "ctaLabel": {
@@ -411,6 +418,89 @@
    "outro": {
     "de": "<p>Sie möchten mit uns zusammenarbeiten? Wir freuen uns über Anfragen von Architekten, Planern und Bauunternehmen.</p>",
     "fr": "<p>Vous souhaitez travailler avec nous ? Architectes, bureaux d’études et entreprises de construction sont les bienvenus.</p>"
+   }
+  }
+ },
+ {
+  "collection": "jobsPage",
+  "id": "jobsPage",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "eyebrow": {
+    "de": "Karriere",
+    "fr": "Carrière"
+   },
+   "title": {
+    "de": "Jobs bei Cool-Tec",
+    "fr": "Emplois chez Cool-Tec"
+   },
+   "text": {
+    "de": "Wir wachsen und suchen Menschen, die mit anpacken: Techniker, Planer und Auszubildende, die Lust auf moderne Klima- und Kältetechnik haben.",
+    "fr": "Nous grandissons et recherchons des personnes motivées : techniciens, dessinateurs et apprentis passionnés par la climatisation et le froid modernes."
+   },
+   "image": "/img/team.webp",
+   "benefitsTitle": {
+    "de": "Was wir Ihnen bieten",
+    "fr": "Ce que nous vous offrons"
+   },
+   "benefits": [
+    {
+     "icon": "shield",
+     "title": {
+      "de": "Sicherer Arbeitsplatz",
+      "fr": "Emploi stable"
+     },
+     "text": {
+      "de": "Unbefristeter Vertrag (CDI) in einem gesunden, wachsenden Familienbetrieb.",
+      "fr": "Contrat à durée indéterminée (CDI) dans une entreprise familiale saine et en croissance."
+     }
+    },
+    {
+     "icon": "wrench",
+     "title": {
+      "de": "Top-Ausstattung",
+      "fr": "Équipement moderne"
+     },
+     "text": {
+      "de": "Eigener Servicewagen, hochwertiges Werkzeug, Tablet und Firmenhandy.",
+      "fr": "Véhicule de service, outillage de qualité, tablette et téléphone professionnel."
+     }
+    },
+    {
+     "icon": "calendar",
+     "title": {
+      "de": "Weiterbildung",
+      "fr": "Formation continue"
+     },
+     "text": {
+      "de": "Regelmäßige Schulungen bei Herstellern und Unterstützung bei Meister- oder Technikerkursen.",
+      "fr": "Formations régulières chez les fabricants et soutien pour le brevet de maîtrise ou de technicien."
+     }
+    },
+    {
+     "icon": "user",
+     "title": {
+      "de": "Starkes Team",
+      "fr": "Une équipe soudée"
+     },
+     "text": {
+      "de": "Flache Hierarchien, kurze Wege und ein Team, das zusammenhält.",
+      "fr": "Hiérarchie plate, décisions rapides et une équipe solidaire."
+     }
+    }
+   ],
+   "applyTitle": {
+    "de": "So bewerben Sie sich",
+    "fr": "Comment postuler"
+   },
+   "applyText": {
+    "de": "Schicken Sie uns Ihren Lebenslauf per E-Mail oder schreiben Sie uns kurz über das Formular – wir melden uns innerhalb weniger Tage. Keine passende Stelle dabei? Wir freuen uns auch über Initiativbewerbungen.",
+    "fr": "Envoyez-nous votre CV par e-mail ou écrivez-nous brièvement via le formulaire – nous vous répondons sous quelques jours. Aucun poste ne vous correspond ? Les candidatures spontanées sont également les bienvenues."
+   },
+   "emptyText": {
+    "de": "Zurzeit sind keine Stellen ausgeschrieben – Initiativbewerbungen sind aber jederzeit willkommen.",
+    "fr": "Aucun poste n’est ouvert actuellement – les candidatures spontanées sont toutefois toujours les bienvenues."
    }
   }
  },
@@ -814,6 +904,125 @@
     "fr": "Bureau d’études en ventilation et techniques du bâtiment – projets communs dans le tertiaire."
    },
    "since": "2019"
+  }
+ },
+ {
+  "collection": "jobs",
+  "id": "kaelteanlagenbauer",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "title": {
+    "de": "Kälteanlagenbauer / Mechatroniker für Kältetechnik (m/w/d)",
+    "fr": "Frigoriste / mécatronicien en froid (h/f/x)"
+   },
+   "type": {
+    "de": "Vollzeit · CDI",
+    "fr": "Temps plein · CDI"
+   },
+   "location": "Windhof",
+   "start": {
+    "de": "ab sofort",
+    "fr": "dès que possible"
+   },
+   "summary": {
+    "de": "Montage und Inbetriebnahme von Kälte- und Klimaanlagen bei Privat- und Gewerbekunden in ganz Luxemburg.",
+    "fr": "Montage et mise en service d’installations frigorifiques et de climatisation chez des clients privés et professionnels dans tout le Luxembourg."
+   },
+   "html": {
+    "de": "<h2>Ihre Aufgaben</h2><ul><li>Montage von Split-, VRF- und Kälteanlagen</li><li>Inbetriebnahme, Einregulierung und Dokumentation</li><li>Löt- und Pressarbeiten an Kupferleitungen</li><li>Kundenberatung direkt vor Ort</li></ul><h2>Ihr Profil</h2><ul><li>Abgeschlossene Ausbildung im Bereich Kälte-/Klimatechnik oder vergleichbar</li><li>F-Gase-Zertifikat (Kategorie I) oder Bereitschaft, es zu erwerben</li><li>Führerschein Klasse B</li><li>Deutsch oder Französisch, Luxemburgisch ist ein Plus</li></ul>",
+    "fr": "<h2>Vos missions</h2><ul><li>Montage de systèmes split, VRF et frigorifiques</li><li>Mise en service, réglage et documentation</li><li>Brasage et sertissage de tuyauteries cuivre</li><li>Conseil aux clients sur place</li></ul><h2>Votre profil</h2><ul><li>Formation achevée en froid/climatisation ou équivalent</li><li>Certificat gaz fluorés (catégorie I) ou disposition à l’obtenir</li><li>Permis de conduire B</li><li>Allemand ou français, le luxembourgeois est un atout</li></ul>"
+   }
+  }
+ },
+ {
+  "collection": "jobs",
+  "id": "servicetechniker",
+  "sort": 2,
+  "published": true,
+  "data": {
+   "title": {
+    "de": "Servicetechniker Klima- & Kältetechnik (m/w/d)",
+    "fr": "Technicien de service climatisation & froid (h/f/x)"
+   },
+   "type": {
+    "de": "Vollzeit · CDI",
+    "fr": "Temps plein · CDI"
+   },
+   "location": {
+    "de": "Windhof / im Außendienst",
+    "fr": "Windhof / sur le terrain"
+   },
+   "start": {
+    "de": "ab sofort",
+    "fr": "dès que possible"
+   },
+   "summary": {
+    "de": "Wartung, Fehlersuche und Reparatur – Sie sind das Gesicht von Cool-Tec beim Kunden.",
+    "fr": "Entretien, dépannage et réparation – vous êtes le visage de Cool-Tec chez nos clients."
+   },
+   "html": {
+    "de": "<h2>Ihre Aufgaben</h2><ul><li>Wartung und Dichtheitsprüfungen nach F-Gase-Verordnung</li><li>Störungsdiagnose und Reparatur aller Marken</li><li>Teilnahme am Bereitschaftsdienst (gut vergütet)</li><li>Digitale Einsatzberichte per Tablet</li></ul><h2>Ihr Profil</h2><ul><li>Erfahrung im Service von Kälte- oder Klimaanlagen</li><li>Selbstständige, zuverlässige Arbeitsweise</li><li>Führerschein Klasse B</li><li>Freundliches Auftreten beim Kunden</li></ul>",
+    "fr": "<h2>Vos missions</h2><ul><li>Entretien et contrôles d’étanchéité selon le règlement gaz fluorés</li><li>Diagnostic de pannes et réparation toutes marques</li><li>Participation au service d’astreinte (bien rémunéré)</li><li>Rapports d’intervention numériques sur tablette</li></ul><h2>Votre profil</h2><ul><li>Expérience en service d’installations frigorifiques ou de climatisation</li><li>Travail autonome et fiable</li><li>Permis de conduire B</li><li>Bon contact avec la clientèle</li></ul>"
+   }
+  }
+ },
+ {
+  "collection": "jobs",
+  "id": "projektplaner-hlk",
+  "sort": 3,
+  "published": true,
+  "data": {
+   "title": {
+    "de": "Projektplaner / Technischer Zeichner HLK (m/w/d)",
+    "fr": "Chargé de projets / dessinateur HVAC (h/f/x)"
+   },
+   "type": {
+    "de": "Vollzeit oder Teilzeit",
+    "fr": "Temps plein ou partiel"
+   },
+   "location": "Windhof",
+   "start": {
+    "de": "nach Vereinbarung",
+    "fr": "à convenir"
+   },
+   "summary": {
+    "de": "Sie planen Anlagen am Bildschirm, erstellen Angebote und begleiten Projekte vom Entwurf bis zur Übergabe.",
+    "fr": "Vous concevez les installations, établissez les offres et suivez les projets de l’esquisse à la réception."
+   },
+   "html": {
+    "de": "<h2>Ihre Aufgaben</h2><ul><li>Auslegung und Planung von Klima- und Kälteanlagen</li><li>Erstellen von Plänen (CAD) und Angeboten</li><li>Abstimmung mit Architekten, Planern und Monteuren</li><li>Projektbegleitung bis zur Abnahme</li></ul><h2>Ihr Profil</h2><ul><li>Technische Ausbildung oder Studium im Bereich Gebäudetechnik</li><li>Sicherer Umgang mit CAD-Software</li><li>Strukturierte, sorgfältige Arbeitsweise</li><li>Deutsch und Französisch</li></ul>",
+    "fr": "<h2>Vos missions</h2><ul><li>Dimensionnement et conception d’installations de climatisation et de froid</li><li>Réalisation de plans (DAO) et d’offres</li><li>Coordination avec architectes, bureaux d’études et monteurs</li><li>Suivi de projet jusqu’à la réception</li></ul><h2>Votre profil</h2><ul><li>Formation technique ou études en techniques du bâtiment</li><li>Bonne maîtrise des logiciels de DAO</li><li>Méthode de travail structurée et soignée</li><li>Allemand et français</li></ul>"
+   }
+  }
+ },
+ {
+  "collection": "jobs",
+  "id": "ausbildung-kaelteanlagenbauer",
+  "sort": 4,
+  "published": true,
+  "data": {
+   "title": {
+    "de": "Ausbildung zum Kälteanlagenbauer – DAP (m/w/d)",
+    "fr": "Apprentissage frigoriste – DAP (h/f/x)"
+   },
+   "type": {
+    "de": "Lehre (3 Jahre)",
+    "fr": "Apprentissage (3 ans)"
+   },
+   "location": "Windhof",
+   "start": {
+    "de": "September 2027",
+    "fr": "septembre 2027"
+   },
+   "summary": {
+    "de": "Starten Sie Ihre Karriere in einem Zukunftsberuf – mit erfahrenen Kollegen an Ihrer Seite.",
+    "fr": "Lancez votre carrière dans un métier d’avenir – accompagné de collègues expérimentés."
+   },
+   "html": {
+    "de": "<h2>Ihre Aufgaben</h2><ul><li>Lernen, wie Klima-, Kälte- und Wärmepumpenanlagen funktionieren</li><li>Mitarbeit auf Baustellen und im Service</li><li>Begleitung durch einen festen Ausbilder</li><li>Schulische Ausbildung nach dem luxemburgischen DAP-System</li></ul><h2>Ihr Profil</h2><ul><li>Interesse an Technik und handwerklichem Arbeiten</li><li>Teamgeist und Zuverlässigkeit</li><li>Abschluss der 5e oder vergleichbar</li></ul>",
+    "fr": "<h2>Vos missions</h2><ul><li>Apprendre le fonctionnement des installations de climatisation, de froid et des pompes à chaleur</li><li>Participation aux chantiers et au service</li><li>Accompagnement par un tuteur attitré</li><li>Formation scolaire selon le système luxembourgeois DAP</li></ul><h2>Votre profil</h2><ul><li>Intérêt pour la technique et le travail manuel</li><li>Esprit d’équipe et fiabilité</li><li>Classe de 5e réussie ou équivalent</li></ul>"
+   }
   }
  },
  {

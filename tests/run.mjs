@@ -34,13 +34,13 @@ try {
   // ---- 1. Inhalte & Grundfunktionen
   const status = await (await get('/api/status')).json();
   ok((status.languages || []).join() === 'de,fr', 'Sprachen DE/FR fehlen: ' + JSON.stringify(status.languages));
-  ok(status.projects >= 3 && status.partners >= 3 && status.pages >= 2, 'api/status: zu wenig Inhalte ' + JSON.stringify(status));
+  ok(status.projects >= 3 && status.partners >= 3 && status.jobs >= 1 && status.pages >= 2, 'api/status: zu wenig Inhalte ' + JSON.stringify(status));
   const home = await (await get('/')).text();
   ok(home.includes('<html lang="de">'), 'Startseite: Sprache fehlt');
   ok(/class="lang"[\s\S]*?lang-on[^>]*>DE<[\s\S]*?href="\/lang\/fr\?r=%2F"/.test(home), 'Sprachumschalter DE|FR fehlt oben rechts');
   ok(/class="brand"[\s\S]*?\/brand\/logo\.png/.test(home), 'Logo oben links fehlt');
   ok(home.includes('Montag – Freitag') && home.includes('info@cool-tec.lu'), 'Öffnungszeiten/E-Mail oben rechts fehlen');
-  ok((home.match(/<nav id="hauptmenu"[\s\S]*?<\/ul>/)?.[0].match(/<li>/g) || []).length === 3, 'Hauptmenü hat nicht genau 3 Reiter');
+  ok((home.match(/<nav id="hauptmenu"[\s\S]*?<\/ul>/)?.[0].match(/<li>/g) || []).length === 4, 'Hauptmenü hat nicht genau 4 Reiter (Unternehmen, Projekte, Partner, Jobs)');
   ok(home.includes('aria-current="page"'), 'aktiver Reiter nicht markiert');
   ok(home.includes('id="kontakt"') && home.includes('action="/kontakt"'), 'Kontaktformular fehlt');
   ok(home.includes('name="viewport"'), 'Responsive: viewport fehlt');
@@ -53,6 +53,14 @@ try {
   ok((await get('/css/%E0%A4%A')).status !== 500, 'kaputte Adresse führt zu Fehler 500');
   ok((await get('/img/../server/index.mjs')).status !== 200, 'Ordner-Ausbruch möglich');
   ok((await get('/admin-icon/snow.svg')).status === 200, 'CMS-Symbole fehlen');
+
+  // ---- Jobs
+  const jobs = await (await get('/jobs')).text();
+  ok(jobs.includes('aria-current="page">Jobs') && (jobs.match(/class="card job-card"/g) || []).length >= 1, 'Jobs-Seite: Reiter oder Stellen fehlen');
+  const job = await (await get('/jobs/servicetechniker')).text();
+  ok(job.includes('mailto:') && job.includes('value="Bewerbung: Servicetechniker'), 'Stelle: E-Mail-Bewerbung oder vorbelegter Betreff fehlt');
+  ok((await get('/jobs/gibt-es-nicht')).status === 404, 'unbekannte Stelle liefert nicht 404');
+  ok((await (await get('/jobs', { headers: { cookie: 'lang=fr' } })).text()).includes('Postes ouverts'), 'Jobs-Seite auf FR nicht übersetzt');
 
   // ---- Sprachen
   const sw = await get('/lang/fr?r=%2Fprojekte');
@@ -131,7 +139,7 @@ try {
     }
   }
   }
-  ok(pages >= 24, 'zu wenige Seiten gefunden: ' + pages);
+  ok(pages >= 34, 'zu wenige Seiten gefunden: ' + pages);
   console.log(`Seiten durchgeklickt: ${pages}`);
 
   // ---- 5. Daten-Dateien

@@ -127,7 +127,7 @@ const server = http.createServer(async (req, res) => {
     if (path === '/api/status') {
       const d = await getData();
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' });
-      return res.end(JSON.stringify({ source, languages: CODES, projects: d.projects.length, partners: d.partners.length, pages: d.pages.length }));
+      return res.end(JSON.stringify({ source, languages: CODES, projects: d.projects.length, partners: d.partners.length, jobs: d.jobs.length, pages: d.pages.length }));
     }
 
     // ---- Statische Dateien
@@ -191,6 +191,12 @@ const server = http.createServer(async (req, res) => {
       if (p) return page(V.projectDetail(ctx, p));
     }
     if (path === '/partner') return page(V.partnerList(ctx));
+    if (path === '/jobs') return page(V.jobList(ctx));
+    const jm = path.match(/^\/jobs\/([\w.-]+)$/);
+    if (jm) {
+      const j = data.jobs.find((x) => x.id === jm[1]);
+      if (j) return page(V.jobDetail(ctx, j));
+    }
     const cp = data.pageByPath.get(path);
     if (cp) return page(V.page(ctx, cp));
     return page(V.notFound(ctx), 404);

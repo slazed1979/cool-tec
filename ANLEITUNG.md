@@ -8,6 +8,8 @@
    - **Seite „Projekte“ / Seite „Partner“** – Überschriften, Einleitung, Hintergrundbild, Filter-Bereiche
    - **Projekte** – Referenzen anlegen, ändern, löschen, Reihenfolge mit ↑ ↓
    - **Partner** – Partner mit Logo, Text, „Partner seit“
+   - **Jobs** – offene Stellen; besetzt? „Veröffentlicht“ ausschalten
+   - **Seite „Jobs“** – Einleitung, Vorteile für Bewerber, Bewerbungstext
    - **Weitere Seiten** – Impressum, Datenschutz, eigene Seiten
    - **Firma & Kontakt** – Logo, Öffnungszeiten oben rechts, Telefon, E-Mail, Adresse, Menü, Fußzeile, Google-Texte
    - **Kontakt-Nachrichten** – was Kunden über das Formular geschickt haben

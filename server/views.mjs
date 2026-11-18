@@ -150,7 +150,7 @@ function contactSection(ctx, c = {}) {
         </div>
         <div class="form-row">
           <label>${T('Telefon')}<input name="phone" type="tel" maxlength="60" autocomplete="tel"></label>
-          <label>${T('Betreff')}<input name="subject" maxlength="200" placeholder="${T('z. B. Klimaanlage für Wohnung')}"></label>
+          <label>${T('Betreff')}<input name="subject" maxlength="200" value="${esc(c.subject || '')}" placeholder="${T('z. B. Klimaanlage für Wohnung')}"></label>
         </div>
         <label>${T('Nachricht')} *<textarea name="message" required rows="5" maxlength="5000"></textarea></label>
         <label class="hp" aria-hidden="true">${T('Bitte leer lassen')}<input name="website" tabindex="-1" autocomplete="off"></label>
@@ -340,4 +340,79 @@ export function notFound(ctx) {
 <section class="detail-head"><div class="wrap"><p class="eyebrow">${T('Fehler 404')}</p><h1>${T('Diese Seite gibt es nicht.')}</h1><p class="lead">${T('Vielleicht wurde sie verschoben. Hier geht es weiter:')}</p>
 <div class="btns"><a class="btn" href="/">${T('Zur Startseite')} ${icon('arrow', '', 18)}</a><a class="btn btn-outline" href="/projekte">${T('Projekte')}</a></div></div></section>`;
   return layout(ctx, { title: T('Seite nicht gefunden'), body });
+}
+
+// ------------------------------------------------------------------ Jobs
+function jobCard(j) {
+  return `<article class="card job-card">
+    <a class="card-link" href="/jobs/${esc(j.id)}">
+      <div class="card-body">
+        <ul class="job-meta">
+          ${j.type ? `<li>${icon('clock', '', 16)}<span>${esc(j.type)}</span></li>` : ''}
+          ${j.location ? `<li>${icon('pin', '', 16)}<span>${esc(j.location)}</span></li>` : ''}
+          ${j.start ? `<li>${icon('calendar', '', 16)}<span>${T('Start')}: ${esc(j.start)}</span></li>` : ''}
+        </ul>
+        <h3>${esc(j.title)}</h3>
+        ${j.summary ? `<p>${esc(j.summary)}</p>` : ''}
+        <span class="more">${T('Stelle ansehen')} ${icon('arrow', '', 18)}</span>
+      </div>
+    </a>
+  </article>`;
+}
+
+function benefits(jp) {
+  const list = (jp.benefits || []).filter((b) => b?.title);
+  if (!list.length) return '';
+  return `<section class="section tint"><div class="wrap">
+    ${head('', jp.benefitsTitle || T('Was wir Ihnen bieten'), '', 'center')}
+    <div class="grid-4">${list.map((b) => `<article class="card service"><span class="svc-ic">${icon(b.icon)}</span><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></article>`).join('')}</div>
+  </div></section>`;
+}
+
+export function jobList(ctx) {
+  setLang(ctx.lang);
+  const { jobsPage: jp, jobs } = ctx.data;
+  const body = `
+${pageHero(jp, T('Jobs'))}
+<section class="section">
+  <div class="wrap">
+    ${head(T('Offene Stellen'), jobs.length ? `${jobs.length} ${jobs.length === 1 ? T('Stelle frei') : T('Stellen frei')}` : '')}
+    ${jobs.length ? `<div class="job-list">${jobs.map(jobCard).join('')}</div>` : `<p class="empty card notice-card">${esc(jp.emptyText || T('Zurzeit sind keine Stellen ausgeschrieben.'))}</p>`}
+  </div>
+</section>
+${benefits(jp)}
+${contactSection(ctx, { eyebrow: T('Bewerbung'), title: jp.applyTitle || T('So bewerben Sie sich'), text: jp.applyText, subject: T('Initiativbewerbung') })}`;
+  return layout(ctx, { title: jp.title || T('Jobs'), description: jp.text, active: '/jobs', body, image: jp.image });
+}
+
+export function jobDetail(ctx, j) {
+  setLang(ctx.lang);
+  const { jobsPage: jp, site } = ctx.data;
+  const facts = [[T('Anstellung'), j.type], [T('Arbeitsort'), j.location], [T('Start'), j.start]].filter((f) => f[1]);
+  const mail = site.email ? `mailto:${esc(site.email)}?subject=${encodeURIComponent(T('Bewerbung') + ': ' + (j.title || ''))}` : '';
+  const others = ctx.data.jobs.filter((x) => x !== j);
+  const body = `
+<section class="detail-head">
+  <div class="wrap">
+    <a class="back" href="/jobs">${icon('back', '', 18)} ${T('Alle Stellen')}</a>
+    <p class="eyebrow">${esc(jp.eyebrow || T('Karriere'))}</p>
+    <h1>${esc(j.title)}</h1>
+    ${j.summary ? `<p class="lead">${esc(j.summary)}</p>` : ''}
+  </div>
+</section>
+<section class="section detail">
+  <div class="wrap detail-grid">
+    <div class="detail-main rich">${rich(j.html)}</div>
+    <aside class="facts card">
+      <h2>${T('Auf einen Blick')}</h2>
+      <dl>${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+      ${mail ? `<a class="btn btn-green" href="${mail}">${icon('mail', '', 18)} ${T('Per E-Mail bewerben')}</a>` : ''}
+      <a class="btn btn-outline facts-2" href="#kontakt">${T('Zum Bewerbungsformular')}</a>
+    </aside>
+  </div>
+</section>
+${benefits(jp)}
+${others.length ? `<section class="section"><div class="wrap">${head('', T('Weitere Stellen'))}<div class="job-list">${others.map(jobCard).join('')}</div></div></section>` : ''}
+${contactSection(ctx, { eyebrow: T('Bewerbung'), title: jp.applyTitle || T('So bewerben Sie sich'), text: jp.applyText, subject: T('Bewerbung') + ': ' + (j.title || '') })}`;
+  return layout(ctx, { title: j.title, description: j.summary, active: '/jobs', body, image: jp.image });
 }

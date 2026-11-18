@@ -4,7 +4,7 @@
 - Nutzer ist Programmier-Anfänger → **auf Deutsch**, Schritt für Schritt, alles selbst erledigen, was geht.
 - Nutzer ist **farbenblind**: Farben über hell/dunkel erklären, Textkontrast ≥ 4,5:1 messen, Zustände nie nur über Farbe zeigen (immer Symbol/Fettdruck/Form dazu).
 - **Kostenregel:** nur Gratis-Dienste (Render Free, Supabase Free, GitHub). Kostenpflichtiges nur nach ausdrücklicher Zustimmung. (Fotos wurden mit dem vorhandenen ElevenLabs-Abo erzeugt.)
-- Ziel: Webseite für **Cool-Tec** (Klimageräte aller Art), 3 Reiter: Unternehmen (/), Projekte (/projekte), Partner (/partner). Vorbild-Layout: BM Project (Kopfzeile mit Öffnungszeiten/Telefon/E-Mail rechts oben, Logo links, Reiter rechts, großes Startbild). Inhalte fiktiv.
+- Ziel: Webseite für **Cool-Tec** (Klimageräte aller Art), 4 Reiter: Unternehmen (/), Projekte (/projekte), Partner (/partner), Jobs (/jobs, Detail /jobs/<id>, Bewerbung per E-Mail oder Formular mit vorbelegtem Betreff). Vorbild-Layout: BM Project (Kopfzeile mit Öffnungszeiten/Telefon/E-Mail rechts oben, Logo links, Reiter rechts, großes Startbild). Inhalte fiktiv.
 - Repo: https://github.com/slazed1979/cool-tec (privat). Render-Dienst `cool-tec` (Workspace „My Workspace“, Region Frankfurt, Free).
 
 ## Arbeitsweise (Pflicht)
@@ -30,7 +30,7 @@
 
 ## Datenbank
 - Supabase-Projekt **Familienplaner** (`qkcfrqlaaeooflyzcryq`) – Gratis-Kontingent war voll, Nutzer hat das so entschieden. **Alles mit Präfix `cooltec`**, Familienplaner-Tabellen nie anfassen.
-- `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage` (je 1 Zeile), `projects`, `partners`, `pages`.
+- `cooltec_content(collection,id,data,sort,published)`: Sammlungen `settings` (id site), `home`, `projectsPage`, `partnersPage`, `jobsPage` (je 1 Zeile), `projects`, `partners`, `jobs`, `pages`.
 - `cooltec_messages` (Kontaktformular, anon darf nur einfügen), `cooltec_editors` (E-Mails der Redakteure), Funktion `cooltec_is_editor()`, Storage-Bucket `cooltec-media`. SQL: `supabase/schema.sql`.
 - Redakteur hinzufügen: `insert into public.cooltec_editors(email) values ('…')` + Supabase-Auth-Benutzer anlegen.
 - Supabase ist aus der Cloud-Umgebung nicht direkt erreichbar → Datenbank über das Supabase-MCP-Werkzeug bearbeiten.

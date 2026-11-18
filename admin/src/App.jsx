@@ -198,7 +198,7 @@ export default function App() {
 
   const current = def?.single ? rows.find((r) => r.collection === col) || { collection: col, id: def.singleId, data: {}, sort: 1, published: true } : rows.find((r) => r.collection === col && r.id === sel);
   const groups = [...new Set(COLLECTIONS.map((c) => c.group))];
-  const allLinks = ['/', '/projekte', '/partner', '/#kontakt', ...rows.filter((r) => r.collection === 'pages').map((r) => r.data.path), ...rows.filter((r) => r.collection === 'projects').map((r) => '/projekte/' + r.id)];
+  const allLinks = ['/', '/projekte', '/partner', '/jobs', '/#kontakt', ...rows.filter((r) => r.collection === 'pages').map((r) => r.data.path), ...rows.filter((r) => r.collection === 'projects').map((r) => '/projekte/' + r.id)];
 
   const pick = (k) => { setCol(k); setSel(''); setNewRow(null); setQ(''); setMenuOpen(false); };
   if (!def && col !== 'messages') { setTimeout(() => pick('home')); return null; }

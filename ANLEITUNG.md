@@ -28,10 +28,10 @@
 - Gratis-Hosting (Render Free): Nach 15 Minuten ohne Besucher „schläft“ die Seite; der erste Aufruf dauert dann ca. 30–60 Sekunden.
 - Die Seite ist in der Testphase **vor Google versteckt**. Für den Start: CMS → Firma & Kontakt → „Vor Google verstecken“ ausschalten.
 - Vor dem echten Start: **Impressum und Datenschutz** durch echte Texte ersetzen, fiktive Projekte/Partner/Zahlen austauschen.
-- Eigene Adresse (z. B. www.cool-tec.lu): Domain kaufen und bei Render eintragen – Claude hilft dabei.
+- Eigene Adresse (z. B. www.cool-tec.lu): Domain kaufen und bei Render eintragen – Pepper hilft dabei.
 
 ## Änderungen am Aussehen / an Funktionen
-Das macht Claude – immer so:
+Das macht Pepper Potts – immer so:
 1. Arbeit auf einem eigenen **Arbeitszweig** (nie direkt auf `main`)
 2. **Tests vor jedem Push** (`npm run check` muss grün sein)
 3. GitHub prüft nach dem Push **automatisch** noch einmal alles. Nur wenn alles grün ist, wird automatisch ein Pull Request angelegt und nach `main` zusammengeführt – du musst nichts klicken.

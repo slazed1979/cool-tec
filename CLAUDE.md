@@ -7,15 +7,19 @@
 - Ziel: Webseite für **Cool-Tec** (Klimageräte aller Art), 4 Reiter: Unternehmen (/), Projekte (/projekte), Partner (/partner), Jobs (/jobs, Detail /jobs/<id>, Bewerbung per E-Mail oder Formular mit vorbelegtem Betreff). Vorbild-Layout: BM Project (Kopfzeile mit Öffnungszeiten/Telefon/E-Mail rechts oben, Logo links, Reiter rechts, großes Startbild). Inhalte fiktiv.
 - Repo: https://github.com/slazed1979/cool-tec (privat). Render-Dienst `cool-tec` (Workspace „My Workspace“, Region Frankfurt, Free).
 
-## Arbeitsweise (Pflicht)
-1. Nie direkt auf `main`. Immer eigener Arbeitszweig (`claude/…`).
-2. Vor jedem Push: `npm run check` (= CMS bauen + `npm test`). Nur bei **grün** pushen.
-3. **Automatisch (Wunsch des Nutzers):** Push auf `claude/…` startet `.github/workflows/auto-merge.yml`: Build + Tests → nur bei Grün legt GitHub den Pull Request an und führt ihn zusammen. **Render veröffentlicht nur `main`** (Auto-Deploy).
-4. Bei Rot: nichts wird zusammengeführt. Fehler beheben, erneut pushen. Nie Tests abschalten, um grün zu werden.
-5. Nach dem Push den Lauf prüfen (Render-Deploys mit `list_deploys`), dem Nutzer Bescheid geben.
+## Arbeitsweise (Pflicht, wie BerdorfSite)
+Nie direkt auf `main` arbeiten. Immer auf einem eigenen Arbeitszweig (`claude/…`) committen.
+1. **Vor jedem Push:** `npm run check` (= CMS bauen + `npm test`). Nur wenn alles **grün** ist, pushen.
+2. **Push auf den Arbeitszweig** → GitHub Actions (`.github/workflows/auto-merge.yml`) prüft dort noch einmal Build + Tests.
+3. **Nur bei Grün** legt GitHub den Pull Request nach `main` an und führt ihn **automatisch** zusammen (ausdrücklicher Wunsch des Nutzers – anders als BerdorfSite, wo der Nutzer selbst klickt). Erst dann veröffentlicht Render.
+4. **Bei Rot:** nichts wird zusammengeführt, `main` und die Live-Seite bleiben unverändert. Fehler beheben, neu prüfen, erneut pushen. Nie Tests abschalten, um grün zu werden.
+5. Nach dem Push prüfen, ob Render die neue Version live hat (`list_deploys`), und dem Nutzer Bescheid geben.
+Keine Arbeit nur lokal liegen lassen – der Arbeitszweig wird immer gepusht.
+- **Render** (`cool-tec`) veröffentlicht **nur** den Branch `main` (Auto-Deploy bei Commit, keine PR-Vorschauen).
+- Vorschau: https://cool-tec.onrender.com (Free-Plan: schläft nach 15 min, erster Aufruf dauert ~30–60 s). CMS: `/admin`.
 - Ändern sich Inhalte in der Datenbank mit (neue Felder/Sammlungen), DB-Update erst einspielen, wenn Render die neue Version live hat.
-- `gh` funktioniert in der Cloud-Umgebung nicht. Falls Auto-Merge ausfällt: PR-Link `https://github.com/slazed1979/cool-tec/pull/new/<branch>` dem Nutzer geben.
 - `.github/workflows/test.yml` prüft zusätzlich jeden manuell angelegten Pull Request.
+- `gh` funktioniert in der Cloud-Umgebung nicht. Falls Auto-Merge ausfällt: PR-Link `https://github.com/slazed1979/cool-tec/pull/new/<branch>` dem Nutzer geben; er führt nach grünem Check selbst zusammen.
 
 ## Aufbau
 - `server/` Node.js ohne Framework (Node ≥ 22): `index.mjs` Routen + Kontaktformular, `views.mjs` HTML-Vorlagen, `data.mjs` Daten (Supabase → Fallback `data/seed.json`, 30 s Cache, `/api/refresh` leert ihn), `icons.mjs` Symbole.

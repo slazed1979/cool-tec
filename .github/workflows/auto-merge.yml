@@ -1,0 +1,54 @@
+# Automatisch nach main zusammenführen – aber NUR, wenn alles grün ist.
+# Ablauf bei jedem Push auf einen Arbeitszweig claude/…:
+#   1. CMS bauen + alle Tests (wie bei jedem Pull Request)
+#   2. nur bei Grün: Pull Request nach main anlegen (falls noch keiner offen ist) und sofort zusammenführen
+#   3. Render veröffentlicht danach automatisch von main
+# Bei Rot passiert nichts – main bleibt unverändert.
+# Voraussetzung (einmalig in GitHub): Settings → Actions → General → Workflow permissions:
+#   „Read and write permissions“ + „Allow GitHub Actions to create and approve pull requests“.
+name: Automatisch zusammenführen
+on:
+  push:
+    branches: ['claude/**']
+concurrency:
+  group: auto-merge-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: admin/package-lock.json
+      - run: npm run build
+      - run: npm test
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BRANCH: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Pull Request anlegen (falls nötig) und zusammenführen
+        run: |
+          set -e
+          if git diff --quiet origin/main...HEAD; then echo "Nichts Neues gegenüber main."; exit 0; fi
+          PR=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')
+          if [ -z "$PR" ]; then
+            TITLE=$(git log -1 --format=%s)
+            gh pr create --base main --head "$BRANCH" --title "$TITLE" --body "Automatisch angelegt: Build und alle Tests waren grün (Lauf ${{ github.run_id }})."
+            PR=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')
+          fi
+          gh pr merge "$PR" --merge --match-head-commit "$GITHUB_SHA"
+          echo "✅ Pull Request #$PR zusammengeführt – Render veröffentlicht jetzt."

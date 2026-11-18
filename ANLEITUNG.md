@@ -31,5 +31,6 @@
 Das macht Claude – immer so:
 1. Arbeit auf einem eigenen **Arbeitszweig** (nie direkt auf `main`)
 2. **Tests vor jedem Push** (`npm run check` muss grün sein)
-3. Änderung als **Pull Request** nach `main`; GitHub prüft automatisch noch einmal
-4. Erst nach dem Zusammenführen veröffentlicht **Render** (nur von `main`)
+3. GitHub prüft nach dem Push **automatisch** noch einmal alles. Nur wenn alles grün ist, wird automatisch ein Pull Request angelegt und nach `main` zusammengeführt – du musst nichts klicken.
+4. **Render** veröffentlicht danach automatisch (nur von `main`). Bei Rot passiert nichts, die Live-Seite bleibt unverändert.
+Wo sehe ich das? GitHub → Repo **cool-tec** → Reiter **Actions** (✓ = grün, ✗ = rot) bzw. **Pull requests → Closed**.

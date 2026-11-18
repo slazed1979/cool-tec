@@ -10,10 +10,12 @@
 ## Arbeitsweise (Pflicht)
 1. Nie direkt auf `main`. Immer eigener Arbeitszweig (`claude/…`).
 2. Vor jedem Push: `npm run check` (= CMS bauen + `npm test`). Nur bei **grün** pushen.
-3. Pull Request nach `main`; GitHub Actions (`.github/workflows/test.yml`) prüft Build + Tests.
-4. Nur bei grünem PR-Check zusammenführen. **Render veröffentlicht nur `main`** (Auto-Deploy, keine PR-Vorschauen).
-5. Bei Rot: nicht zusammenführen, Fehler beheben. Nie Tests abschalten, um grün zu werden.
-- `gh` funktioniert in der Cloud-Umgebung nicht → PR-Link (`https://github.com/slazed1979/cool-tec/pull/new/<branch>`) dem Nutzer geben.
+3. **Automatisch (Wunsch des Nutzers):** Push auf `claude/…` startet `.github/workflows/auto-merge.yml`: Build + Tests → nur bei Grün legt GitHub den Pull Request an und führt ihn zusammen. **Render veröffentlicht nur `main`** (Auto-Deploy).
+4. Bei Rot: nichts wird zusammengeführt. Fehler beheben, erneut pushen. Nie Tests abschalten, um grün zu werden.
+5. Nach dem Push den Lauf prüfen (Render-Deploys mit `list_deploys`), dem Nutzer Bescheid geben.
+- Ändern sich Inhalte in der Datenbank mit (neue Felder/Sammlungen), DB-Update erst einspielen, wenn Render die neue Version live hat.
+- `gh` funktioniert in der Cloud-Umgebung nicht. Falls Auto-Merge ausfällt: PR-Link `https://github.com/slazed1979/cool-tec/pull/new/<branch>` dem Nutzer geben.
+- `.github/workflows/test.yml` prüft zusätzlich jeden manuell angelegten Pull Request.
 
 ## Aufbau
 - `server/` Node.js ohne Framework (Node ≥ 22): `index.mjs` Routen + Kontaktformular, `views.mjs` HTML-Vorlagen, `data.mjs` Daten (Supabase → Fallback `data/seed.json`, 30 s Cache, `/api/refresh` leert ihn), `icons.mjs` Symbole.

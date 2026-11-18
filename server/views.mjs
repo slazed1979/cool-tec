@@ -44,6 +44,7 @@ ${s.noindex !== false ? '<meta name="robots" content="noindex, nofollow">' : ''}
 ${image || ctx.data.home.hero?.image ? `<meta property="og:image" content="${esc(image || ctx.data.home.hero?.image)}">` : ''}
 <meta name="theme-color" content="#0d2a42">
 <link rel="icon" href="/brand/favicon.png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
 <link rel="preload" href="/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css?v=${ctx.version}">
 <script src="/js/site.js?v=${ctx.version}" defer></script>

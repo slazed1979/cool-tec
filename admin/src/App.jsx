@@ -21,7 +21,7 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={submit} className="card">
-        <img src="/brand/logo.png" alt="Cool-Tec" style={{ height: 56, width: 'auto', justifySelf: 'center' }} />
+        <img src="/brand/logo-cooltec.png" alt="Cool-Tec" style={{ height: 56, width: 'auto', justifySelf: 'center' }} />
         <h1>CMS · Webseite</h1>
         <p className="help">Hier ändern Sie alle Inhalte der Webseite. Passwort vergessen? Unten auf „Passwort vergessen“ klicken.</p>
         <label>E-Mail<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" required /></label>
@@ -239,7 +239,7 @@ export default function App() {
       <datalist id="all-links">{allLinks.map((l) => <option key={l} value={l} />)}</datalist>
       <header className="topbar">
         <button className="ghost burger" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
-        <img src="/brand/logo.png" alt="" style={{ height: 32, width: 'auto' }} />
+        <img src="/brand/logo-cooltec.png" alt="" style={{ height: 32, width: 'auto' }} />
         <strong>CMS</strong>
         <span className="spacer" />
         {newMsgs > 0 && (

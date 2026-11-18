@@ -38,7 +38,7 @@ try {
   const home = await (await get('/')).text();
   ok(home.includes('<html lang="de">'), 'Startseite: Sprache fehlt');
   ok(/class="lang"[\s\S]*?lang-on[^>]*>DE<[\s\S]*?href="\/lang\/fr\?r=%2F"/.test(home), 'Sprachumschalter DE|FR fehlt oben rechts');
-  ok(/class="brand"[\s\S]*?\/brand\/logo\.png/.test(home), 'Logo oben links fehlt');
+  ok(/class="brand"[\s\S]*?\/brand\/logo-cooltec\.png/.test(home), 'Logo oben links fehlt');
   ok(home.includes('Montag – Freitag') && home.includes('info@cool-tec.lu'), 'Öffnungszeiten/E-Mail oben rechts fehlen');
   ok((home.match(/<nav id="hauptmenu"[\s\S]*?<\/ul>/)?.[0].match(/<li>/g) || []).length === 4, 'Hauptmenü hat nicht genau 4 Reiter (Unternehmen, Projekte, Partner, Jobs)');
   ok(home.includes('aria-current="page"'), 'aktiver Reiter nicht markiert');

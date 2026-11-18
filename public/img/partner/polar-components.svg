@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" role="img" aria-label="Polar Components">
+<g transform="translate(10 16)"><path d="M24 4l17 10v20L24 44 7 34V14z" fill="#0d2a42"/><path d="M24 14l9 5v10l-9 5-9-5V19z" fill="#fff"/></g>
+<text x="70" y="44" font-family="Manrope, Arial, sans-serif" font-size="30" font-weight="800" fill="#0d2a42" letter-spacing="-0.5">Polar</text>
+<text x="71" y="64" font-family="Manrope, Arial, sans-serif" font-size="13" font-weight="600" fill="#3d4b57" letter-spacing="2.2">COMPONENTS</text>
+</svg>

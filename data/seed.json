@@ -1,0 +1,439 @@
+[
+ {
+  "collection": "settings",
+  "id": "site",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "name": "Cool-Tec",
+   "legalName": "Cool-Tec S.à r.l.",
+   "tagline": "Klima- & Kältetechnik in Luxemburg",
+   "logo": "/brand/logo.png",
+   "logoAlt": "Cool-Tec – Klima- und Kältetechnik",
+   "phone": "+352 26 31 47 80",
+   "emergencyPhone": "+352 621 47 80 00",
+   "email": "info@cool-tec.lu",
+   "street": "7, rue de l’Innovation",
+   "city": "L-8399 Windhof",
+   "country": "Luxemburg",
+   "hoursTop": "Montag – Freitag: 07:30 bis 17:30 Uhr",
+   "hours": [
+    {
+     "days": "Montag – Freitag",
+     "time": "07:30 – 17:30 Uhr"
+    },
+    {
+     "days": "Samstag",
+     "time": "nach Vereinbarung"
+    },
+    {
+     "days": "Notdienst",
+     "time": "24 h / 7 Tage"
+    }
+   ],
+   "nav": [
+    {
+     "label": "Unternehmen",
+     "href": "/"
+    },
+    {
+     "label": "Projekte",
+     "href": "/projekte"
+    },
+    {
+     "label": "Partner",
+     "href": "/partner"
+    }
+   ],
+   "ctaLabel": "Anfrage stellen",
+   "ctaHref": "/#kontakt",
+   "footerText": "Ihr Fachbetrieb für Klimaanlagen, Kältetechnik, Wärmepumpen und Lüftung – Planung, Montage und Service aus einer Hand.",
+   "footerLinks": [
+    {
+     "label": "Impressum",
+     "href": "/impressum"
+    },
+    {
+     "label": "Datenschutz",
+     "href": "/datenschutz"
+    }
+   ],
+   "seoTitle": "Cool-Tec – Klimaanlagen, Kältetechnik & Wärmepumpen in Luxemburg",
+   "seoDescription": "Cool-Tec plant, installiert und wartet Klimaanlagen, Kälteanlagen, Wärmepumpen und Lüftungen für Privat, Gewerbe und Industrie in Luxemburg.",
+   "noindex": true
+  }
+ },
+ {
+  "collection": "home",
+  "id": "home",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "hero": {
+    "image": "/img/firma.webp",
+    "eyebrow": "Klima · Kälte · Wärmepumpen",
+    "title": "Das richtige Klima für jeden Raum.",
+    "text": "Seit 2009 sorgt Cool-Tec in ganz Luxemburg für angenehme Temperaturen – im Wohnzimmer, im Büro, im Rechenzentrum und in der Großküche.",
+    "button1": {
+     "label": "Unsere Projekte",
+     "href": "/projekte"
+    },
+    "button2": {
+     "label": "Kostenlose Beratung",
+     "href": "#kontakt"
+    }
+   },
+   "about": {
+    "eyebrow": "Über uns",
+    "title": "Ein Team. Ein Ansprechpartner. Alles aus einer Hand.",
+    "html": "<p>Cool-Tec ist ein inhabergeführter Fachbetrieb für Klima- und Kältetechnik mit Sitz in Windhof. Unser Team aus zertifizierten Kälteanlagenbauern, Technikern und Planern betreut private Haushalte ebenso wie Gewerbe- und Industriekunden.</p><p>Von der ersten Beratung über die Planung und fachgerechte Montage bis zur regelmäßigen Wartung bleiben wir Ihr fester Ansprechpartner. Wir arbeiten herstellerunabhängig und setzen auf energieeffiziente Lösungen mit natürlichen Kältemitteln.</p>",
+    "image": "/img/split.webp",
+    "imageAlt": "Ein Cool-Tec-Techniker montiert ein Klimagerät in einem Schlafzimmer",
+    "points": [
+     "Zertifizierter Fachbetrieb (F-Gase)",
+     "Herstellerunabhängige Beratung",
+     "Eigener 24/7-Notdienst",
+     "Feste Ansprechpartner"
+    ]
+   },
+   "stats": [
+    {
+     "value": "2009",
+     "label": "gegründet"
+    },
+    {
+     "value": "1.400+",
+     "label": "installierte Anlagen"
+    },
+    {
+     "value": "14",
+     "label": "Fachkräfte im Team"
+    },
+    {
+     "value": "24/7",
+     "label": "Notdienst"
+    }
+   ],
+   "services": {
+    "eyebrow": "Leistungen",
+    "title": "Was wir für Sie tun",
+    "items": [
+     {
+      "icon": "snow",
+      "title": "Klimaanlagen",
+      "text": "Split-, Multi-Split- und VRF-Systeme für Wohnung, Praxis und Büro – leise, effizient und passend dimensioniert."
+     },
+     {
+      "icon": "box",
+      "title": "Kältetechnik",
+      "text": "Kühlzellen, Tiefkühlräume und gewerbliche Kälteanlagen für Gastronomie, Handel und Industrie."
+     },
+     {
+      "icon": "heat",
+      "title": "Wärmepumpen",
+      "text": "Luft-Wasser-Wärmepumpen zum Heizen und Kühlen – inklusive Hilfe bei den staatlichen Förderungen."
+     },
+     {
+      "icon": "fan",
+      "title": "Lüftung",
+      "text": "Kontrollierte Wohnraumlüftung und Lüftungsanlagen mit Wärmerückgewinnung für gesunde Raumluft."
+     },
+     {
+      "icon": "wrench",
+      "title": "Wartung & Service",
+      "text": "Regelmäßige Wartung, Dichtheitsprüfungen nach F-Gase-Verordnung und Reparaturen aller Marken."
+     },
+     {
+      "icon": "clock",
+      "title": "24/7-Notdienst",
+      "text": "Wenn die Kühlung ausfällt, zählt jede Stunde. Unser Notdienst ist rund um die Uhr für Sie erreichbar."
+     }
+    ]
+   },
+   "projects": {
+    "eyebrow": "Referenzen",
+    "title": "Aktuelle Projekte",
+    "text": "Eine Auswahl unserer letzten Arbeiten.",
+    "count": 3,
+    "button": "Alle Projekte ansehen"
+   },
+   "partners": {
+    "eyebrow": "Partner",
+    "title": "Starke Partner an unserer Seite",
+    "button": "Alle Partner"
+   },
+   "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Sprechen Sie mit uns",
+    "text": "Sie planen eine neue Anlage oder brauchen einen Service-Termin? Schreiben Sie uns – wir melden uns in der Regel innerhalb eines Werktags.",
+    "showForm": true
+   }
+  }
+ },
+ {
+  "collection": "projectsPage",
+  "id": "projectsPage",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "eyebrow": "Referenzen",
+   "title": "Unsere Projekte",
+   "text": "Vom Einfamilienhaus bis zum Rechenzentrum: Hier zeigen wir eine Auswahl der Anlagen, die wir geplant, installiert oder modernisiert haben.",
+   "image": "/img/dach.webp",
+   "categories": [
+    "Privat",
+    "Gewerbe",
+    "Industrie",
+    "Gastronomie"
+   ]
+  }
+ },
+ {
+  "collection": "partnersPage",
+  "id": "partnersPage",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "eyebrow": "Netzwerk",
+   "title": "Unsere Partner",
+   "text": "Gute Anlagen entstehen im Zusammenspiel. Wir arbeiten seit Jahren mit ausgewählten Herstellern, Großhändlern und Planungsbüros zusammen.",
+   "image": "/img/hero.webp",
+   "outro": "<p>Sie möchten mit uns zusammenarbeiten? Wir freuen uns über Anfragen von Architekten, Planern und Bauunternehmen.</p>"
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "office-park-kirchberg",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "title": "Klimatisierung Office Park",
+   "location": "Luxemburg-Kirchberg",
+   "year": "2025",
+   "category": "Gewerbe",
+   "customer": "Bürogebäude, 4.200 m²",
+   "service": "VRF-System mit 86 Deckenkassetten",
+   "image": "/img/buero.webp",
+   "imageAlt": "Großraumbüro mit Deckenkassetten",
+   "summary": "Komplette Klimatisierung eines Bürogebäudes über fünf Etagen – im laufenden Betrieb.",
+   "html": "<p>Für den Neubau des Office Parks haben wir ein VRF-System mit Wärmerückgewinnung geplant und installiert. Jede Bürozone lässt sich einzeln regeln; überschüssige Wärme aus sonnigen Räumen wird in kühlere Bereiche verschoben.</p><ul><li>86 Deckenkassetten, 6 Außengeräte</li><li>Anbindung an die Gebäudeleittechnik</li><li>Wartungsvertrag über 5 Jahre</li></ul>",
+   "featured": true
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "rechenzentrum-bettembourg",
+  "sort": 2,
+  "published": true,
+  "data": {
+   "title": "Präzisionsklima Rechenzentrum",
+   "location": "Bettembourg",
+   "year": "2024",
+   "category": "Industrie",
+   "customer": "Rechenzentrum, 1.100 m² Serverfläche",
+   "service": "Präzisionsklimageräte mit freier Kühlung",
+   "image": "/img/server.webp",
+   "imageAlt": "Rechenzentrum mit Serverschränken und Klimageräten",
+   "summary": "Redundante Kühlung für ein Rechenzentrum mit 24/7-Betrieb.",
+   "html": "<p>Ausfallsicherheit war hier oberstes Gebot: Wir haben acht Präzisionsklimageräte in N+1-Redundanz installiert. Im Winter kühlt die Anlage überwiegend mit Außenluft (freie Kühlung) und spart so bis zu 40 % Energie.</p>",
+   "featured": true
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "waermepumpe-mersch",
+  "sort": 3,
+  "published": true,
+  "data": {
+   "title": "Wärmepumpe Einfamilienhaus",
+   "location": "Mersch",
+   "year": "2025",
+   "category": "Privat",
+   "customer": "Neubau Einfamilienhaus",
+   "service": "Luft-Wasser-Wärmepumpe mit Kühlfunktion",
+   "image": "/img/waermepumpe.webp",
+   "imageAlt": "Wärmepumpe neben einem modernen Einfamilienhaus",
+   "summary": "Heizen im Winter, sanft kühlen im Sommer – mit nur einem Gerät.",
+   "html": "<p>Eine leise Luft-Wasser-Wärmepumpe versorgt das Haus mit Heizung und Warmwasser. Über die Fußbodenheizung wird im Sommer zusätzlich gekühlt. Bei den Förderanträgen (Klimabonus) haben wir die Familie begleitet.</p>",
+   "featured": true
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "brasserie-esch",
+  "sort": 4,
+  "published": true,
+  "data": {
+   "title": "Kühlzelle Brasserie",
+   "location": "Esch-sur-Alzette",
+   "year": "2024",
+   "category": "Gastronomie",
+   "customer": "Restaurant mit 120 Plätzen",
+   "service": "Begehbare Kühlzelle + Tiefkühlzelle",
+   "image": "/img/kuehlraum.webp",
+   "imageAlt": "Begehbare Kühlzelle aus Edelstahl in einer Restaurantküche",
+   "summary": "Neue Kühl- und Tiefkühlzellen für eine Großküche – eingebaut in nur drei Tagen.",
+   "html": "<p>Damit das Restaurant nur kurz schließen musste, haben wir die Zellen vorgefertigt und an einem verlängerten Wochenende montiert. Die Kälteanlage arbeitet mit dem natürlichen Kältemittel CO₂.</p>"
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "logistikzentrum-contern",
+  "sort": 5,
+  "published": true,
+  "data": {
+   "title": "Kaltwassersätze Logistikzentrum",
+   "location": "Contern",
+   "year": "2023",
+   "category": "Industrie",
+   "customer": "Logistikzentrum, 12.000 m²",
+   "service": "Dachzentrale mit 3 Kaltwassersätzen",
+   "image": "/img/dach.webp",
+   "imageAlt": "Kaltwassersätze auf dem Dach eines Bürogebäudes",
+   "summary": "Modernisierung der Kältezentrale auf dem Dach – mit 35 % weniger Stromverbrauch.",
+   "html": "<p>Die alten Kaltwassersätze wurden durch drei moderne, drehzahlgeregelte Geräte ersetzt. Die Umstellung erfolgte schrittweise, sodass die Kühlung der Lagerhallen nie unterbrochen wurde.</p>"
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "wohnung-limpertsberg",
+  "sort": 6,
+  "published": true,
+  "data": {
+   "title": "Split-Klimaanlage Altbauwohnung",
+   "location": "Luxemburg-Limpertsberg",
+   "year": "2025",
+   "category": "Privat",
+   "customer": "Altbauwohnung, 3. Stock",
+   "service": "Multi-Split mit 3 Innengeräten",
+   "image": "/img/split.webp",
+   "imageAlt": "Techniker montiert ein Klima-Innengerät im Schlafzimmer",
+   "summary": "Kühle Schlafzimmer im Altbau – sauber verlegt und kaum sichtbar.",
+   "html": "<p>Ein Außengerät im Innenhof versorgt drei Räume. Die Leitungen haben wir unauffällig in Kabelkanälen in Wandfarbe geführt; die Montage dauerte einen Tag.</p>"
+  }
+ },
+ {
+  "collection": "projects",
+  "id": "arztpraxis-strassen",
+  "sort": 7,
+  "published": true,
+  "data": {
+   "title": "Klimatisierung Arztpraxis",
+   "location": "Strassen",
+   "year": "2024",
+   "category": "Gewerbe",
+   "customer": "Gemeinschaftspraxis, 6 Räume",
+   "service": "Wandgeräte mit Hygienefilter",
+   "image": "/img/hero.webp",
+   "imageAlt": "Heller Raum mit Wand-Klimagerät",
+   "summary": "Angenehme Temperaturen für Patienten und Team – mit besonders leisen Geräten.",
+   "html": "<p>Für die Praxis haben wir flüsterleise Wandgeräte mit Feinstaub- und Hygienefiltern gewählt. Jeder Behandlungsraum ist einzeln regelbar.</p>"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "nordklima",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "name": "NordKlima Systems",
+   "category": "Hersteller",
+   "logo": "/img/partner/nordklima.svg",
+   "url": "",
+   "text": "Hersteller von Split- und VRF-Klimasystemen. Cool-Tec ist zertifizierter Premium-Installationspartner.",
+   "since": "2011"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "thermolux",
+  "sort": 2,
+  "published": true,
+  "data": {
+   "name": "ThermoLux Wärmepumpen",
+   "category": "Hersteller",
+   "logo": "/img/partner/thermolux.svg",
+   "url": "",
+   "text": "Effiziente Luft-Wasser-Wärmepumpen für Neubau und Sanierung.",
+   "since": "2016"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "aerofrost",
+  "sort": 3,
+  "published": true,
+  "data": {
+   "name": "AeroFrost Technologies",
+   "category": "Hersteller",
+   "logo": "/img/partner/aerofrost.svg",
+   "url": "",
+   "text": "Präzisionsklima für Rechenzentren und technische Räume.",
+   "since": "2018"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "polar-components",
+  "sort": 4,
+  "published": true,
+  "data": {
+   "name": "Polar Components",
+   "category": "Großhandel",
+   "logo": "/img/partner/polar-components.svg",
+   "url": "",
+   "text": "Großhändler für Kälte- und Klimakomponenten mit Lager in der Großregion.",
+   "since": "2009"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "moselkaelte",
+  "sort": 5,
+  "published": true,
+  "data": {
+   "name": "Mosel Kältebau",
+   "category": "Großhandel",
+   "logo": "/img/partner/moselkaelte.svg",
+   "url": "",
+   "text": "Kühlzellen und Isolierpaneele nach Maß.",
+   "since": "2014"
+  }
+ },
+ {
+  "collection": "partners",
+  "id": "greenair",
+  "sort": 6,
+  "published": true,
+  "data": {
+   "name": "GreenAir Lüftungstechnik",
+   "category": "Planung",
+   "logo": "/img/partner/greenair.svg",
+   "url": "",
+   "text": "Planungsbüro für Lüftung und Gebäudetechnik – gemeinsame Projekte im Gewerbebau.",
+   "since": "2019"
+  }
+ },
+ {
+  "collection": "pages",
+  "id": "impressum",
+  "sort": 1,
+  "published": true,
+  "data": {
+   "title": "Impressum",
+   "path": "/impressum",
+   "html": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Impressumstext ersetzen.</p><h2>Angaben zum Unternehmen</h2><p>Cool-Tec S.à r.l.<br>7, rue de l’Innovation<br>L-8399 Windhof<br>Luxemburg</p><p>Telefon: +352 26 31 47 80<br>E-Mail: info@cool-tec.lu</p><p>Handelsregister (RCS): B 000000<br>Niederlassungsgenehmigung: 00000000/0<br>Mehrwertsteuer-Nr.: LU00000000</p><p>Geschäftsführung: Max Mustermann</p>"
+  }
+ },
+ {
+  "collection": "pages",
+  "id": "datenschutz",
+  "sort": 2,
+  "published": true,
+  "data": {
+   "title": "Datenschutz",
+   "path": "/datenschutz",
+   "html": "<p><strong>Hinweis:</strong> Dies ist ein Platzhaltertext. Bitte im CMS unter „Seiten“ durch den echten Datenschutztext ersetzen.</p><h2>Kontaktformular</h2><p>Wenn Sie uns über das Kontaktformular schreiben, speichern wir Ihre Angaben (Name, E-Mail, Telefon, Nachricht) ausschließlich, um Ihre Anfrage zu bearbeiten. Die Daten werden nicht an Dritte weitergegeben.</p><h2>Cookies & Schriften</h2><p>Diese Webseite setzt keine Tracking-Cookies und lädt keine Schriften oder Skripte von fremden Servern.</p>"
+  }
+ }
+]

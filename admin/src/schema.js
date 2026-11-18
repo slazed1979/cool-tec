@@ -1,0 +1,181 @@
+// Welche Felder es pro Inhaltsart gibt. Neues Feld? → hier ergänzen (keine Datenbank-Änderung nötig)
+// und in server/views.mjs anzeigen. Was hier fehlt, ist trotzdem über „{ } JSON“ bearbeitbar.
+
+export const ICONS = ['snow', 'box', 'heat', 'fan', 'wrench', 'clock', 'phone', 'mail', 'pin', 'check', 'building', 'calendar', 'user', 'leaf', 'shield', 'link'];
+
+export const slugify = (s) =>
+  String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+
+const link = (key, label) => ({ key, label, type: 'object', fields: [
+  { key: 'label', label: 'Beschriftung', type: 'text' },
+  { key: 'href', label: 'Ziel', type: 'link', help: 'z. B. /projekte, #kontakt oder https://…' },
+] });
+const navList = (key, label, help) => ({ key, label, help, type: 'list', itemTitle: 'label', fields: [
+  { key: 'label', label: 'Beschriftung', type: 'text' },
+  { key: 'href', label: 'Ziel', type: 'link' },
+] });
+const sectionHead = [
+  { key: 'eyebrow', label: 'Kleine Überzeile', type: 'text' },
+  { key: 'title', label: 'Überschrift', type: 'text' },
+];
+
+export const COLLECTIONS = [
+  // ------------------------------------------------ Webseite
+  {
+    key: 'home', group: 'Seiten', label: 'Startseite (Unternehmen)', emoji: '🏠', single: true, singleId: 'home', view: () => '/',
+    description: 'Erster Reiter: Startbild mit Firmenfoto, Zahlen, Text über die Firma, Leistungen, Projekt- und Partner-Vorschau, Kontakt.',
+    title: () => 'Startseite',
+    fields: [
+      { key: 'hero', label: '① Startbild (ganz oben)', type: 'object', fields: [
+        { key: 'image', label: 'Foto der Firma (breit, mind. 1600 px)', type: 'image' },
+        { key: 'eyebrow', label: 'Kleine Überzeile', type: 'text' },
+        { key: 'title', label: 'Große Überschrift', type: 'text' },
+        { key: 'text', label: 'Text darunter', type: 'textarea' },
+        link('button1', 'Knopf 1 (blau)'),
+        link('button2', 'Knopf 2 (weiß umrandet)'),
+      ] },
+      { key: 'stats', label: '② Zahlen-Leiste', help: 'Am besten 4 Einträge. Leer = Leiste ausgeblendet.', type: 'list', itemTitle: 'value', fields: [
+        { key: 'value', label: 'Zahl / Wert', type: 'text' },
+        { key: 'label', label: 'Beschriftung', type: 'text' },
+      ] },
+      { key: 'about', label: '③ Über die Firma', type: 'object', fields: [
+        ...sectionHead,
+        { key: 'html', label: 'Beschreibung', type: 'richtext' },
+        { key: 'points', label: 'Häkchen-Punkte', type: 'strings' },
+        { key: 'image', label: 'Bild rechts', type: 'image' },
+        { key: 'imageAlt', label: 'Bildbeschreibung (für Blinde & Google)', type: 'text' },
+      ] },
+      { key: 'services', label: '④ Leistungen', type: 'object', fields: [
+        ...sectionHead,
+        { key: 'text', label: 'Einleitung (optional)', type: 'textarea' },
+        { key: 'items', label: 'Leistungen', type: 'list', itemTitle: 'title', fields: [
+          { key: 'icon', label: 'Symbol', type: 'icon' },
+          { key: 'title', label: 'Titel', type: 'text' },
+          { key: 'text', label: 'Text', type: 'textarea' },
+        ] },
+      ] },
+      { key: 'projects', label: '⑤ Projekt-Vorschau', type: 'object', fields: [
+        ...sectionHead,
+        { key: 'text', label: 'Text', type: 'textarea' },
+        { key: 'count', label: 'Wie viele Projekte zeigen?', type: 'select', options: [{ value: '3', label: '3' }, { value: '6', label: '6' }] },
+        { key: 'button', label: 'Knopf-Text', type: 'text' },
+        { key: 'hidden', label: 'Abschnitt ausblenden', type: 'bool0' },
+      ] },
+      { key: 'partners', label: '⑥ Partner-Logos', type: 'object', fields: [
+        ...sectionHead,
+        { key: 'button', label: 'Knopf-Text', type: 'text' },
+        { key: 'hidden', label: 'Abschnitt ausblenden', type: 'bool0' },
+      ] },
+      { key: 'contact', label: '⑦ Kontakt', type: 'object', fields: [
+        ...sectionHead,
+        { key: 'text', label: 'Text', type: 'textarea' },
+        { key: 'showForm', label: 'Kontaktformular anzeigen', type: 'bool' },
+      ] },
+    ],
+  },
+  {
+    key: 'projectsPage', group: 'Seiten', label: 'Seite „Projekte“', emoji: '🗂', single: true, singleId: 'projectsPage', view: () => '/projekte',
+    description: 'Zweiter Reiter: Kopfbereich und Filter-Bereiche. Die Projekte selbst unter „Projekte“.',
+    title: () => 'Seite „Projekte“',
+    fields: [
+      ...sectionHead,
+      { key: 'text', label: 'Einleitung', type: 'textarea' },
+      { key: 'image', label: 'Hintergrundbild', type: 'image' },
+      { key: 'categories', label: 'Bereiche (Filter-Knöpfe)', help: 'Jedes Projekt bekommt einen dieser Bereiche.', type: 'strings' },
+    ],
+  },
+  {
+    key: 'partnersPage', group: 'Seiten', label: 'Seite „Partner“', emoji: '🤝', single: true, singleId: 'partnersPage', view: () => '/partner',
+    description: 'Dritter Reiter: Kopfbereich und Schlusstext. Die Partner selbst unter „Partner“.',
+    title: () => 'Seite „Partner“',
+    fields: [
+      ...sectionHead,
+      { key: 'text', label: 'Einleitung', type: 'textarea' },
+      { key: 'image', label: 'Hintergrundbild', type: 'image' },
+      { key: 'outro', label: 'Text unter den Partnern', type: 'richtext' },
+    ],
+  },
+  {
+    key: 'pages', group: 'Seiten', label: 'Weitere Seiten', emoji: '📄', sortable: true, view: (d) => d.path,
+    description: 'Impressum, Datenschutz oder beliebige weitere Seiten. Verlinken über Einstellungen → Fußzeilen-Links.',
+    title: (d) => d.title, subtitle: (d) => d.path,
+    newId: (d) => slugify(d.title),
+    defaults: () => ({ title: '', path: '/', html: '' }),
+    fields: [
+      { key: 'title', label: 'Titel', type: 'text' },
+      { key: 'path', label: 'Adresse', type: 'text', help: 'Beginnt mit /, z. B. /impressum' },
+      { key: 'html', label: 'Inhalt', type: 'richtext' },
+    ],
+  },
+  // ------------------------------------------------ Inhalte
+  {
+    key: 'projects', group: 'Inhalte', label: 'Projekte', emoji: '🏗', sortable: true, view: (d, id) => '/projekte/' + id,
+    description: 'Referenzprojekte. Reihenfolge mit ↑ ↓ ändern. „Auf Startseite“ = erscheint bevorzugt in der Vorschau.',
+    title: (d) => d.title, subtitle: (d) => [d.category, d.location, d.year].filter(Boolean).join(' · '),
+    newId: (d) => slugify(d.title),
+    defaults: () => ({ title: '', category: '', location: '', year: String(new Date().getFullYear()), image: '', summary: '', html: '' }),
+    fields: [
+      { key: 'title', label: 'Titel', type: 'text' },
+      { key: 'category', label: 'Bereich', type: 'category' },
+      { key: 'location', label: 'Ort', type: 'text' },
+      { key: 'year', label: 'Jahr', type: 'text' },
+      { key: 'customer', label: 'Objekt / Kunde', type: 'text', help: 'z. B. „Bürogebäude, 4.200 m²“' },
+      { key: 'service', label: 'Leistung', type: 'text', help: 'z. B. „VRF-System mit 86 Deckenkassetten“' },
+      { key: 'image', label: 'Hauptbild', type: 'image' },
+      { key: 'imageAlt', label: 'Bildbeschreibung', type: 'text' },
+      { key: 'summary', label: 'Kurzbeschreibung (für die Karte)', type: 'textarea' },
+      { key: 'html', label: 'Ausführliche Beschreibung', type: 'richtext' },
+      { key: 'images', label: 'Weitere Bilder (Galerie)', type: 'list', itemTitle: 'alt', fields: [
+        { key: 'src', label: 'Bild', type: 'image' },
+        { key: 'alt', label: 'Bildbeschreibung', type: 'text' },
+      ] },
+      { key: 'featured', label: 'Auf Startseite bevorzugt zeigen', type: 'bool0' },
+    ],
+  },
+  {
+    key: 'partners', group: 'Inhalte', label: 'Partner', emoji: '🤝', sortable: true, view: (d, id) => '/partner#' + id,
+    description: 'Hersteller, Großhändler, Planer … Gruppiert nach „Art“. Reihenfolge mit ↑ ↓.',
+    title: (d) => d.name, subtitle: (d) => d.category,
+    newId: (d) => slugify(d.name),
+    defaults: () => ({ name: '', category: 'Hersteller', logo: '', text: '', url: '', since: '' }),
+    fields: [
+      { key: 'name', label: 'Name', type: 'text' },
+      { key: 'category', label: 'Art (Gruppe)', type: 'text', help: 'z. B. Hersteller, Großhandel, Planung' },
+      { key: 'logo', label: 'Logo (am besten SVG oder PNG mit transparentem Hintergrund)', type: 'image' },
+      { key: 'text', label: 'Beschreibung', type: 'textarea' },
+      { key: 'since', label: 'Partner seit (Jahr)', type: 'text' },
+      { key: 'url', label: 'Webseite', type: 'link' },
+    ],
+  },
+  // ------------------------------------------------ Einstellungen
+  {
+    key: 'settings', group: 'Einstellungen', label: 'Firma & Kontakt', emoji: '⚙️', single: true, singleId: 'site', view: () => '/',
+    description: 'Gilt für alle Seiten: Logo, Kontaktdaten, Öffnungszeiten oben rechts, Menü, Fußzeile, Google-Texte.',
+    title: () => 'Firma & Kontakt',
+    fields: [
+      { key: 'name', label: 'Firmenname (kurz)', type: 'text' },
+      { key: 'legalName', label: 'Firmenname (vollständig, z. B. mit S.à r.l.)', type: 'text' },
+      { key: 'logo', label: 'Logo (oben links)', type: 'image' },
+      { key: 'logoAlt', label: 'Logo-Beschreibung', type: 'text' },
+      { key: 'hoursTop', label: 'Öffnungszeiten oben rechts (eine Zeile)', type: 'text' },
+      { key: 'phone', label: 'Telefon', type: 'text' },
+      { key: 'emergencyPhone', label: 'Notdienst-Telefon (leer = ausblenden)', type: 'text' },
+      { key: 'email', label: 'E-Mail', type: 'text' },
+      { key: 'street', label: 'Straße', type: 'text' },
+      { key: 'city', label: 'PLZ & Ort', type: 'text' },
+      { key: 'country', label: 'Land', type: 'text' },
+      { key: 'hours', label: 'Öffnungszeiten (Fußzeile)', type: 'list', itemTitle: 'days', fields: [
+        { key: 'days', label: 'Tage', type: 'text' },
+        { key: 'time', label: 'Uhrzeit', type: 'text' },
+      ] },
+      navList('nav', 'Hauptmenü (die Reiter oben)', 'Reihenfolge mit ↑ ↓. Vorhandene Seiten: / (Unternehmen), /projekte, /partner'),
+      { key: 'ctaLabel', label: 'Knopf rechts im Menü – Text (leer = kein Knopf)', type: 'text' },
+      { key: 'ctaHref', label: 'Knopf rechts im Menü – Ziel', type: 'link' },
+      { key: 'footerText', label: 'Text in der Fußzeile', type: 'textarea' },
+      navList('footerLinks', 'Fußzeilen-Links', 'z. B. Impressum, Datenschutz'),
+      { key: 'seoTitle', label: 'Titel für Google (Startseite)', type: 'text' },
+      { key: 'seoDescription', label: 'Beschreibung für Google', type: 'textarea' },
+      { key: 'noindex', label: 'Vor Google verstecken (Testphase)', type: 'bool', help: 'Erst ausschalten, wenn die Seite mit echten Inhalten online gehen soll.' },
+    ],
+  },
+];

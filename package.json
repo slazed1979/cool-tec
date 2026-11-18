@@ -1,0 +1,16 @@
+{
+  "name": "cool-tec",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Webseite der Cool-Tec (Klima- und Kältetechnik) + einfaches CMS",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node --watch server/index.mjs",
+    "build": "cd admin && npm ci && npm run build",
+    "test": "node tests/run.mjs",
+    "check": "npm run build && npm test",
+    "admin": "cd admin && npm run dev"
+  }
+}

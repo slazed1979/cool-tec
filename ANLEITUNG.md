@@ -24,6 +24,7 @@
 - Passwort vergessen? Admin klickt beim Benutzer auf **🔑 Neues Passwort**. Zugang sperren: **Entfernen**.
 
 ## Gut zu wissen
+- **Auf den Startbildschirm legen** (Webseite oder CMS): iPhone → in Safari unten auf Teilen ⬆ → „Zum Home-Bildschirm“. Android → in Chrome ⋮ → „Zum Startbildschirm hinzufügen“. Es erscheint das Cool-Tec-Symbol (beim CMS mit „CMS“-Schild). Antippen öffnet die Seite ganz normal im Browser.
 - Gratis-Hosting (Render Free): Nach 15 Minuten ohne Besucher „schläft“ die Seite; der erste Aufruf dauert dann ca. 30–60 Sekunden.
 - Die Seite ist in der Testphase **vor Google versteckt**. Für den Start: CMS → Firma & Kontakt → „Vor Google verstecken“ ausschalten.
 - Vor dem echten Start: **Impressum und Datenschutz** durch echte Texte ersetzen, fiktive Projekte/Partner/Zahlen austauschen.

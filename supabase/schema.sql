@@ -87,3 +87,17 @@ create policy "cooltec: Redakteure ändern Dateien" on storage.objects
 drop policy if exists "cooltec: Redakteure löschen Dateien" on storage.objects;
 create policy "cooltec: Redakteure löschen Dateien" on storage.objects
   for delete to authenticated using (bucket_id = 'cooltec-media' and public.cooltec_is_editor());
+
+-- ============================================================
+-- Benutzerverwaltung (Migration „cooltec_user_management“, 18.11.2026)
+-- Rollen: admin (darf Benutzer verwalten) / editor (nur Inhalte). Alles läuft über SECURITY-DEFINER-Funktionen,
+-- die selbst prüfen, ob der Aufrufer Admin ist. Benutzernamen ohne E-Mail: name@team.cool-tec.lu (siehe admin/src/login.js).
+-- ============================================================
+alter table public.cooltec_editors add column if not exists name text;
+alter table public.cooltec_editors add column if not exists role text not null default 'editor';
+alter table public.cooltec_editors add column if not exists created_auth boolean not null default false; -- Konto wurde vom CMS angelegt
+alter table public.cooltec_editors drop constraint if exists cooltec_editors_role_check;
+alter table public.cooltec_editors add constraint cooltec_editors_role_check check (role in ('admin', 'editor'));
+-- Funktionen: cooltec_is_admin(), cooltec_list_editors(), cooltec_create_editor(email, passwort, name, rolle),
+--             cooltec_set_password(email, passwort), cooltec_set_role(email, rolle), cooltec_remove_editor(email)
+-- Vollständiger Code: Supabase → Database → Migrations → cooltec_user_management

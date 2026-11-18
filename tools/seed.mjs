@@ -7,7 +7,7 @@ const site = {
   name: 'Cool-Tec',
   legalName: 'Cool-Tec S.à r.l.',
   tagline: 'Klima- & Kältetechnik in Luxemburg',
-  logo: '/brand/logo.png',
+  logo: '/brand/logo-cooltec.png',
   logoAlt: 'Cool-Tec – Klima- und Kältetechnik',
   phone: '+352 26 31 47 80',
   emergencyPhone: '+352 621 47 80 00',

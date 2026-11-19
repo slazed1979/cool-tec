@@ -107,6 +107,15 @@ try {
   ok((await (await get('/?gesendet=ok')).text()).includes('Vielen Dank'), 'Formular: Danke-Meldung fehlt');
   ok((await (await get('/?gesendet=err')).text()).includes('role="alert"'), 'Formular: Fehlermeldung fehlt');
 
+  // ---- E-Mail-Benachrichtigung (ohne echten Versand)
+  const { parseRecipients, buildNotification, notifyNewMessage } = await import('../server/mail.mjs');
+  ok(parseRecipients('Info@Cool-Tec.lu, chef@firma.lu; kaputt, info@cool-tec.lu').join() === 'info@cool-tec.lu,chef@firma.lu', 'Benachrichtigung: Empfänger-Liste falsch gelesen');
+  const mail = buildNotification({ name: 'Anna <b>', email: 'anna@example.lu', phone: '', subject: 'Klima', message: 'Hallo <script>x</script>' }, { name: 'Cool-Tec', notifyEmails: 'info@cool-tec.lu' }, 'web@cool-tec.lu');
+  ok(mail && mail.to[0].email === 'info@cool-tec.lu' && mail.replyTo.email === 'anna@example.lu' && mail.subject.includes('Klima'), 'Benachrichtigung: Empfänger/Antwort-Adresse/Betreff falsch');
+  ok(!mail.htmlContent.includes('<script>') && mail.htmlContent.includes('&lt;b&gt;'), 'Benachrichtigung: eingeschleuster Code wird nicht maskiert');
+  ok(buildNotification({ name: 'x', email: 'x@y.lu', message: 'm' }, { notifyEmails: '' }, 'web@cool-tec.lu') === null, 'Benachrichtigung: ohne Empfänger darf nichts verschickt werden');
+  ok((await notifyNewMessage({ name: 'x', email: 'x@y.lu', message: 'm' }, { notifyEmails: 'a@b.lu' })) === 'aus', 'Benachrichtigung: ohne Brevo-Schlüssel darf nichts verschickt werden');
+
   // ---- 3. Schutz vor eingeschleustem Code im Text-Editor
   const { rich, esc } = await import('../server/views.mjs');
   const bad = rich('<p onclick="x()">a</p><script>alert(1)</script><a href="javascript:alert(1)">b</a><iframe src="x"></iframe>');

@@ -16,6 +16,7 @@ const site = {
   phone: '+352 26 31 47 80',
   emergencyPhone: '+352 621 47 80 00',
   email: 'info@cool-tec.lu',
+  notifyEmails: 'info@cool-tec.lu',
   street: '7, rue de l’Innovation',
   city: 'L-8399 Windhof',
   country: 'Luxemburg',

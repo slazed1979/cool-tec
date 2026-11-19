@@ -31,10 +31,18 @@
 - Vor dem echten Start: **Impressum und Datenschutz** durch echte Texte ersetzen, fiktive Projekte/Partner/Zahlen austauschen.
 - Eigene Adresse (z. B. www.cool-tec.lu): Domain kaufen und bei Render eintragen – Pepper hilft dabei.
 
-## 💡 Ideen für später (noch nicht umgesetzt)
-- *(zurzeit keine offenen Ideen)*
+## 💡 Offene Punkte & Ideen für später
+- ⏸ **E-Mail-Benachrichtigung fertig einrichten – ERST NACH DEM UMZUG** auf den endgültigen Server mit der echten Adresse **cool-tec.lu** (Stand 19.11.2026, auf Eis gelegt):
+  - Der Code ist schon eingebaut und live, verschickt aber noch nichts (es fehlt der Brevo-Schlüssel bei Render).
+  - Brevo-Gratis-Konto ist bereits angelegt.
+  - **Gmail (oder GMX, Yahoo …) geht als Absender nicht** – Brevo verlangt eine eigene, bestätigte Domain.
+  - Beim Umzug: in Brevo die Domain **cool-tec.lu authentifizieren** (Einstellungen → „Absender:innen, Domains, IPs“ → Domain hinzufügen → die angezeigten DNS-Einträge beim Domain-Anbieter eintragen), dann Absender z. B. `webseite@cool-tec.lu` anlegen, API-Schlüssel erzeugen und beim neuen Server hinterlegen (`BREVO_API_KEY`, `MAIL_FROM`).
+  - Empfänger steht schon im CMS: `info@cool-tec.lu` (prüfen, dass das Postfach dann wirklich existiert).
+  - **Pepper Bescheid geben:** „Wir sind umgezogen – bitte E-Mail-Benachrichtigung fertig einrichten.“
 
 ## ✉️ E-Mail-Benachrichtigung bei neuen Kontakt-Nachrichten
+> ⏸ **Noch nicht aktiv** – wird erst nach dem Umzug mit der Adresse cool-tec.lu eingerichtet (siehe „Ideen für später“). Die Schritte unten gelten dann sinngemäß; als Absender **keine Gmail-Adresse**, sondern eine `@cool-tec.lu`-Adresse mit bestätigter Domain.
+
 Bei jeder Nachricht über das Kontaktformular geht sofort eine E-Mail an die Adresse(n) aus dem CMS (**⚙️ Firma & Kontakt → „✉️ Benachrichtigung bei neuen Kontakt-Nachrichten an“**, mehrere mit Komma). „Antworten“ in der Mail schreibt direkt dem Kunden. Die Nachricht steht zusätzlich im CMS. Kostenlos über **Brevo** (300 Mails/Tag).
 
 **Einmalig einrichten:**

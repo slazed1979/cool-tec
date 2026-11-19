@@ -65,6 +65,11 @@ try {
   }
   ok((await get('/brand/apple-touch-icon.png')).status === 200 && (await get('/brand/cms-apple-touch-icon.png')).status === 200, 'iPhone-Symbole fehlen');
 
+  // ---- Zweites Logo (BM Project) neben dem Cool-Tec-Logo
+  ok(/class="brands"[\s\S]*?class="brand2"[\s\S]*?\/brand\/bm-project\.png[\s\S]*?by Cool-Tec/.test(home), 'Zweites Logo (BM Project) mit Zusatz fehlt');
+  ok((await get('/brand/bm-project.png')).status === 200, 'Datei bm-project.png fehlt');
+  ok(/<a class="brand2" href="https:\/\/bmproject\.lu\/" target="_blank" rel="noopener">/.test(home), 'Zweites Logo: Link zu bmproject.lu (neuer Tab) fehlt');
+
   // ---- Jobs
   const jobs = await (await get('/jobs')).text();
   ok(jobs.includes('aria-current="page">Jobs') && (jobs.match(/class="card job-card"/g) || []).length >= 1, 'Jobs-Seite: Reiter oder Stellen fehlen');

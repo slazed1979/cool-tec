@@ -11,7 +11,8 @@
    - **Jobs** – offene Stellen; besetzt? „Veröffentlicht“ ausschalten
    - **Seite „Jobs“** – Einleitung, Vorteile für Bewerber, Bewerbungstext
    - **Weitere Seiten** – Impressum, Datenschutz, eigene Seiten
-   - **Firma & Kontakt** – Logo, Öffnungszeiten oben rechts, Telefon, E-Mail, Adresse, Menü, Fußzeile, Google-Texte
+   - **Firma & Kontakt** – u. a. **zweites Logo** neben dem Cool-Tec-Logo (BM Project): Bild, Zusatz darunter („by Cool-Tec“) und **Link** (z. B. https://bmproject.lu/, öffnet im neuen Tab). Bild leer lassen = ausgeblendet.
+     Außerdem: Logo, Öffnungszeiten oben rechts, Telefon, E-Mail, Adresse, Menü, Fußzeile, Google-Texte
    - **Nachrichten** – was Kunden über das Formular geschickt haben. Neue Nachrichten erkennt man an **„3 neu“** links, am Knopf **„✉ 3 neue Nachrichten“** oben und an der Zahl im Browser-Tab „(3) CMS“. Wird jede Minute aktualisiert. Auf „in Arbeit“ oder „erledigt“ setzen → die Zahl sinkt.
 4. **Zwei Sprachen:** Jedes Textfeld hat eine Zeile **DE** und eine Zeile **FR** (große Texte: Reiter DE / FR). Ein ⚠ heißt „noch nicht übersetzt“ – dann zeigt die französische Seite den deutschen Text.
 5. **💾 Speichern** – nach wenigen Sekunden ist es auf der Webseite sichtbar.

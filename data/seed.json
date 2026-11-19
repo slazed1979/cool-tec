@@ -16,6 +16,13 @@
     "de": "Cool-Tec – Klima- und Kältetechnik",
     "fr": "Cool-Tec – Climatisation et technique du froid"
    },
+   "logo2": "/brand/bm-project.png",
+   "logo2Alt": "BM Project",
+   "logo2Text": {
+    "de": "by Cool-Tec",
+    "fr": "by Cool-Tec"
+   },
+   "logo2Href": "https://bmproject.lu/",
    "phone": "+352 26 31 47 80",
    "emergencyPhone": "+352 621 47 80 00",
    "email": "info@cool-tec.lu",

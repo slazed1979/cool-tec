@@ -6,6 +6,7 @@ import { createReadStream, existsSync, statSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getData, invalidate, saveMessage, source, LANGS } from './data.mjs';
+import { notifyNewMessage } from './mail.mjs';
 import * as V from './views.mjs';
 import { icon, ICON_NAMES } from './icons.mjs';
 
@@ -174,6 +175,7 @@ const server = http.createServer(async (req, res) => {
       if (sentBy.size > 5000) for (const [k, v] of sentBy) if (now - v[v.length - 1] > 3600_000) sentBy.delete(k);
       try {
         await saveMessage(msg);
+        if (process.env.CONTENT_SOURCE !== 'seed') notifyNewMessage(msg, site); // E-Mail im Hintergrund – Besucher wartet nicht darauf
         return done('ok');
       } catch (e) {
         console.warn('[kontakt]', e.message);

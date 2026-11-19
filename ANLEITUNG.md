@@ -32,13 +32,22 @@
 - Eigene Adresse (z. B. www.cool-tec.lu): Domain kaufen und bei Render eintragen – Pepper hilft dabei.
 
 ## 💡 Ideen für später (noch nicht umgesetzt)
-- **E-Mail-Benachrichtigung bei neuen Kontakt-Nachrichten** – geprüft, funktioniert und ist **kostenlos**:
-  - Bei jeder Nachricht über das Kontaktformular geht zusätzlich sofort eine E-Mail an eine oder mehrere Adressen (z. B. Chef + Büro), mit Name, Telefon, Betreff und Nachricht. „Antworten“ schreibt direkt dem Kunden. Die Nachricht bleibt außerdem wie bisher im CMS.
-  - Empfänger-Adressen später selbst änderbar im CMS unter „Firma & Kontakt“.
-  - Versand über den Gratis-Dienst **Brevo** (300 E-Mails pro Tag, keine Kreditkarte, unbegrenzt). Render-Gratis-Server dürfen selbst keine E-Mails verschicken, deshalb der Dienst.
-  - Einmalig nötig (ca. 5 Min., Pepper führt): Gratis-Konto bei Brevo anlegen → Absender-E-Mail bestätigen → Zugangsschlüssel erzeugen und **direkt bei Render** eintragen (nie in den Chat).
-  - Hinweis: Ohne eigene Adresse wie `cool-tec.lu` landen die ersten Mails evtl. im Spam → einmal „Kein Spam“ markieren.
-  - **Zum Umsetzen einfach sagen:** „Bitte E-Mail-Benachrichtigung fürs Kontaktformular einbauen, an: …“
+- *(zurzeit keine offenen Ideen)*
+
+## ✉️ E-Mail-Benachrichtigung bei neuen Kontakt-Nachrichten
+Bei jeder Nachricht über das Kontaktformular geht sofort eine E-Mail an die Adresse(n) aus dem CMS (**⚙️ Firma & Kontakt → „✉️ Benachrichtigung bei neuen Kontakt-Nachrichten an“**, mehrere mit Komma). „Antworten“ in der Mail schreibt direkt dem Kunden. Die Nachricht steht zusätzlich im CMS. Kostenlos über **Brevo** (300 Mails/Tag).
+
+**Einmalig einrichten:**
+1. Gratis-Konto anlegen: https://www.brevo.com → „Sign up free“ (keine Kreditkarte nötig).
+2. Absender bestätigen: Brevo → oben rechts Name → **Senders, Domains & Dedicated IPs** → **Senders** → „Add a sender“ → eine E-Mail-Adresse eintragen, **auf die du Zugriff hast** → Bestätigungs-Link in der Mail anklicken.
+3. Schlüssel erzeugen: Brevo → **SMTP & API** → Reiter **API Keys** → „Generate a new API key“ → Namen „cool-tec“ → Schlüssel kopieren (beginnt mit `xkeysib-`). **Nicht in den Chat schicken!**
+4. Bei Render eintragen: https://dashboard.render.com → Dienst **cool-tec** → links **Environment** → „Add Environment Variable“:
+   - `BREVO_API_KEY` = der kopierte Schlüssel
+   - `MAIL_FROM` = die in Schritt 2 bestätigte Absender-Adresse
+   → **Save Changes** (Render startet die Seite neu, ca. 1 Minute).
+5. Testen: auf der Webseite das Kontaktformular abschicken → nach 1–2 Minuten sollte die Mail da sein (beim ersten Mal auch im **Spam-Ordner** nachsehen und „Kein Spam“ markieren).
+
+Fehlt der Schlüssel oder ist das Empfänger-Feld leer, wird einfach keine Mail verschickt – die Nachrichten landen trotzdem im CMS.
 
 ## Änderungen am Aussehen / an Funktionen
 Das macht Pepper Potts – immer so:

@@ -22,6 +22,16 @@ const head = (eyebrow, title, text, cls = '') => `
     ${text ? `<p class="lead">${nl2br(text)}</p>` : ''}
   </div>`;
 
+/** Zweites Logo neben dem Cool-Tec-Logo (z. B. BM Project) – im CMS unter „Firma & Kontakt“, optional mit Link */
+function brand2(s) {
+  if (!s.logo2) return '';
+  const inner = `${img(s.logo2, s.logo2Alt || '', 'width="562" height="120"')}${s.logo2Text ? `<span>${esc(s.logo2Text)}</span>` : ''}`;
+  const href = String(s.logo2Href || '').trim();
+  if (!href) return `<div class="brand2">${inner}</div>`;
+  const ext = /^https?:\/\//i.test(href);
+  return `<a class="brand2" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}>${inner}</a>`;
+}
+
 // ------------------------------------------------------------------ Grundgerüst
 export function layout(ctx, { title, description, active, body, image }) {
   const s = ctx.site;
@@ -67,7 +77,10 @@ ${image || ctx.data.home.hero?.image ? `<meta property="og:image" content="${esc
 </div>
 <header class="header">
   <div class="wrap header-in">
-    <a class="brand" href="/" aria-label="${esc(s.name)} – ${T('Startseite')}">${img(s.logo, s.logoAlt || s.name, 'width="320" height="87"')}</a>
+    <div class="brands">
+      <a class="brand" href="/" aria-label="${esc(s.name)} – ${T('Startseite')}">${img(s.logo, s.logoAlt || s.name, 'width="320" height="87"')}</a>
+      ${brand2(s)}
+    </div>
     <button class="burger" type="button" aria-expanded="false" aria-controls="hauptmenu" aria-label="${T('Menü öffnen')}" data-open="${T('Menü öffnen')}" data-close="${T('Menü schließen')}">${icon('menu')}${icon('close')}</button>
     <nav id="hauptmenu" class="nav" aria-label="${T('Hauptmenü')}">
       <ul>
